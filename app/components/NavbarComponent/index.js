@@ -14,6 +14,7 @@ import styled from 'styled-components';
 const LandingMenuLink = styled(Link)`
   &&& {
     font-family: 'Seymour One', sans-serif;
+    font-size: 1.2rem;
   }
 `;
 

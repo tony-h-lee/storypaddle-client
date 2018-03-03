@@ -21,7 +21,7 @@ function LoginPageComponent() {
     >
       <Grid.Column style={{ maxWidth: 450, marginTop: '-2rem' }}>
         <Container>
-          <Image src={Treasure} size="large" />
+          <Image src={Treasure} size="large" style={{ marginBottom: '0.8rem' }} />
           <LoginForm />
           <Link to={'/reset-password'}>
             Forgot your password?
