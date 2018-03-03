@@ -3,19 +3,22 @@
 * AuthWrapper
 *
 */
+
+import React from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
 
 function AuthWrapper(props) {
   console.log(props.token);
+  const { AuthComponent, PublicComponent } = props;
   return (
-    props.token ? props.AuthComponent : props.PublicComponent
+    props.token ? <AuthComponent /> : <PublicComponent />
   );
 }
 
 AuthWrapper.propTypes = {
-  token: PropTypes.object.isRequired,
+  token: PropTypes.object,
   AuthComponent: PropTypes.func.isRequired,
   PublicComponent: PropTypes.func.isRequired,
 };

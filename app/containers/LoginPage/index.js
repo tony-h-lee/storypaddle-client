@@ -1,6 +1,6 @@
 /**
  *
- * LandingPage
+ * LoginPage
  *
  */
 
@@ -10,33 +10,33 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import LandingPageComponent from 'components/LandingPageComponent';
+import LoginPageComponent from 'components/LoginPageComponent';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectLandingPage from './selectors';
+import makeSelectLoginPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-export class LandingPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class LoginPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div>
+      <div style={{ height: 'calc(100% - 42px)' }}>
         <Helmet>
-          <title>NobleLoot | Home </title>
-          <meta name="description" content="Collect items and battle!" />
+          <title>NobleLoot | Login </title>
+          <meta name="description" content="Log in to your NobleLoot account!" />
         </Helmet>
-        <LandingPageComponent />
+        <LoginPageComponent />
       </div>
     );
   }
 }
 
-LandingPage.propTypes = {
+LoginPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  landingpage: makeSelectLandingPage(),
+  loginpage: makeSelectLoginPage(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -47,11 +47,11 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'landingPage', reducer });
-const withSaga = injectSaga({ key: 'landingPage', saga });
+const withReducer = injectReducer({ key: 'loginPage', reducer });
+const withSaga = injectSaga({ key: 'loginPage', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(LandingPage);
+)(LoginPage);

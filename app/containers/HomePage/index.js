@@ -18,7 +18,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
   render() {
     return (
       <AuthWrapper
-        token={null}
+        token={undefined}
         AuthComponent={DashboardPage}
         PublicComponent={LandingPage}
       />

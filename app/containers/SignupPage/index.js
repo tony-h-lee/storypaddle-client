@@ -1,6 +1,6 @@
 /**
  *
- * LandingPage
+ * SignupPage
  *
  */
 
@@ -10,33 +10,33 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import LandingPageComponent from 'components/LandingPageComponent';
+import SignupPageComponent from 'components/SignupPageComponent';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectLandingPage from './selectors';
+import makeSelectSignupPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-export class LandingPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class SignupPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
         <Helmet>
-          <title>NobleLoot | Home </title>
-          <meta name="description" content="Collect items and battle!" />
+          <title>NobleLoot | Signup</title>
+          <meta name="description" content="Sign up for a NobleLoot account!" />
         </Helmet>
-        <LandingPageComponent />
+        <SignupPageComponent />
       </div>
     );
   }
 }
 
-LandingPage.propTypes = {
+SignupPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  landingpage: makeSelectLandingPage(),
+  signuppage: makeSelectSignupPage(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -47,11 +47,11 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'landingPage', reducer });
-const withSaga = injectSaga({ key: 'landingPage', saga });
+const withReducer = injectReducer({ key: 'signupPage', reducer });
+const withSaga = injectSaga({ key: 'signupPage', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(LandingPage);
+)(SignupPage);

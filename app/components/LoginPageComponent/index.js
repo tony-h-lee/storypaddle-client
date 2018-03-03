@@ -5,13 +5,30 @@
 */
 
 import React from 'react';
+import { Grid, Container, Image } from 'semantic-ui-react';
+import LoginForm from 'components/LoginForm';
+import Treasure from 'Images/Treasure.png';
+import { Link } from 'react-router-dom';
 // import styled from 'styled-components';
 
 
 function LoginPageComponent() {
   return (
-    <div>
-    </div>
+    <Grid
+      textAlign="center"
+      style={{ height: '100%' }}
+      verticalAlign="middle"
+    >
+      <Grid.Column style={{ maxWidth: 450, marginTop: '-2rem' }}>
+        <Container>
+          <Image src={Treasure} size="large" />
+          <LoginForm />
+          <Link to={'/reset-password'}>
+            Forgot your password?
+          </Link>
+        </Container>
+      </Grid.Column>
+    </Grid>
   );
 }
 

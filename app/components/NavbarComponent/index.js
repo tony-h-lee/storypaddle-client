@@ -12,7 +12,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const LandingMenuLink = styled(Link)`
-  font-family: 'Bowlby One SC', cursive;
+  &&& {
+    font-family: 'Seymour One', sans-serif;
+  }
 `;
 
 function NavbarComponent() {
