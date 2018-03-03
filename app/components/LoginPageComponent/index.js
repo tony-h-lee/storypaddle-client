@@ -7,7 +7,7 @@
 import React from 'react';
 import { Grid, Container, Image } from 'semantic-ui-react';
 import LoginForm from 'components/LoginForm';
-import Treasure from 'Images/Treasure.png';
+import Treasure from 'images/treasure.png';
 import { Link } from 'react-router-dom';
 // import styled from 'styled-components';
 
