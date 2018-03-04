@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 
 
 function AuthWrapper(props) {
-  console.log(props.token);
   const { AuthComponent, PublicComponent } = props;
   return (
     props.token ? <AuthComponent /> : <PublicComponent />

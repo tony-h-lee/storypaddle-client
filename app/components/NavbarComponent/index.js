@@ -27,11 +27,6 @@ function NavbarComponent() {
         <Menu widths={3} style={{ height: '49.19px' }}>
           <Menu.Item
             as={LandingMenuLink}
-            to={'/signup'}
-            name="Signup"
-          />
-          <Menu.Item
-            as={LandingMenuLink}
             to={'/'}
             name="NobleLoot"
           />
@@ -40,15 +35,15 @@ function NavbarComponent() {
             to={'/login'}
             name="Login"
           />
+          <Menu.Item
+            as={LandingMenuLink}
+            to={'/signup'}
+            name="Signup"
+          />
         </Menu>
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
         <Menu widths={3} style={{ height: '49.19px' }}>
-          <Menu.Item
-            as={LandingMenuLink}
-            to={'/signup'}
-            content={<Icon name="signup" />}
-          />
           <Menu.Item
             as={LandingMenuLink}
             to={'/'}
@@ -58,6 +53,11 @@ function NavbarComponent() {
             as={LandingMenuLink}
             to={'/login'}
             content={<Icon name="gamepad" />}
+          />
+          <Menu.Item
+            as={LandingMenuLink}
+            to={'/signup'}
+            content={<Icon name="signup" />}
           />
         </Menu>
       </Responsive>
