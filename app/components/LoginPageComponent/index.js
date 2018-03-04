@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import { fromJS } from 'immutable';
 // import styled from 'styled-components';
 
-const onSubmit = (values) => {
+const login = (values) => {
   console.log(fromJS(values));
   return values;
 };
@@ -28,7 +28,7 @@ function LoginPageComponent() {
         <Container>
           <Image src={Treasure} size="large" />
           <Header> Log in and start collecting! </Header>
-          <LoginForm onSubmit={onSubmit} />
+          <LoginForm onSubmit={login} />
           <Link to={'/reset-password'}>
             Forgot your password?
           </Link>
