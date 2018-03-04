@@ -6,3 +6,13 @@ export const email = (value) => (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]$/i.test(v
   ? 'Invalid email address'
   : undefined
 );
+
+export const validate = (values) => {
+  const errors = {};
+
+  if (values.get('password') !== values.get('confirmPassword')) {
+    errors.confirmPassword = 'Password does not match';
+  }
+
+  return errors;
+};

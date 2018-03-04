@@ -22,9 +22,8 @@ function LoginPageComponent() {
     <Grid
       textAlign="center"
       style={{ height: '100%' }}
-      verticalAlign="middle"
     >
-      <Grid.Column style={{ maxWidth: 450, marginTop: '-2rem' }}>
+      <Grid.Column style={{ maxWidth: 450, marginTop: '4rem' }}>
         <Container>
           <Image src={Treasure} size="large" />
           <Header> Log in and start collecting! </Header>

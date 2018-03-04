@@ -5,29 +5,23 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid, Container, Image, Header } from 'semantic-ui-react';
-import { fromJS } from 'immutable';
 import SignupForm from 'components/SignupForm';
 import Crown from 'images/crown.png';
 // import styled from 'styled-components';
 
-const signup = (values) => {
-  console.log(fromJS(values));
-  return values;
-};
-
-function SignupPageComponent() {
+function SignupPageComponent(props) {
   return (
     <Grid
       textAlign="center"
       style={{ height: '100%' }}
-      verticalAlign="middle"
     >
-      <Grid.Column style={{ maxWidth: 450, marginTop: '-2rem' }}>
+      <Grid.Column style={{ maxWidth: 450, marginTop: '4rem' }}>
         <Container>
           <Image src={Crown} size="small" centered />
           <Header> Create your NobleLoot account </Header>
-          <SignupForm onSubmit={signup} />
+          <SignupForm onSubmit={props.actions.signup} />
         </Container>
       </Grid.Column>
     </Grid>
@@ -35,7 +29,7 @@ function SignupPageComponent() {
 }
 
 SignupPageComponent.propTypes = {
-
+  actions: PropTypes.object,
 };
 
 export default SignupPageComponent;

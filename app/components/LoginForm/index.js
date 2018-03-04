@@ -10,9 +10,9 @@ import {
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import { Field, reduxForm } from 'redux-form/immutable';
+import { reduxForm } from 'redux-form/immutable';
 import FormButton from 'components/FormButton';
-import SemanticFormField from 'components/SemanticFormField';
+import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
 import { required, email } from 'components/FormValidation/syncValidation';
 
 function LoginForm(props) {
@@ -28,7 +28,7 @@ function LoginForm(props) {
       style={{ marginBottom: '1rem' }}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Field
+      <SemanticField
         name="email"
         component={SemanticFormField}
         as={Form.Input}
@@ -37,7 +37,7 @@ function LoginForm(props) {
         icon="user"
         validate={[email, required]}
       />
-      <Field
+      <SemanticField
         name="password"
         component={SemanticFormField}
         as={Form.Input}

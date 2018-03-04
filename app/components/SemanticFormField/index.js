@@ -9,7 +9,16 @@ import PropTypes from 'prop-types';
 import {
   Form,
   Input,
+  Label,
 } from 'semantic-ui-react';
+import styled from 'styled-components';
+import { Field } from 'redux-form/immutable';
+
+export const SemanticField = styled(Field)`
+  &&& {
+    margin-bottom: 0;
+  }
+`;
 
 function SemanticFormField({
   input, type, label, placeholder, icon,
@@ -31,6 +40,10 @@ function SemanticFormField({
         error={touched && error ? true : null}
         onChange={handleChange}
       />
+      {
+        touched && error &&
+        (<Label basic color="red" pointing> {error} </Label>)
+      }
     </Form.Field>
   );
 }

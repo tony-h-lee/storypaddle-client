@@ -11,9 +11,9 @@ import {
 import PropTypes from 'prop-types';
 import FormButton from 'components/FormButton';
 import { compose } from 'redux';
-import { Field, reduxForm } from 'redux-form/immutable';
-import SemanticFormField from 'components/SemanticFormField';
-import { required, email } from 'components/FormValidation/syncValidation';
+import { reduxForm } from 'redux-form/immutable';
+import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
+import { required, email, validate } from 'components/FormValidation/syncValidation';
 
 function SignupForm(props) {
   const {
@@ -28,7 +28,7 @@ function SignupForm(props) {
       style={{ marginBottom: '1rem' }}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Field
+      <SemanticField
         name="email"
         component={SemanticFormField}
         as={Form.Input}
@@ -37,7 +37,7 @@ function SignupForm(props) {
         icon="user"
         validate={[required, email]}
       />
-      <Field
+      <SemanticField
         name="password"
         component={SemanticFormField}
         as={Form.Input}
@@ -46,7 +46,7 @@ function SignupForm(props) {
         icon="lock"
         validate={required}
       />
-      <Field
+      <SemanticField
         name="confirmPassword"
         component={SemanticFormField}
         as={Form.Input}
@@ -80,5 +80,6 @@ export default compose(
   reduxForm({
     form: 'signupForm',
     enableReinitialize: true,
+    validate,
   })
 )(SignupForm);

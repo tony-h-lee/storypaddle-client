@@ -9,13 +9,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import SignupPageComponent from 'components/SignupPageComponent';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectSignupPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import * as signupActions from './actions';
 
 export class SignupPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -25,23 +26,23 @@ export class SignupPage extends React.PureComponent { // eslint-disable-line rea
           <title>NobleLoot | Signup</title>
           <meta name="description" content="Sign up for a NobleLoot account!" />
         </Helmet>
-        <SignupPageComponent />
+        <SignupPageComponent {...this.props.actions} />
       </div>
     );
   }
 }
 
 SignupPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  actions: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  signuppage: makeSelectSignupPage(),
+  signupPage: makeSelectSignupPage(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    actions: bindActionCreators(signupActions, dispatch),
   };
 }
 

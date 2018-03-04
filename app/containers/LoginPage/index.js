@@ -36,7 +36,7 @@ LoginPage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  loginpage: makeSelectLoginPage(),
+  loginPage: makeSelectLoginPage(),
 });
 
 function mapDispatchToProps(dispatch) {
