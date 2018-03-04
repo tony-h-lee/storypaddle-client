@@ -1,8 +1,8 @@
 /**
-*
-* LoginForm
-*
-*/
+ *
+ * SignupForm
+ *
+ */
 
 import React from 'react';
 import {
@@ -10,7 +10,7 @@ import {
 } from 'semantic-ui-react';
 import FormButton from 'components/FormButton';
 
-function LoginForm() {
+function SignupForm() {
   return (
     <Form size="large" style={{ marginBottom: '1rem' }}>
       <Form.Input
@@ -18,6 +18,7 @@ function LoginForm() {
         icon="user"
         iconPosition="left"
         placeholder="Email"
+        type="email"
       />
       <Form.Input
         fluid
@@ -26,14 +27,21 @@ function LoginForm() {
         placeholder="Password"
         type="password"
       />
+      <Form.Input
+        fluid
+        icon="lock"
+        iconPosition="left"
+        placeholder="Confirm Password"
+        type="password"
+      />
 
-      <FormButton primary fluid size="large">Log In</FormButton>
+      <FormButton positive fluid size="large">Sign Up</FormButton>
     </Form>
   );
 }
 
-LoginForm.propTypes = {
+SignupForm.propTypes = {
 
 };
 
-export default LoginForm;
+export default SignupForm;

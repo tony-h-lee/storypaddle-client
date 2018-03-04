@@ -20,7 +20,7 @@ import saga from './saga';
 export class SignupPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div>
+      <div style={{ height: 'calc(100% - 49.19px)' }}>
         <Helmet>
           <title>NobleLoot | Signup</title>
           <meta name="description" content="Sign up for a NobleLoot account!" />

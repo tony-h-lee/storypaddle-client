@@ -4,4 +4,4 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/NavbarContainer/DEFAULT_ACTION';
+export const DEFAULT = 'app/NavbarContainer/DEFAULT';

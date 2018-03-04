@@ -29,7 +29,7 @@ NavbarContainer.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  navbarcontainer: makeSelectNavbarContainer(),
+  navbar: makeSelectNavbarContainer(),
 });
 
 function mapDispatchToProps(dispatch) {

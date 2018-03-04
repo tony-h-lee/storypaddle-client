@@ -6,14 +6,15 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  DEFAULT,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+});
 
 function navbarContainerReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
+    case DEFAULT:
       return state;
     default:
       return state;

@@ -7,6 +7,8 @@
 import React from 'react';
 import {
   Menu,
+  Responsive,
+  Icon,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -20,23 +22,46 @@ const LandingMenuLink = styled(Link)`
 
 function NavbarComponent() {
   return (
-    <Menu widths={3}>
-      <Menu.Item
-        as={LandingMenuLink}
-        to={'/signup'}
-        name="Signup"
-      />
-      <Menu.Item
-        as={LandingMenuLink}
-        to={'/'}
-        name="NobleLoot"
-      />
-      <Menu.Item
-        as={LandingMenuLink}
-        to={'/login'}
-        name="Login"
-      />
-    </Menu>
+    <div>
+      <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+        <Menu widths={3} style={{ height: '49.19px' }}>
+          <Menu.Item
+            as={LandingMenuLink}
+            to={'/signup'}
+            name="Signup"
+          />
+          <Menu.Item
+            as={LandingMenuLink}
+            to={'/'}
+            name="NobleLoot"
+          />
+          <Menu.Item
+            as={LandingMenuLink}
+            to={'/login'}
+            name="Login"
+          />
+        </Menu>
+      </Responsive>
+      <Responsive {...Responsive.onlyMobile}>
+        <Menu widths={3} style={{ height: '49.19px' }}>
+          <Menu.Item
+            as={LandingMenuLink}
+            to={'/signup'}
+            content={<Icon name="signup" />}
+          />
+          <Menu.Item
+            as={LandingMenuLink}
+            to={'/'}
+            content={<Icon name="home" />}
+          />
+          <Menu.Item
+            as={LandingMenuLink}
+            to={'/login'}
+            content={<Icon name="gamepad" />}
+          />
+        </Menu>
+      </Responsive>
+    </div>
   );
 }
 
