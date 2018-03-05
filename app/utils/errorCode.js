@@ -27,7 +27,7 @@ export const getLoginErrors = (code) => {
   switch (code) {
     case 401:
       return new SubmissionError({
-        _error: 'Incorrect email or password',
+        _error: 'Incorrect credentials',
       });
     case 400:
       return new SubmissionError({
