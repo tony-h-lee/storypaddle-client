@@ -16,7 +16,7 @@ const selectLoginPageDomain = (state) => state.get('loginPage');
 
 const makeSelectLoginPage = () => createSelector(
   selectLoginPageDomain,
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
 export default makeSelectLoginPage;

@@ -16,7 +16,7 @@ const selectSignupPageDomain = (state) => state.get('signupPage');
 
 const makeSelectSignupPage = () => createSelector(
   selectSignupPageDomain,
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
 export default makeSelectSignupPage;

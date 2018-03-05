@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import AuthWrapper from 'components/AuthWrapper';
 import NavbarComponent from 'components/NavbarComponent';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -19,7 +20,11 @@ import saga from './saga';
 export class NavbarContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <NavbarComponent />
+      <AuthWrapper
+        token={undefined}
+        AuthComponent={() => (<div />)}
+        PublicComponent={NavbarComponent}
+      />
     );
   }
 }

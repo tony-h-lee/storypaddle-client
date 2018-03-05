@@ -22,8 +22,8 @@ function SignupPageComponent(props) {
           <Image src={Crown} size="small" centered />
           <Header> Create your NobleLoot account </Header>
           <SignupForm
-            loading={props.signupPage.loading}
-            error={props.signupPage.error}
+            loading={props.signupPage.get('loading')}
+            error={props.signupPage.get('error')}
           />
         </Container>
       </Grid.Column>

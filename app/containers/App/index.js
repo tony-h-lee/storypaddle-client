@@ -12,23 +12,10 @@
  */
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import NavbarContainer from 'containers/NavbarContainer/Loadable';
-import HomePage from 'containers/HomePage/Loadable';
-import LoginPage from 'containers/LoginPage/Loadable';
-import SignupPage from 'containers/SignupPage/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import AuthContainer from 'containers/AuthContainer';
 
 export default function App() {
   return (
-    <div>
-      <NavbarContainer />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/signup" component={SignupPage} />
-        <Route component={NotFoundPage} />
-      </Switch>
-    </div>
+    <AuthContainer />
   );
 }

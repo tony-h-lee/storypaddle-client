@@ -16,7 +16,7 @@ const selectNavbarContainerDomain = (state) => state.get('navbarContainer');
 
 const makeSelectNavbarContainer = () => createSelector(
   selectNavbarContainerDomain,
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
 export default makeSelectNavbarContainer;

@@ -22,8 +22,8 @@ function LoginPageComponent(props) {
           <Image src={Treasure} size="large" />
           <Header> Log in and start collecting! </Header>
           <LoginForm
-            loading={props.loginPage.loading}
-            error={props.loginPage.error}
+            loading={props.loginPage.get('loading')}
+            error={props.loginPage.get('error')}
           />
           <Link to={'/reset-password'}>
             Forgot your password?
