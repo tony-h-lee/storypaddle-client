@@ -21,7 +21,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 export default function App() {
   return (
-    <div style={{ height: '100%' }}>
+    <div>
       <NavbarContainer />
       <Switch>
         <Route exact path="/" component={HomePage} />

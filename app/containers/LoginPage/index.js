@@ -19,7 +19,7 @@ import saga from './saga';
 export class LoginPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div style={{ height: 'calc(100% - 49.19px)' }}>
+      <div>
         <Helmet>
           <title>NobleLoot | Login </title>
           <meta name="description" content="Log in to your NobleLoot account!" />
