@@ -3,6 +3,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import formActionSaga from 'redux-form-saga';
 import { history } from 'app';
 import { getLoginErrors } from 'utils/errorCode';
+import { setAuth } from 'containers/AuthContainer/actions';
 import * as api from './api';
 import {
   login,
@@ -18,7 +19,8 @@ function* handleLoginSaga(action) {
 
   try {
     const response = yield call(api.login, { email, password }); // calling our api method
-    yield put(login.success());
+    yield [put(login.success()), put(setAuth(response.token, response.user))];
+
     // Set token and user from response data
     console.log(response);
     yield apply(history, history.push, ['/']);

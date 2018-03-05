@@ -38,7 +38,7 @@ export default class Request {
   }
   addBasicCredentials(data) {
     this.headers = Object.assign(this.headers,
-      { Authorization: `Basic ${window.btoa(`${data.email} : ${data.password}`)}` });
+      { Authorization: `Basic ${Buffer.from(`${data.email}:${data.password}`).toString('base64')}` });
     return this;
   }
 
