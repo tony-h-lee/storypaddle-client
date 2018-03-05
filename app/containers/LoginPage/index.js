@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
@@ -25,14 +24,13 @@ export class LoginPage extends React.PureComponent { // eslint-disable-line reac
           <title>NobleLoot | Login </title>
           <meta name="description" content="Log in to your NobleLoot account!" />
         </Helmet>
-        <LoginPageComponent />
+        <LoginPageComponent {...this.props} />
       </div>
     );
   }
 }
 
 LoginPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

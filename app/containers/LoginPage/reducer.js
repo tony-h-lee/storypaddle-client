@@ -8,7 +8,7 @@ import { fromJS } from 'immutable';
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_ERROR,
+  LOGIN_FAILURE,
 } from './constants';
 
 const initialState = fromJS({
@@ -25,10 +25,12 @@ function loginPageReducer(state = initialState, action) {
     case LOGIN_SUCCESS:
       return state
         .set('loading', false);
-    case LOGIN_ERROR:
+    case LOGIN_FAILURE: {
       return state
-        .set('error', action.error)
+        .set('error', action.payload.errors)
         .set('loading', false);
+    }
+
     default:
       return state;
   }

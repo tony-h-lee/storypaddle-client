@@ -4,31 +4,19 @@
  *
  */
 
+import { createFormAction } from 'redux-form-saga';
 import {
-  LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_ERROR,
+  LOGIN_FAILURE,
 } from './constants';
 
 /**
- * The mentor submits a login request
- *
- * @param  {string} -> email : The unique email associated with the user account
- * @param  {string} -> password : Account password
- *
- * @return {object} : An action object with a type of LOGIN_REQUEST passing the account details
+ * Request authentication for Noble Loot account
  */
-export function login(email, password) {
-  return {
-    type: LOGIN_REQUEST,
-    email,
-    password,
-  };
-}
-
+export const login = createFormAction('LOGIN');
 
 /**
- * Dispatched when server login authentication succeeds
+ * Dispatched when server login succeeds
  *
  * @return {object} : An action object with a type of LOGIN_SUCCESS
  */
@@ -40,15 +28,15 @@ export function loginSuccess() {
 
 
 /**
- * Dispatched when server login authentication fails
+ * Dispatched when server login fails
  *
  * @param  {object} -> error : The error obtained by the saga
  *
  * @return {object} : An action object with a type of LOGIN_ERROR passing the error
  */
-export function loginError(error) {
+export function loginFailure(error) {
   return {
-    type: LOGIN_ERROR,
+    type: LOGIN_FAILURE,
     error,
   };
 }

@@ -9,7 +9,8 @@ export const email = (value) => (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2
   : undefined
 );
 
-export const password = (value) => (value.length < MIN_PASSWORD_LENGTH ? 'Password too short' : undefined);
+export const password = (value) => (value.length < MIN_PASSWORD_LENGTH ?
+  'Password must be at least 6 characters' : undefined);
 
 export const validate = (values) => {
   const errors = {};

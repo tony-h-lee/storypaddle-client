@@ -1,8 +1,8 @@
 import { take, call, put, cancel, takeLatest, fork, apply } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { SubmissionError } from 'redux-form/immutable';
 import formActionSaga from 'redux-form-saga';
 import { history } from 'app';
+import { getSignupErrors } from 'utils/errorCode';
 import * as api from './api';
 import {
   signup,
@@ -23,11 +23,7 @@ function* handleSignupSaga(action) {
     console.log(response);
     yield apply(history, history.push, ['/']);
   } catch (error) {
-    const formError = new SubmissionError({
-      email: 'This email is already taken', // specific field error
-      _error: 'Sign up failed! Please try again.', // global form error
-    });
-    yield put(signup.failure(formError));
+    yield put(signup.failure(getSignupErrors(error)));
   }
 }
 

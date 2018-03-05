@@ -27,7 +27,7 @@ function signupPageReducer(state = initialState, action) {
         .set('loading', false);
     case SIGNUP_FAILURE:
       return state
-        .set('error', action.error)
+        .set('error', action.payload.errors)
         .set('loading', false);
     default:
       return state;

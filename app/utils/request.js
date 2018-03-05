@@ -36,6 +36,11 @@ export default class Request {
     this.headers = Object.assign(this.headers, header);
     return this;
   }
+  addBasicCredentials(data) {
+    this.headers = Object.assign(this.headers,
+      { Authorization: `Basic ${window.btoa(`${data.email} : ${data.password}`)}` });
+    return this;
+  }
 
   // Methods
   setGet() {
@@ -74,7 +79,8 @@ export default class Request {
 
     const error = new Error(response.statusText);
     error.response = response;
-    return Promise.reject(error);
+    error.message = response.message;
+    return Promise.reject(response.status);
   }
 
   parseJson = (response) => {

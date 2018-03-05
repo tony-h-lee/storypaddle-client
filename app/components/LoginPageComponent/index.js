@@ -6,18 +6,13 @@
 
 import React from 'react';
 import { Grid, Container, Image, Header } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import LoginForm from 'components/LoginForm';
 import Treasure from 'images/treasure.png';
 import { Link } from 'react-router-dom';
-import { fromJS } from 'immutable';
 // import styled from 'styled-components';
 
-const login = (values) => {
-  console.log(fromJS(values));
-  return values;
-};
-
-function LoginPageComponent() {
+function LoginPageComponent(props) {
   return (
     <Grid
       textAlign="center"
@@ -27,7 +22,10 @@ function LoginPageComponent() {
         <Container>
           <Image src={Treasure} size="large" />
           <Header> Log in and start collecting! </Header>
-          <LoginForm onSubmit={login} />
+          <LoginForm
+            loading={props.loginPage.loading}
+            error={props.loginPage.error}
+          />
           <Link to={'/reset-password'}>
             Forgot your password?
           </Link>
@@ -38,7 +36,7 @@ function LoginPageComponent() {
 }
 
 LoginPageComponent.propTypes = {
-
+  loginPage: PropTypes.object,
 };
 
 export default LoginPageComponent;

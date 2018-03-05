@@ -60,11 +60,11 @@ function SignupForm(props) {
         validate={required}
       />
 
-      {error ?
+      {error && (
         <Message
           error
           content={error}
-        /> : null
+        />)
       }
 
       <FormButton
