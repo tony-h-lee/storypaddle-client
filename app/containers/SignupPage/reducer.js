@@ -8,7 +8,7 @@ import { fromJS } from 'immutable';
 import {
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
-  SIGNUP_ERROR,
+  SIGNUP_FAILURE,
 } from './constants';
 
 const initialState = fromJS({
@@ -25,7 +25,7 @@ function signupPageReducer(state = initialState, action) {
     case SIGNUP_SUCCESS:
       return state
         .set('loading', false);
-    case SIGNUP_ERROR:
+    case SIGNUP_FAILURE:
       return state
         .set('error', action.error)
         .set('loading', false);

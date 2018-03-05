@@ -21,7 +21,10 @@ function SignupPageComponent(props) {
         <Container>
           <Image src={Crown} size="small" centered />
           <Header> Create your NobleLoot account </Header>
-          <SignupForm onSubmit={props.actions.signup} />
+          <SignupForm
+            loading={props.signupPage.loading}
+            error={props.signupPage.error}
+          />
         </Container>
       </Grid.Column>
     </Grid>
@@ -29,7 +32,7 @@ function SignupPageComponent(props) {
 }
 
 SignupPageComponent.propTypes = {
-  actions: PropTypes.object,
+  signupPage: PropTypes.object,
 };
 
 export default SignupPageComponent;

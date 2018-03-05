@@ -7,26 +7,30 @@
 import React from 'react';
 import {
   Form,
+  Message,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import FormButton from 'components/FormButton';
 import { compose } from 'redux';
 import { reduxForm } from 'redux-form/immutable';
 import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
-import { required, email, validate } from 'components/FormValidation/syncValidation';
+import { required, email, validate, password } from 'components/FormValidation/syncValidation';
+import { signup } from 'containers/SignupPage/actions';
 
 function SignupForm(props) {
   const {
     handleSubmit,
-    onSubmit,
-    submitting,
+    loading,
     pristine,
+    error,
   } = props;
+
   return (
     <Form
       size="large"
       style={{ marginBottom: '1rem' }}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(signup)}
+      error={error !== false}
     >
       <SemanticField
         name="email"
@@ -44,7 +48,7 @@ function SignupForm(props) {
         placeholder="Password"
         type="password"
         icon="lock"
-        validate={required}
+        validate={[required, password]}
       />
       <SemanticField
         name="confirmPassword"
@@ -56,12 +60,19 @@ function SignupForm(props) {
         validate={required}
       />
 
+      {error ?
+        <Message
+          error
+          content={error}
+        /> : null
+      }
+
       <FormButton
         positive
         fluid
         size="large"
-        loading={submitting}
-        disabled={pristine || submitting}
+        loading={loading}
+        disabled={pristine || loading}
       >
         Sign Up
       </FormButton>
@@ -70,10 +81,13 @@ function SignupForm(props) {
 }
 
 SignupForm.propTypes = {
+  error: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]),
   handleSubmit: PropTypes.func,
-  onSubmit: PropTypes.func,
   pristine: PropTypes.bool,
-  submitting: PropTypes.bool,
+  loading: PropTypes.bool,
 };
 
 export default compose(

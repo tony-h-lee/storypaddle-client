@@ -4,26 +4,16 @@
  *
  */
 
+import { createFormAction } from 'redux-form-saga';
 import {
-  SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
-  SIGNUP_ERROR,
+  SIGNUP_FAILURE,
 } from './constants';
 
 /**
- * The mentor submits a signup request
- *
- * @param  {object} -> values : Contains input values from the form
- *
- * @return {object} : An action object with a type of SIGNUP_REQUEST passing the form values
+ * Create Noble Loot account request via redux form immutable
  */
-export function signup(values) {
-  return {
-    type: SIGNUP_REQUEST,
-    values,
-  };
-}
-
+export const signup = createFormAction('SIGNUP');
 
 /**
  * Dispatched when server signup succeeds
@@ -44,9 +34,9 @@ export function signupSuccess() {
  *
  * @return {object} : An action object with a type of SIGNUP_ERROR passing the error
  */
-export function signupError(error) {
+export function signupFailure(error) {
   return {
-    type: SIGNUP_ERROR,
+    type: SIGNUP_FAILURE,
     error,
   };
 }
