@@ -16,7 +16,7 @@ export const PropsRoute = ({ component, ...rest }) => (
 );
 
 PropsRoute.propTypes = {
-  component: PropTypes.node,
+  component: PropTypes.node.isRequired,
 };
 
 export const PrivateRoute = ({ component, redirectTo, ...rest }) =>
@@ -38,6 +38,6 @@ export const PrivateRoute = ({ component, redirectTo, ...rest }) =>
   );
 
 PrivateRoute.propTypes = {
-  component: PropTypes.node,
-  redirectTo: PropTypes.node,
+  component: PropTypes.func.isRequired,
+  redirectTo: PropTypes.func.isRequired,
 };
