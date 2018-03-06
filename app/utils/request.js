@@ -73,6 +73,7 @@ export default class Request {
     .then(this.parseJSON);
 
   checkStatus = (response) => {
+    console.log(this);
     if (response.status >= 200 && response.status < 300) {
       return Promise.resolve(response.json());
     }
