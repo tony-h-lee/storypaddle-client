@@ -25,7 +25,7 @@ function LoginPageComponent(props) {
             loading={props.loginPage.get('loading')}
             error={props.loginPage.get('error')}
           />
-          <Link to={'/reset-password'}>
+          <Link to={'/forgot-password'}>
             Forgot your password?
           </Link>
         </Container>
