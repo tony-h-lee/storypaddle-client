@@ -13,6 +13,7 @@ import { compose } from 'redux';
 import DashboardPageComponent from 'components/DashboardPageComponent';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+import { unsetAuth } from 'containers/AuthContainer/actions';
 import makeSelectDashboardPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -25,14 +26,14 @@ export class DashboardPage extends React.PureComponent { // eslint-disable-line 
           <title>Dashboard</title>
           <meta name="description" content="Description of DashboardPage" />
         </Helmet>
-        <DashboardPageComponent />
+        <DashboardPageComponent logout={this.props.logout} />
       </div>
     );
   }
 }
 
 DashboardPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  logout: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -41,7 +42,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    logout: () => dispatch(unsetAuth()),
   };
 }
 
