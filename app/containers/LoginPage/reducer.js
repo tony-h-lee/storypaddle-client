@@ -25,12 +25,10 @@ function loginPageReducer(state = initialState, action) {
     case LOGIN_SUCCESS:
       return state
         .set('loading', false);
-    case LOGIN_FAILURE: {
+    case LOGIN_FAILURE:
       return state
         .set('error', action.payload.errors)
         .set('loading', false);
-    }
-
     default:
       return state;
   }

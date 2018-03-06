@@ -15,6 +15,7 @@ import { reduxForm } from 'redux-form/immutable';
 import FormButton from 'components/FormButton';
 import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
 import { required, email } from 'components/FormValidation/syncValidation';
+import { forgotPassword } from 'containers/ForgotPasswordPage/actions';
 
 function ForgotPasswordForm(props) {
   const {
@@ -27,7 +28,7 @@ function ForgotPasswordForm(props) {
     <Form
       size="large"
       style={{ marginBottom: '1rem' }}
-      onSubmit={handleSubmit((values) => console.log(values))}
+      onSubmit={handleSubmit(forgotPassword)}
       error={error !== false}
     >
       <SemanticField
@@ -54,7 +55,7 @@ function ForgotPasswordForm(props) {
         loading={loading}
         disabled={pristine || loading}
       >
-        Send Email
+        Submit
       </FormButton>
     </Form>
   );

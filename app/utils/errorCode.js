@@ -39,3 +39,17 @@ export const getLoginErrors = (code) => {
       });
   }
 };
+
+
+export const getForgotPasswordErrors = (code) => {
+  switch (code) {
+    case 400:
+      return new SubmissionError({
+        _error: 'Failed to send email. Please try again',
+      });
+    default:
+      return new SubmissionError({
+        _error: 'Error sending reset email',
+      });
+  }
+};
