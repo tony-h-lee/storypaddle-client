@@ -10,6 +10,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import AuthWrapper from 'components/AuthWrapper';
 import LandingPage from 'containers/LandingPage';
 import DashboardPage from 'containers/DashboardPage';
@@ -18,10 +19,17 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
   render() {
     return (
       <AuthWrapper
-        token={undefined}
+        token={this.props.token}
         AuthComponent={DashboardPage}
         PublicComponent={LandingPage}
       />
     );
   }
 }
+
+HomePage.propTypes = {
+  token: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]),
+};

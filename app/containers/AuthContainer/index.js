@@ -17,6 +17,8 @@ import LoginPage from 'containers/LoginPage/Loadable';
 import SignupPage from 'containers/SignupPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
+import { PropsRoute } from 'containers/CustomRoute';
+
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectAuthContainer from './selectors';
@@ -27,9 +29,9 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
   render() {
     return (
       <div>
-        <NavbarContainer />
+        <NavbarContainer token={this.props.auth.get('token')} />
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <PropsRoute exact path="/" component={HomePage} token={this.props.auth.get('token')} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignupPage} />
           <Route component={NotFoundPage} />
@@ -40,7 +42,7 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
 }
 
 AuthContainer.propTypes = {
-  children: PropTypes.node,
+  auth: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

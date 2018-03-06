@@ -21,7 +21,7 @@ export class NavbarContainer extends React.Component { // eslint-disable-line re
   render() {
     return (
       <AuthWrapper
-        token={undefined}
+        token={this.props.token}
         AuthComponent={() => (<div />)}
         PublicComponent={NavbarComponent}
       />
@@ -30,7 +30,10 @@ export class NavbarContainer extends React.Component { // eslint-disable-line re
 }
 
 NavbarContainer.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  token: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]),
 };
 
 const mapStateToProps = createStructuredSelector({

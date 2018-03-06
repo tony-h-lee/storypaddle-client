@@ -17,7 +17,10 @@ function AuthWrapper(props) {
 }
 
 AuthWrapper.propTypes = {
-  token: PropTypes.object,
+  token: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]),
   AuthComponent: PropTypes.func.isRequired,
   PublicComponent: PropTypes.func.isRequired,
 };

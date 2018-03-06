@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
+import DashboardPageComponent from 'components/DashboardPageComponent';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectDashboardPage from './selectors';
@@ -22,9 +22,10 @@ export class DashboardPage extends React.PureComponent { // eslint-disable-line 
     return (
       <div>
         <Helmet>
-          <title>DashboardPage</title>
+          <title>Dashboard</title>
           <meta name="description" content="Description of DashboardPage" />
         </Helmet>
+        <DashboardPageComponent />
       </div>
     );
   }
