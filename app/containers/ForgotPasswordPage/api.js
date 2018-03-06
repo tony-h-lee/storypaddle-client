@@ -6,6 +6,6 @@ export function forgotPassword(values) {
     .setUrl(url)
     .setPost()
     .addHeader({ 'Content-Type': 'application/json' })
-    .setBody({ ...values, link: '/reset-password' })
+    .setBody({ ...values })
     .go();
 }
