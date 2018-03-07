@@ -1,9 +1,7 @@
-import { take, call, put, cancel, takeLatest, fork, apply } from 'redux-saga/effects';
+import { take, call, put, cancel, takeLatest, fork } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import formActionSaga from 'redux-form-saga';
-import { history } from 'app';
 import { getForgotPasswordErrors } from 'utils/errorCode';
-import { setAuth } from 'containers/AuthContainer/actions';
 import * as api from './api';
 import {
   forgotPassword,
@@ -15,14 +13,13 @@ function* forgotPasswordWatcherSaga() {
 
 function* handleForgotPasswordSaga(action) {
   const email = action.payload.get('email');
+  const link = '/reset-password';
 
   try {
-    const response = yield call(api.forgotPassword, { email }); // calling our api method
-    yield [put(forgotPassword.success()), put(setAuth(response.token, response.user))];
+    yield call(api.forgotPassword, { email, link }); // calling our api method
+    yield put(forgotPassword.success());
 
     // Set token and user from response data
-    console.log(response);
-    yield apply(history, history.push, ['/reset-password']);
   } catch (error) {
     yield put(forgotPassword.failure(getForgotPasswordErrors(error)));
   }

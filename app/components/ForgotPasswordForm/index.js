@@ -23,6 +23,7 @@ function ForgotPasswordForm(props) {
     loading,
     pristine,
     error,
+    submitSucceeded,
   } = props;
   return (
     <Form
@@ -48,12 +49,19 @@ function ForgotPasswordForm(props) {
         />)
       }
 
+      {submitSucceeded && (
+        <Message
+          positive
+          content="Email sent! Please check your email"
+        />)
+      }
+
       <FormButton
         positive
         fluid
         size="large"
         loading={loading}
-        disabled={pristine || loading}
+        disabled={pristine || loading || submitSucceeded}
       >
         Submit
       </FormButton>
@@ -69,6 +77,7 @@ ForgotPasswordForm.propTypes = {
   handleSubmit: PropTypes.func,
   pristine: PropTypes.bool,
   loading: PropTypes.bool,
+  submitSucceeded: PropTypes.bool,
 };
 
 export default compose(
