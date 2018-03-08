@@ -52,6 +52,7 @@ function LoginForm(props) {
 
       {error && (
         <Message
+          size="tiny"
           error
           content={error}
         />)

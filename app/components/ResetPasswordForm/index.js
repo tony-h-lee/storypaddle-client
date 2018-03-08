@@ -14,8 +14,8 @@ import { compose } from 'redux';
 import { reduxForm } from 'redux-form/immutable';
 import FormButton from 'components/FormButton';
 import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
-import { required, password } from 'components/FormValidation/syncValidation';
-import { reset } from 'containers/ResetPasswordPage/actions';
+import { required, password, validate } from 'components/FormValidation/syncValidation';
+import { resetPassword } from 'containers/ResetPasswordPage/actions';
 
 function ResetPasswordForm(props) {
   const {
@@ -28,18 +28,10 @@ function ResetPasswordForm(props) {
     <Form
       size="large"
       style={{ marginBottom: '1rem' }}
-      onSubmit={handleSubmit(reset)}
+      onSubmit={handleSubmit((values, dispatch) =>
+        resetPassword({ password: values.get('password'), token: props.token }, dispatch))}
       error={error !== false}
     >
-      <SemanticField
-        name="passwordOld"
-        component={SemanticFormField}
-        as={Form.Input}
-        placeholder="Old Password"
-        type="password"
-        icon="lock"
-        validate={[required, password]}
-      />
       <SemanticField
         name="password"
         component={SemanticFormField}
@@ -50,7 +42,7 @@ function ResetPasswordForm(props) {
         validate={[required, password]}
       />
       <SemanticField
-        name="passwordConfirm"
+        name="confirmPassword"
         component={SemanticFormField}
         as={Form.Input}
         placeholder="Confirm New Password"
@@ -61,13 +53,14 @@ function ResetPasswordForm(props) {
 
       {error && (
         <Message
+          size="tiny"
           error
           content={error}
         />)
       }
 
       <FormButton
-        primary
+        positive
         fluid
         size="large"
         loading={loading}
@@ -87,11 +80,13 @@ ResetPasswordForm.propTypes = {
   handleSubmit: PropTypes.func,
   pristine: PropTypes.bool,
   loading: PropTypes.bool,
+  token: PropTypes.string,
 };
 
 export default compose(
   reduxForm({
     form: 'resetForm',
     enableReinitialize: true,
+    validate,
   })
 )(ResetPasswordForm);

@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
@@ -25,18 +24,17 @@ export class ResetPasswordPage extends React.PureComponent { // eslint-disable-l
           <title>NobleLoot | Reset Password</title>
           <meta name="description" content="Reset your NobleLoot account password" />
         </Helmet>
-        <ResetPasswordPageComponent />
+        <ResetPasswordPageComponent {...this.props} />
       </div>
     );
   }
 }
 
 ResetPasswordPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  resetpasswordpage: makeSelectResetPasswordPage(),
+  resetPasswordPage: makeSelectResetPasswordPage(),
 });
 
 function mapDispatchToProps(dispatch) {

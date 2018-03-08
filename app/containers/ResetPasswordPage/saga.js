@@ -12,11 +12,11 @@ function* resetPasswordWatcherSaga() {
 }
 
 function* handleResetPasswordSaga(action) {
-  const passwordOld = action.payload.get('passwordOld');
-  const password = action.payload.get('password');
+  const password = action.payload.password;
+  const token = action.payload.token;
 
   try {
-    yield call(api.resetPassword, { passwordOld, password }); // calling our api method
+    yield call(api.resetPassword, { password, token }); // calling our api method
     yield put(resetPassword.success());
 
     // Set token and user from response data

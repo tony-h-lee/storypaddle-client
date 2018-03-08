@@ -53,3 +53,21 @@ export const getForgotPasswordErrors = (code) => {
       });
   }
 };
+
+
+export const getResetPasswordErrors = (code) => {
+  switch (code) {
+    case 404:
+      return new SubmissionError({
+        _error: 'Token expired or does not exist. Please request a new email',
+      });
+    case 400:
+      return new SubmissionError({
+        _error: 'Invalid password fields submitted. Please enter a new password',
+      });
+    default:
+      return new SubmissionError({
+        _error: 'Error requesting password change. Please try again later',
+      });
+  }
+};

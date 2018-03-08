@@ -62,6 +62,7 @@ function SignupForm(props) {
 
       {error && (
         <Message
+          size="tiny"
           error
           content={error}
         />)

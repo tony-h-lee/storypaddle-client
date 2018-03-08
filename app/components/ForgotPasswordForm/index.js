@@ -44,6 +44,7 @@ function ForgotPasswordForm(props) {
 
       {error && (
         <Message
+          size="tiny"
           error
           content={error}
         />)
@@ -51,6 +52,7 @@ function ForgotPasswordForm(props) {
 
       {submitSucceeded && (
         <Message
+          size="tiny"
           positive
           content="Email sent! Please check your email"
         />)

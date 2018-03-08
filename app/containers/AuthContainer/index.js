@@ -37,7 +37,7 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignupPage} />
           <Route exact path="/forgot-password" component={ForgotPasswordPage} />
-          <Route exact path="/reset-password" component={ResetPasswordPage} />
+          <Route path="/reset-password/:token" component={ResetPasswordPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </div>

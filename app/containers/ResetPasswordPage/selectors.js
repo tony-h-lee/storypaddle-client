@@ -16,7 +16,7 @@ const selectResetPasswordPageDomain = (state) => state.get('resetPasswordPage');
 
 const makeSelectResetPasswordPage = () => createSelector(
   selectResetPasswordPageDomain,
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
 export default makeSelectResetPasswordPage;
