@@ -17,7 +17,7 @@ export const getSignupErrors = (code) => {
       });
     default:
       return new SubmissionError({
-        _error: 'Sign up connection error',
+        _error: 'Sign up connection error. Please try again later',
       });
   }
 };
@@ -35,7 +35,7 @@ export const getLoginErrors = (code) => {
       });
     default:
       return new SubmissionError({
-        _error: 'Log in connection error',
+        _error: 'Log in connection error. Please try again later',
       });
   }
 };
@@ -49,7 +49,7 @@ export const getForgotPasswordErrors = (code) => {
       });
     default:
       return new SubmissionError({
-        _error: 'Error sending reset email',
+        _error: 'Error sending reset email. Please try again later',
       });
   }
 };
