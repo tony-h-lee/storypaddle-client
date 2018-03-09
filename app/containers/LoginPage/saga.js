@@ -20,9 +20,7 @@ function* handleLoginSaga(action) {
   try {
     const response = yield call(api.login, { email, password }); // calling our api method
     yield [put(login.success()), put(setAuth(response.token, response.user))];
-
-    // Set token and user from response data
-    console.log(response);
+    localStorage.setItem('nl_token', response.token);
     yield apply(history, history.push, ['/']);
   } catch (error) {
     yield put(login.failure(getLoginErrors(error)));

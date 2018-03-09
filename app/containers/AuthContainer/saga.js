@@ -1,6 +1,14 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { call, takeLatest } from 'redux-saga/effects';
+import {
+  UNSET_AUTH,
+} from './constants';
 
-// Individual exports for testing
-export default function* defaultSaga() {
-  // See example in containers/HomePage/saga.js
+function* handleLogoutSaga() {
+  yield call(() => localStorage.removeItem('nl_token'));
 }
+
+function* logoutWatcherSaga() {
+  yield takeLatest(UNSET_AUTH, handleLogoutSaga); // see details what is REQUEST param below
+}
+
+export default logoutWatcherSaga;

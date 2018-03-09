@@ -18,7 +18,6 @@ import SignupPage from 'containers/SignupPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import ForgotPasswordPage from 'containers/ForgotPasswordPage/Loadable';
 import ResetPasswordPage from 'containers/ResetPasswordPage/Loadable';
-
 import { PropsRoute } from 'containers/CustomRoute';
 
 import injectSaga from 'utils/injectSaga';
@@ -26,8 +25,15 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectAuthContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import { setToken } from './actions';
 
 export class AuthContainer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+  componentWillMount() {
+    const localToken = localStorage.getItem('nl_token');
+    if (localToken !== null) this.props.setToken(localToken);
+  }
+
   render() {
     return (
       <div>
@@ -37,7 +43,6 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignupPage} />
           <Route exact path="/forgot-password" component={ForgotPasswordPage} />
-          <Route exact path="/reset-password" component={ResetPasswordPage} />
           <Route path="/reset-password/:token" component={ResetPasswordPage} />
           <Route component={NotFoundPage} />
         </Switch>
@@ -48,6 +53,7 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
 
 AuthContainer.propTypes = {
   auth: PropTypes.object,
+  setToken: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -56,7 +62,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    setToken: (token) => dispatch(setToken(token)),
   };
 }
 

@@ -11,6 +11,7 @@ import {
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
+import { Link } from 'react-router-dom';
 import { reduxForm } from 'redux-form/immutable';
 import FormButton from 'components/FormButton';
 import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
@@ -23,6 +24,7 @@ function ResetPasswordForm(props) {
     loading,
     pristine,
     error,
+    submitSucceeded,
   } = props;
   return (
     <Form
@@ -55,7 +57,25 @@ function ResetPasswordForm(props) {
         <Message
           size="tiny"
           error
-          content={error}
+          content={
+            <div>
+              <p> { error } </p>
+              <Link to={'/forgot-password'}> Click here to send a new email </Link>
+            </div>
+          }
+        />)
+      }
+
+      {submitSucceeded && (
+        <Message
+          size="tiny"
+          positive
+          content={
+            <div>
+              <p> Password successfully changed! </p>
+              <Link to={'/'}> Click here to return to the dashboard </Link>
+            </div>
+          }
         />)
       }
 
@@ -64,7 +84,7 @@ function ResetPasswordForm(props) {
         fluid
         size="large"
         loading={loading}
-        disabled={pristine || loading}
+        disabled={pristine || loading || submitSucceeded}
       >
         Submit
       </FormButton>
@@ -81,6 +101,7 @@ ResetPasswordForm.propTypes = {
   pristine: PropTypes.bool,
   loading: PropTypes.bool,
   token: PropTypes.string,
+  submitSucceeded: PropTypes.bool,
 };
 
 export default compose(

@@ -8,6 +8,7 @@ import { fromJS } from 'immutable';
 import {
   SET_AUTH,
   UNSET_AUTH,
+  SET_TOKEN,
 } from './constants';
 
 const initialState = fromJS({
@@ -25,6 +26,9 @@ function authContainerReducer(state = initialState, action) {
       return state
         .set('token', false)
         .set('user', false);
+    case SET_TOKEN:
+      return state
+        .set('token', action.token);
     default:
       return state;
   }

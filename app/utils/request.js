@@ -3,7 +3,6 @@ import 'whatwg-fetch';
 const GET = 'GET';
 const PUT = 'PUT';
 const POST = 'POST';
-const UPDATE = 'UPDATE';
 const DELETE = ' DELETE';
 
 export default class Request {
@@ -53,10 +52,6 @@ export default class Request {
   }
   setPost() {
     this.method = POST;
-    return this;
-  }
-  setUpdate() {
-    this.method = UPDATE;
     return this;
   }
   setDelete() {

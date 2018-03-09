@@ -7,7 +7,17 @@
 import {
   SET_AUTH,
   UNSET_AUTH,
+  SET_TOKEN,
 } from './constants';
+
+
+export function setToken(token) {
+  return {
+    type: SET_TOKEN,
+    token,
+  };
+}
+
 
 /**
  * User successfully logs in or signs up.
