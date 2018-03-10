@@ -8,7 +8,7 @@ import React from 'react';
 import { Grid, Container, Header, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import ResetPasswordForm from 'components/ResetPasswordForm';
-import Crown from 'images/crown.png';
+import Keys from 'images/keys.png';
 // import styled from 'styled-components';
 
 function ResetPasswordPageComponent(props) {
@@ -18,7 +18,7 @@ function ResetPasswordPageComponent(props) {
     >
       <Grid.Column style={{ maxWidth: 450, marginTop: '4rem' }}>
         <Container>
-          <Image src={Crown} size="small" centered />
+          <Image src={Keys} size="small" centered />
           <Header> Please enter your new password </Header>
           <ResetPasswordForm
             loading={props.resetPasswordPage.get('loading')}

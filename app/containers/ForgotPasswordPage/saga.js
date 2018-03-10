@@ -7,10 +7,6 @@ import {
   forgotPassword,
 } from './actions';
 
-function* forgotPasswordWatcherSaga() {
-  yield takeLatest(forgotPassword.REQUEST, handleForgotPasswordSaga); // see details what is REQUEST param below
-}
-
 function* handleForgotPasswordSaga(action) {
   const email = action.payload.get('email');
   const link = '/reset-password';
@@ -25,6 +21,9 @@ function* handleForgotPasswordSaga(action) {
   }
 }
 
+function* forgotPasswordWatcherSaga() {
+  yield takeLatest(forgotPassword.REQUEST, handleForgotPasswordSaga); // see details what is REQUEST param below
+}
 
 export function* rootSaga() {
   const sagas = [

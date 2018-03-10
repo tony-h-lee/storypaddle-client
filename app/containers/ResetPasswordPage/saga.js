@@ -8,10 +8,6 @@ import {
   resetPassword,
 } from './actions';
 
-function* resetPasswordWatcherSaga() {
-  yield takeLatest(resetPassword.REQUEST, handleResetPasswordSaga); // see details what is REQUEST param below
-}
-
 function* handleResetPasswordSaga(action) {
   const password = action.payload.password;
   const token = action.payload.token;
@@ -25,6 +21,9 @@ function* handleResetPasswordSaga(action) {
   }
 }
 
+function* resetPasswordWatcherSaga() {
+  yield takeLatest(resetPassword.REQUEST, handleResetPasswordSaga); // see details what is REQUEST param below
+}
 
 export function* rootSaga() {
   const sagas = [

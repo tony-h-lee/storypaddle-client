@@ -8,7 +8,7 @@ import React from 'react';
 import { Grid, Container, Image, Header } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import ForgotPasswordForm from 'components/ForgotPasswordForm';
-import Treasure from 'images/treasure.png';
+import Envelope from 'images/envelope.png';
 // import styled from 'styled-components';
 
 function ForgotPasswordPageComponent(props) {
@@ -18,7 +18,7 @@ function ForgotPasswordPageComponent(props) {
     >
       <Grid.Column style={{ maxWidth: 450, marginTop: '4rem' }}>
         <Container>
-          <Image src={Treasure} size="large" />
+          <Image centered src={Envelope} size="small" />
           <Header> Enter your email and receive instructions on how to reset your password! </Header>
           <ForgotPasswordForm
             loading={props.forgotPasswordPage.get('loading')}

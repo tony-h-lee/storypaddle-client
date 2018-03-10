@@ -9,10 +9,6 @@ import {
   login,
 } from './actions';
 
-function* loginWatcherSaga() {
-  yield takeLatest(login.REQUEST, handleLoginSaga); // see details what is REQUEST param below
-}
-
 function* handleLoginSaga(action) {
   const email = action.payload.get('email');
   const password = action.payload.get('password');
@@ -25,6 +21,10 @@ function* handleLoginSaga(action) {
   } catch (error) {
     yield put(login.failure(getLoginErrors(error)));
   }
+}
+
+function* loginWatcherSaga() {
+  yield takeLatest(login.REQUEST, handleLoginSaga); // see details what is REQUEST param below
 }
 
 
