@@ -23,7 +23,7 @@ export const PrivateRoute = ({ component, redirectTo, ...rest }) =>
   (
     <Route
       {...rest}
-      render={(routeProps) => isLoggedIn ? (
+      render={(routeProps) => isLoggedIn(rest.token) ? (
           renderMergedProps(component, routeProps, rest)
         ) : (
           <Redirect
@@ -39,5 +39,5 @@ export const PrivateRoute = ({ component, redirectTo, ...rest }) =>
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
-  redirectTo: PropTypes.func.isRequired,
+  redirectTo: PropTypes.string.isRequired,
 };
