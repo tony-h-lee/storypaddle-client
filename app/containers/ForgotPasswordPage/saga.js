@@ -1,5 +1,4 @@
-import { take, call, put, cancel, takeLatest, fork } from 'redux-saga/effects';
-import { LOCATION_CHANGE } from 'react-router-redux';
+import { call, put, takeLatest, fork } from 'redux-saga/effects';
 import formActionSaga from 'redux-form-saga';
 import { getForgotPasswordErrors } from 'utils/errorCode';
 import * as api from './api';
@@ -26,15 +25,8 @@ function* forgotPasswordWatcherSaga() {
 }
 
 export function* rootSaga() {
-  const sagas = [
-    yield fork(formActionSaga),
-    yield fork(forgotPasswordWatcherSaga),
-  ];
-
-  const tasks = yield sagas;
-
-  yield take(LOCATION_CHANGE);
-  yield tasks.map((task) => cancel(task));
+  yield fork(formActionSaga);
+  yield fork(forgotPasswordWatcherSaga);
 }
 
 export default rootSaga;
