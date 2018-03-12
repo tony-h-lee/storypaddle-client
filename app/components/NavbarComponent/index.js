@@ -9,14 +9,13 @@ import {
   Menu,
   Responsive,
   Icon,
+  Container,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const LandingMenuLink = styled(Link)`
   &&& {
-    font-family: 'Seymour One', sans-serif;
-    font-size: 1.2rem;
   }
 `;
 
@@ -24,22 +23,31 @@ function NavbarComponent() {
   return (
     <div>
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-        <Menu widths={3} style={{ height: '49.19px' }}>
-          <Menu.Item
-            as={LandingMenuLink}
-            to={'/'}
-            name="NobleLoot"
-          />
-          <Menu.Item
-            as={LandingMenuLink}
-            to={'/login'}
-            name="Login"
-          />
-          <Menu.Item
-            as={LandingMenuLink}
-            to={'/signup'}
-            name="Signup"
-          />
+        <Menu>
+          <Container>
+            <Menu.Item
+              as={LandingMenuLink}
+              to={'/'}
+              name="Storypaddle"
+            />
+            <Menu.Item
+              as={LandingMenuLink}
+              to={'/narratives'}
+              name="Narratives"
+            />
+            <Menu.Menu position="right">
+              <Menu.Item
+                as={LandingMenuLink}
+                to={'/login'}
+                name="Login"
+              />
+              <Menu.Item
+                as={LandingMenuLink}
+                to={'/signup'}
+                name="Signup"
+              />
+            </Menu.Menu>
+          </Container>
         </Menu>
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>

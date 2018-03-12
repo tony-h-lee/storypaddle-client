@@ -9,6 +9,5 @@ import styled from 'styled-components';
 
 export default styled(Button)`
   &&& {
-    font-family: 'Seymour One', sans-serif;
   }
 `;

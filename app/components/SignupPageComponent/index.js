@@ -20,7 +20,7 @@ function SignupPageComponent(props) {
       <Grid.Column style={{ maxWidth: 450, marginTop: '4rem' }}>
         <Container>
           <Image src={Crown} size="small" centered />
-          <Header> Create your NobleLoot account </Header>
+          <Header> Create your Storypaddle account </Header>
           <SignupForm
             loading={props.signupPage.get('loading')}
             error={props.signupPage.get('error')}

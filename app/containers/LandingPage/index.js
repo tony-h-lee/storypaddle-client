@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import NavbarComponent from 'components/NavbarComponent';
 import LandingPageComponent from 'components/LandingPageComponent';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -26,7 +25,6 @@ export class LandingPage extends React.PureComponent { // eslint-disable-line re
           <title>Storypaddle | Home </title>
           <meta name="description" content="Become a character. Tell a story." />
         </Helmet>
-        <NavbarComponent />
         <LandingPageComponent />
       </div>
     );
