@@ -11,7 +11,6 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import { Switch, Route, withRouter } from 'react-router-dom';
-import NavbarContainer from 'containers/NavbarContainer/Loadable';
 import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import SignupPage from 'containers/SignupPage/Loadable';
@@ -37,7 +36,6 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
   render() {
     return (
       <div>
-        <NavbarContainer token={this.props.auth.get('token')} />
         <Switch>
           <PropsRoute exact path="/" component={HomePage} token={this.props.auth.get('token')} />
           <Route exact path="/login" component={LoginPage} />

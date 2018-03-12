@@ -23,8 +23,8 @@ export class DashboardPage extends React.PureComponent { // eslint-disable-line 
     return (
       <div>
         <Helmet>
-          <title>Dashboard</title>
-          <meta name="description" content="Description of DashboardPage" />
+          <title>Storypaddle | Dashboard</title>
+          <meta name="description" content="Become a character. Tell a story." />
         </Helmet>
         <DashboardPageComponent logout={this.props.logout} />
       </div>
