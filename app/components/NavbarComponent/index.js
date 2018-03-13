@@ -9,9 +9,18 @@ import {
   Menu,
   Responsive,
   Icon,
+  Input,
+  Image,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import Boat from 'images/boat-s.png';
 // import styled from 'styled-components';
+
+const NavbarIcon = () => (
+  <Link to={'/'}>
+    <Image src={Boat} verticalAlign="middle" spaced />
+  </Link>
+);
 
 function NavbarComponent() {
   return (
@@ -19,15 +28,16 @@ function NavbarComponent() {
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <Menu>
           <Menu.Item
-            as={Link}
-            to={'/'}
-            name="Storypaddle"
+            as={NavbarIcon}
           />
           <Menu.Item
             as={Link}
             to={'/narratives'}
             name="Narratives"
           />
+          <Menu.Item>
+            <Input icon="search" placeholder="Search" />
+          </Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item
               as={Link}
