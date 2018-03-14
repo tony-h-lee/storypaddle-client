@@ -1,6 +1,6 @@
 import { call, put, takeLatest, fork, apply } from 'redux-saga/effects';
 import formActionSaga from 'redux-form-saga';
-import { history } from 'app';
+import history from 'history';
 import { getSignupErrors } from 'utils/errorCode';
 import { setAuth } from 'containers/AuthContainer/actions';
 import * as api from './api';

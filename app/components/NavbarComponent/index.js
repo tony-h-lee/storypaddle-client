@@ -5,76 +5,44 @@
 */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
-  Menu,
   Responsive,
-  Icon,
-  Input,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-import Logo from 'components/Logo';
+import AuthWrapper from 'components/AuthWrapper';
+import NavbarAuth from './NavbarAuth';
+import NavbarPublic from './NavbarPublic';
+import ResponsiveNavbarAuth from './Responsive/ResponsiveNavbarAuth';
+import ResponsiveNavbarPublic from './Responsive/ResponsiveNavbarPublic';
 // import styled from 'styled-components';
 
-function NavbarComponent() {
+function NavbarComponent(props) {
   return (
     <div>
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-        <Menu>
-          <Menu.Item
-            as={Logo}
-          />
-          <Menu.Item
-            as={Link}
-            to={'/'}
-            name="Home"
-          />
-          <Menu.Item
-            as={Link}
-            to={'/narratives'}
-            name="Narratives"
-          />
-          <Menu.Item>
-            <Input icon="search" placeholder="Search" />
-          </Menu.Item>
-          <Menu.Menu position="right">
-            <Menu.Item
-              as={Link}
-              to={'/login'}
-              name="Login"
-            />
-            <Menu.Item
-              as={Link}
-              to={'/signup'}
-              name="Signup"
-            />
-          </Menu.Menu>
-        </Menu>
+        <AuthWrapper
+          token={props.token}
+          AuthComponent={() => (<NavbarAuth logout={props.logout} />)}
+          PublicComponent={NavbarPublic}
+        />
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
-        <Menu widths={3} style={{ height: '49.19px' }}>
-          <Menu.Item
-            as={Link}
-            to={'/'}
-            content={<Icon name="home" />}
-          />
-          <Menu.Item
-            as={Link}
-            to={'/login'}
-            content={<Icon name="gamepad" />}
-          />
-          <Menu.Item
-            as={Link}
-            to={'/signup'}
-            content={<Icon name="signup" />}
-          />
-        </Menu>
+        <AuthWrapper
+          token={props.token}
+          AuthComponent={() => (<ResponsiveNavbarAuth logout={props.logout} />)}
+          PublicComponent={ResponsiveNavbarPublic}
+        />
       </Responsive>
     </div>
   );
 }
 
 NavbarComponent.propTypes = {
-
+  token: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]),
+  logout: PropTypes.func,
 };
 
 export default NavbarComponent;

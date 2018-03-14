@@ -13,7 +13,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
 import 'semantic-ui-css/semantic.css';
 
@@ -39,6 +38,7 @@ import 'file-loader?name=[name].[ext]!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './configureStore';
+import history from './history';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -48,7 +48,6 @@ import './global-styles';
 
 // Create redux store with history
 const initialState = {};
-export const history = createHistory();
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 

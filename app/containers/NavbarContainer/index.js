@@ -5,11 +5,10 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import AuthWrapper from 'components/AuthWrapper';
+import { unsetAuth } from 'containers/AuthContainer/actions';
 import NavbarComponent from 'components/NavbarComponent';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -20,20 +19,12 @@ import saga from './saga';
 export class NavbarContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <AuthWrapper
-        token={this.props.token}
-        AuthComponent={() => (<div />)}
-        PublicComponent={NavbarComponent}
-      />
+      <NavbarComponent {...this.props} />
     );
   }
 }
 
 NavbarContainer.propTypes = {
-  token: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.string,
-  ]),
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -42,7 +33,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    logout: () => dispatch(unsetAuth()),
   };
 }
 
