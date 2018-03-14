@@ -20,7 +20,7 @@ function LoginPageComponent(props) {
       <Grid.Column style={{ maxWidth: 450, marginTop: '4rem' }}>
         <Container>
           <Image src={Treasure} size="large" />
-          <Header> Log in and join in narratives! </Header>
+          <Header> Log in to your Storypaddle account </Header>
           <LoginForm
             loading={props.loginPage.get('loading')}
             error={props.loginPage.get('error')}

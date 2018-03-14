@@ -1,40 +1,41 @@
 /**
  *
- * LoginPage
+ * NarrativesPageContainer
  *
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import LoginPageComponent from 'components/LoginPageComponent';
+
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectLoginPage from './selectors';
+import makeSelectNarrativesPageContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-export class LoginPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class NarrativesPageContainer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
         <Helmet>
-          <title>Storypaddle | Login </title>
-          <meta name="description" content="Log in to your Storypaddle account!" />
+          <title>NarrativesPageContainer</title>
+          <meta name="description" content="Description of NarrativesPageContainer" />
         </Helmet>
-        <LoginPageComponent {...this.props} />
       </div>
     );
   }
 }
 
-LoginPage.propTypes = {
+NarrativesPageContainer.propTypes = {
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  loginPage: makeSelectLoginPage(),
+  narrativespagecontainer: makeSelectNarrativesPageContainer(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -45,11 +46,11 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'loginPage', reducer });
-const withSaga = injectSaga({ key: 'loginPage', saga });
+const withReducer = injectReducer({ key: 'narrativesPageContainer', reducer });
+const withSaga = injectSaga({ key: 'narrativesPageContainer', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(LoginPage);
+)(NarrativesPageContainer);
