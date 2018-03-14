@@ -19,7 +19,7 @@ import saga from './saga';
 export class SignupPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div style={{ height: 'calc(100% - 49.19px)' }}>
+      <div>
         <Helmet>
           <title>Storypaddle | Signup</title>
           <meta name="description" content="Sign up for a Storypaddle account!" />

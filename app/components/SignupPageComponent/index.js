@@ -15,7 +15,6 @@ function SignupPageComponent(props) {
   return (
     <Grid
       textAlign="center"
-      style={{ height: '100%' }}
     >
       <Grid.Column style={{ maxWidth: 450, marginTop: '3rem' }}>
         <Container>
