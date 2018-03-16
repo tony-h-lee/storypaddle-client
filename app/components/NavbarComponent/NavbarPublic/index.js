@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 function NavbarPublic() {
   return (
-    <Menu>
+    <Menu borderless>
       <Menu.Item
         as={Logo}
       />

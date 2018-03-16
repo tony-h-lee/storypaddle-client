@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 
 function NavbarAuth(props) {
   return (
-    <Menu>
+    <Menu borderless>
       <Menu.Item
         as={Logo}
       />

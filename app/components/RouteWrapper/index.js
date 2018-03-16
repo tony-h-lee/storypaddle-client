@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 function RouteWrapper(props) {
   return (
     <Wrapper>
-      { <props.innerComponent /> }
+      { <props.innerComponent {...props} /> }
     </Wrapper>
   );
 }
