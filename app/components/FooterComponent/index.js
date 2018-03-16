@@ -12,18 +12,29 @@ import { Link } from 'react-router-dom';
 
 function FooterComponent() {
   return (
-    <Grid centered>
-      <Menu secondary>
+    <Grid centered style={{ margin: '2rem 0 0.2rem 0' }}>
+      <Menu secondary size="tiny">
         <Menu.Item
           as={Link}
-          to={'/contact'}
-          name="Contact"
+          to={'/about'}
+          name="About"
         />
         <Menu.Item
           as={Link}
-          to={'/terms-conditions'}
-          name="Terms and Conditions"
+          to={'/help'}
+          name="Help"
         />
+        <Menu.Item
+          as={Link}
+          to={'/terms-of-service'}
+          name="Terms"
+        />
+        <Menu.Item
+          as={Link}
+          to={'/privacy-policy'}
+          name="Privacy Policy"
+        />
+
       </Menu>
     </Grid>
   );

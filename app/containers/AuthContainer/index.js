@@ -9,8 +9,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, withRouter } from 'react-router-dom';
 
+import RouteWrapper from 'components/RouteWrapper';
 import FooterComponent from 'components/FooterComponent';
 import NavbarContainer from 'containers/NavbarContainer/Loadable';
 import HomePage from 'containers/HomePage/Loadable';
@@ -37,15 +38,43 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
 
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <NavbarContainer token={this.props.auth.get('token')} />
         <Switch>
-          <PropsRoute exact path="/" component={HomePage} token={this.props.auth.get('token')} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/signup" component={SignupPage} />
-          <Route exact path="/forgot-password" component={ForgotPasswordPage} />
-          <Route path="/reset-password/:token" component={ResetPasswordPage} />
-          <Route component={NotFoundPage} />
+          <PropsRoute
+            exact
+            path="/"
+            component={RouteWrapper}
+            innerComponent={HomePage}
+            token={this.props.auth.get('token')}
+          />
+          <PropsRoute
+            exact
+            path="/login"
+            component={RouteWrapper}
+            innerComponent={LoginPage}
+          />
+          <PropsRoute
+            exact
+            path="/signup"
+            component={RouteWrapper}
+            innerComponent={SignupPage}
+          />
+          <PropsRoute
+            exact
+            path="/forgot-password"
+            component={RouteWrapper}
+            innerComponent={ForgotPasswordPage}
+          />
+          <PropsRoute
+            path="/reset-password/:token"
+            component={RouteWrapper}
+            innerComponent={ResetPasswordPage}
+          />
+          <PropsRoute
+            component={RouteWrapper}
+            innerComponent={NotFoundPage}
+          />
         </Switch>
         <FooterComponent />
       </div>
