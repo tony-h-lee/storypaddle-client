@@ -5,7 +5,7 @@
 */
 
 import React from 'react';
-import { Image, Dimmer, Container, Header, Button, Icon } from 'semantic-ui-react';
+import { Image, Dimmer, Container, Header, Button, Icon, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Fantasy from 'images/fantasy.jpg';
 import styled from 'styled-components';
@@ -44,11 +44,11 @@ function Landing() {
             inverted
           />
           <p>
-            From knights to space explorers, castles to pirate ships, times of peace to times of war,
-            and love lost to love found, create and live scenarios with the Storypaddle community.
+            From knights and space explorers to your favourite book and movie characters,
+            create and live scenarios with the Storypaddle community.
           </p>
-          <Button as={Link} to={'/narratives'} color="orange" size="huge">
-            Browse Stories
+          <Button as={Link} to={'/signup'} color="orange" size="huge">
+            Get Started
             <Icon name="angle right" />
           </Button>
         </Container>
@@ -57,6 +57,18 @@ function Landing() {
         <LightDimmer active />
         <Image src={Fantasy} />
       </Wrapper>
+      <Segment style={{ padding: '4em 0em' }} vertical textAlign="center">
+        <Header
+          as="h1"
+          content="See what others have created"
+        />
+        <p>
+          Follow trending stories and the ones including your favourite characters and settings.
+        </p>
+        <Button as={Link} to={'/narratives'} primary size="large">
+          Browse Narratives
+        </Button>
+      </Segment>
     </div>
   );
 }
