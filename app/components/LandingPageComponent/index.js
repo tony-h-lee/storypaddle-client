@@ -5,14 +5,17 @@
 */
 
 import React from 'react';
+import ResponsiveWrapper from 'components/ResponsiveWrapper';
+import Landing from './Landing';
+import ResponsiveLanding from './ResponsiveLanding';
 // import styled from 'styled-components';
-
 
 function LandingPageComponent() {
   return (
-    <div>
-      <h1> Landing Page </h1>
-    </div>
+    <ResponsiveWrapper
+      BigComponent={Landing}
+      SmallComponent={ResponsiveLanding}
+    />
   );
 }
 
