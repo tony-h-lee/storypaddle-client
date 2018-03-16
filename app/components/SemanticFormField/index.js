@@ -22,7 +22,7 @@ export const SemanticField = styled(Field)`
 
 function SemanticFormField({
   input, type, label, placeholder, icon,
-  meta: { touched, error },
+  meta: { touched, error, pristine },
   as: As = Input, ...props }) {
   const handleChange = (e, { value }) => input.onChange(value);
   return (
@@ -37,11 +37,11 @@ function SemanticFormField({
         fluid
         label={label}
         placeholder={placeholder}
-        error={touched && error ? true : null}
+        error={touched && error && !pristine ? true : null}
         onChange={handleChange}
       />
       {
-        touched && error &&
+        touched && error && !pristine &&
         (<Label basic color="red" pointing> {error} </Label>)
       }
     </Form.Field>
