@@ -9,8 +9,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
 import { Switch, Route, withRouter } from 'react-router-dom';
+
+import FooterComponent from 'components/FooterComponent';
 import NavbarContainer from 'containers/NavbarContainer/Loadable';
 import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
@@ -36,7 +37,7 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
 
   render() {
     return (
-      <div>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
         <NavbarContainer token={this.props.auth.get('token')} />
         <Switch>
           <PropsRoute exact path="/" component={HomePage} token={this.props.auth.get('token')} />
@@ -46,6 +47,7 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
           <Route path="/reset-password/:token" component={ResetPasswordPage} />
           <Route component={NotFoundPage} />
         </Switch>
+        <FooterComponent />
       </div>
     );
   }

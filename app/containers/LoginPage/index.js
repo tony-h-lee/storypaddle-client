@@ -19,7 +19,7 @@ import saga from './saga';
 export class LoginPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div>
+      <div style={{ flex: 1 }}>
         <Helmet>
           <title>Storypaddle | Login </title>
           <meta name="description" content="Log in to your Storypaddle account!" />
