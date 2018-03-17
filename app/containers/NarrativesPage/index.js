@@ -1,6 +1,6 @@
 /**
  *
- * NarrativePageContainer
+ * NarrativesPage
  *
  */
 
@@ -10,32 +10,33 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
+import NarrativesPageComponent from 'components/NarrativesPageComponent';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectNarrativePageContainer from './selectors';
+import makeSelectNarrativesPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-export class NarrativePageContainer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class NarrativesPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
         <Helmet>
-          <title>NarrativePageContainer</title>
-          <meta name="description" content="Description of NarrativePageContainer" />
+          <title>Storypaddle | Narratives </title>
+          <meta name="description" content="Browse what others have created." />
         </Helmet>
+        <NarrativesPageComponent />
       </div>
     );
   }
 }
 
-NarrativePageContainer.propTypes = {
+NarrativesPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  narrativepagecontainer: makeSelectNarrativePageContainer(),
+  narrativesPage: makeSelectNarrativesPage(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -46,11 +47,11 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'narrativePageContainer', reducer });
-const withSaga = injectSaga({ key: 'narrativePageContainer', saga });
+const withReducer = injectReducer({ key: 'narrativesPage', reducer });
+const withSaga = injectSaga({ key: 'narrativesPage', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(NarrativePageContainer);
+)(NarrativesPage);

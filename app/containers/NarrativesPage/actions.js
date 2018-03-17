@@ -1,6 +1,6 @@
 /*
  *
- * NarrativesPageContainer actions
+ * NarrativesPage actions
  *
  */
 

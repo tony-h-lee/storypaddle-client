@@ -20,6 +20,7 @@ import SignupPage from 'containers/SignupPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import ForgotPasswordPage from 'containers/ForgotPasswordPage/Loadable';
 import ResetPasswordPage from 'containers/ResetPasswordPage/Loadable';
+import NarrativesPage from 'containers/NarrativesPage/Loadable';
 import { PropsRoute } from 'containers/CustomRoute';
 
 import injectSaga from 'utils/injectSaga';
@@ -70,6 +71,12 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             path="/reset-password/:token"
             component={RouteWrapper}
             innerComponent={ResetPasswordPage}
+          />
+          <PropsRoute
+            exact
+            path="/narratives"
+            component={RouteWrapper}
+            innerComponent={NarrativesPage}
           />
           <PropsRoute
             component={RouteWrapper}

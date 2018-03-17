@@ -34,23 +34,43 @@ function DashboardSectionButton(props) {
     <Grid.Column
       textAlign="center"
     >
-      <Wrapper
-        as={Link}
-        to={item.link}
-        raised
-      >
-        <CardButton>
-          <Card.Header> { item.title } </Card.Header>
-          <Card.Meta> { item.meta } </Card.Meta>
-          <Icon name={item.icon} size="huge" style={{ marginTop: '0.6rem' }} color="black" />
-        </CardButton>
-      </Wrapper>
+      {
+        item.link.length > 0 ?
+          (
+            <Wrapper
+              as={Link}
+              to={item.link}
+              raised
+            >
+              <CardButton>
+                <Card.Header> { item.title } </Card.Header>
+                <Card.Meta> { item.meta } </Card.Meta>
+                <Icon name={item.icon} size="huge" style={{ marginTop: '0.6rem' }} color="black" />
+              </CardButton>
+            </Wrapper>
+          ) :
+          (
+            <Wrapper
+              as="a"
+              raised
+              onClick={props.moreProps.logout}
+            >
+              <CardButton>
+                <Card.Header> { item.title } </Card.Header>
+                <Card.Meta> { item.meta } </Card.Meta>
+                <Icon name={item.icon} size="huge" style={{ marginTop: '0.6rem' }} color="black" />
+              </CardButton>
+            </Wrapper>
+          )
+      }
+
     </Grid.Column>
   );
 }
 
 DashboardSectionButton.propTypes = {
   item: PropTypes.object,
+  moreProps: PropTypes.object,
 };
 
 export default DashboardSectionButton;

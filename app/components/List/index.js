@@ -25,7 +25,6 @@ function List(props) {
   return (
     <Grid
       columns={4}
-      centered
       padded
       stackable
       doubling

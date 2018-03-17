@@ -1,6 +1,6 @@
 /**
  *
- * NarrativesPageContainer
+ * SingleNarrativePage
  *
  */
 
@@ -13,29 +13,29 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectNarrativesPageContainer from './selectors';
+import makeSelectSingleNarrativePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-export class NarrativesPageContainer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class SingleNarrativePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
         <Helmet>
-          <title>NarrativesPageContainer</title>
-          <meta name="description" content="Description of NarrativesPageContainer" />
+          <title>Storypaddle | Narrative </title>
+          <meta name="description" content="Follow the story, continue the story." />
         </Helmet>
       </div>
     );
   }
 }
 
-NarrativesPageContainer.propTypes = {
+SingleNarrativePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  narrativespagecontainer: makeSelectNarrativesPageContainer(),
+  narrativepagecontainer: makeSelectSingleNarrativePage(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -46,11 +46,11 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'narrativesPageContainer', reducer });
-const withSaga = injectSaga({ key: 'narrativesPageContainer', saga });
+const withReducer = injectReducer({ key: 'singleNarrativePage', reducer });
+const withSaga = injectSaga({ key: 'singleNarrativePage', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(NarrativesPageContainer);
+)(SingleNarrativePage);

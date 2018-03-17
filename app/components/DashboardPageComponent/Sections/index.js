@@ -27,4 +27,25 @@ export default [
     icon: 'alarm',
     link: '/notifications',
   },
+  {
+    id: 'trophies',
+    title: 'Trophies',
+    meta: 'Gifted by fellow users',
+    icon: 'trophy',
+    link: '/trophies',
+  },
+  {
+    id: 'settings',
+    title: 'Settings',
+    meta: 'Manage your account details',
+    icon: 'setting',
+    link: '/settings',
+  },
+  {
+    id: 'logout',
+    title: 'Log Out',
+    meta: 'Hope to see you again soon',
+    icon: 'sign out',
+    link: '',
+  },
 ];

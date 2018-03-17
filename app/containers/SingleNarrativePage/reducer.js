@@ -1,6 +1,6 @@
 /*
  *
- * NarrativesPageContainer reducer
+ * SingleNarrativePage reducer
  *
  */
 
@@ -11,7 +11,7 @@ import {
 
 const initialState = fromJS({});
 
-function narrativesPageContainerReducer(state = initialState, action) {
+function singleNarrativePageReducer(state = initialState, action) {
   switch (action.type) {
     case DEFAULT_ACTION:
       return state;
@@ -20,4 +20,4 @@ function narrativesPageContainerReducer(state = initialState, action) {
   }
 }
 
-export default narrativesPageContainerReducer;
+export default singleNarrativePageReducer;
