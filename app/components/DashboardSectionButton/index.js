@@ -40,6 +40,7 @@ function DashboardSectionButton(props) {
             <Wrapper
               as={Link}
               to={item.link}
+              color="blue"
               raised
             >
               <CardButton>
@@ -53,6 +54,7 @@ function DashboardSectionButton(props) {
             <Wrapper
               as="a"
               raised
+              color="red"
               onClick={props.moreProps.logout}
             >
               <CardButton>

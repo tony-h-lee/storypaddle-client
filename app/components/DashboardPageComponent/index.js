@@ -20,7 +20,7 @@ function DashboardPageComponent(props) {
       <Header
         as="h1"
       >
-        Dashboard
+        My Dashboard
       </Header>
       <Container>
         <List
