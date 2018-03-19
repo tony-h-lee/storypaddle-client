@@ -1,6 +1,6 @@
 /**
 *
-* SemanticFormField
+* SemanticFormDropdown
 *
 */
 
@@ -8,33 +8,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Form,
-  Input,
   Label,
+  Dropdown,
 } from 'semantic-ui-react';
-import styled from 'styled-components';
-import { Field } from 'redux-form/immutable';
+// import styled from 'styled-components';
 
-export const SemanticField = styled(Field)`
-  &&& {
-    margin-bottom: 0;
-  }
-`;
-
-function SemanticFormField({
-  input, type, label, placeholder, icon,
+function SemanticFormDropdown({
+  input, options, label, placeholder,
   meta: { touched, error, pristine },
-  as: As = Input, ...props }) {
+  as: As = Dropdown, ...props }) {
   const handleChange = (e, { value }) => input.onChange(value);
   return (
     <Form.Field>
       <As
         {...props}
         {...input}
-        value={input.value}
-        type={type}
-        icon={icon}
-        iconPosition={icon ? 'left' : null}
+        options={options}
+        selection
         fluid
+        button
         label={label}
         placeholder={placeholder}
         error={touched && error && !pristine ? true : null}
@@ -48,14 +40,13 @@ function SemanticFormField({
   );
 }
 
-SemanticFormField.propTypes = {
+SemanticFormDropdown.propTypes = {
   as: PropTypes.any,
+  options: PropTypes.array,
   input: PropTypes.object,
-  type: PropTypes.string,
-  icon: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
   meta: PropTypes.object,
 };
 
-export default SemanticFormField;
+export default SemanticFormDropdown;

@@ -9,10 +9,17 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { reduxForm } from 'redux-form/immutable';
 import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
+import SemanticFormTextArea from 'components/SemanticFormTextArea';
+import SemanticFormDropdown from 'components/SemanticFormDropdown';
 import { Form, Message, Button } from 'semantic-ui-react';
 import { required } from 'components/FormValidation/syncValidation';
 // import styled from 'styled-components';
 
+const options = [
+  { key: 'fantasy', text: 'Fantasy', value: 'fantasy' },
+  { key: 'science fiction', text: 'Science Fiction', value: 'science_fiction' },
+  { key: 'historical fiction', text: 'Historical Fiction', value: 'historical_fiction' },
+];
 
 function CreateNarrativesForm(props) {
   const {
@@ -35,28 +42,21 @@ function CreateNarrativesForm(props) {
         as={Form.Input}
         placeholder="Enter Title"
         type="text"
-        icon="paragraph"
         validate={[required]}
       />
       <SemanticField
         name="synopsis"
-        component={SemanticFormField}
+        component={SemanticFormTextArea}
         as={Form.TextArea}
         placeholder="Enter Synopsis"
         validate={[required]}
       />
       <SemanticField
-        name="synopsis"
-        component={SemanticFormField}
+        name="genre"
+        options={options}
+        component={SemanticFormDropdown}
         as={Form.Dropdown}
         placeholder="Select Genre"
-        validate={[required]}
-      />
-      <SemanticField
-        name="synopsis"
-        component={SemanticFormField}
-        as={Form.Checkbox}
-        placeholder="Explicit Content"
         validate={[required]}
       />
 

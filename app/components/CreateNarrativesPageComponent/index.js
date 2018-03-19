@@ -22,7 +22,7 @@ function CreateNarrativesPageComponent() {
       <Grid
         textAlign="center"
       >
-        <Grid.Column style={{ maxWidth: 450, marginTop: '1rem' }}>
+        <Grid.Column style={{ maxWidth: 450 }}>
           <Container>
             <CreateNarrativesForm />
           </Container>
