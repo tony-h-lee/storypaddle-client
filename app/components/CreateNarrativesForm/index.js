@@ -34,6 +34,7 @@ function CreateNarrativesForm(props) {
       onSubmit={(e, values) => console.log(values)}
       error={error !== false}
     >
+
       <SemanticField
         name="title"
         component={SemanticFormField}
@@ -62,12 +63,29 @@ function CreateNarrativesForm(props) {
         placeholder="Select Genre"
         validate={required}
       />
-      <SemanticField
-        name="explicit"
-        component={SemanticFormField}
-        as={Form.Checkbox}
-        label="Contains Explicit Material"
-      />
+
+
+      <Message color="yellow" size="tiny">
+        <Message.Header> Explicit Content Warning </Message.Header>
+        <p> If your Narrative will contain explicit text content, you must check the box below. </p>
+        <SemanticField
+          name="explicit"
+          component={SemanticFormField}
+          as={Form.Checkbox}
+          label="Confirm explicit content"
+        />
+      </Message>
+
+      <Message info size="tiny">
+        <Message.Header> Add / Remove Characters </Message.Header>
+        <Message.List
+          items={[
+            'You must create at least two characters.',
+            'Character 1 will be your role.',
+          ]}
+        />
+      </Message>
+
       <CreateNarrativesRoles roles={props.roles} />
 
       {error && (

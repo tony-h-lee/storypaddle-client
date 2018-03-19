@@ -44,7 +44,7 @@ export default [
   {
     id: 'logout',
     title: 'Log Out',
-    meta: 'Hope to see you again soon',
+    meta: 'Keep your account safe in public',
     icon: 'sign out',
     link: '',
   },
