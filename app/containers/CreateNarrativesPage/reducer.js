@@ -9,7 +9,18 @@ import {
   DEFAULT_ACTION,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  roles: [
+    {
+      name: '',
+      description: '',
+    },
+    {
+      name: '',
+      description: '',
+    },
+  ],
+});
 
 function createNarrativesPageReducer(state = initialState, action) {
   switch (action.type) {

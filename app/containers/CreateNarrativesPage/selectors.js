@@ -16,7 +16,7 @@ const selectCreateNarrativesPageDomain = (state) => state.get('createNarrativesP
 
 const makeSelectCreateNarrativesPage = () => createSelector(
   selectCreateNarrativesPageDomain,
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
 export default makeSelectCreateNarrativesPage;

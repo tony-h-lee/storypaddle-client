@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
@@ -25,23 +24,21 @@ export class CreateNarrativesPage extends React.PureComponent { // eslint-disabl
           <title>Storypaddle | Create Narrative </title>
           <meta name="description" content="Create a scenario and your desired characters." />
         </Helmet>
-        <CreateNarrativesPageComponent />
+        <CreateNarrativesPageComponent {...this.props} />
       </div>
     );
   }
 }
 
 CreateNarrativesPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   createNarrativesPage: makeSelectCreateNarrativesPage(),
 });
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps() {
   return {
-    dispatch,
   };
 }
 

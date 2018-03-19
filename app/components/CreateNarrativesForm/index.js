@@ -9,11 +9,10 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { reduxForm } from 'redux-form/immutable';
 import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
-import SemanticFormTextArea from 'components/SemanticFormTextArea';
-import SemanticFormDropdown from 'components/SemanticFormDropdown';
 import { Form, Message, Button } from 'semantic-ui-react';
 import { required } from 'components/FormValidation/syncValidation';
 // import styled from 'styled-components';
+import CreateNarrativesRoles from './CreateNarrativesRoles';
 
 const options = [
   { key: 'fantasy', text: 'Fantasy', value: 'fantasy' },
@@ -23,7 +22,6 @@ const options = [
 
 function CreateNarrativesForm(props) {
   const {
-    handleSubmit,
     loading,
     pristine,
     error,
@@ -33,32 +31,44 @@ function CreateNarrativesForm(props) {
     <Form
       size="large"
       style={{ marginBottom: '1rem' }}
-      onSubmit={() => console.log(handleSubmit)}
+      onSubmit={(e, values) => console.log(values)}
       error={error !== false}
     >
       <SemanticField
         name="title"
         component={SemanticFormField}
         as={Form.Input}
-        placeholder="Enter Title"
+        fluid
+        placeholder="Enter Narrative Title"
         type="text"
-        validate={[required]}
+        validate={required}
       />
       <SemanticField
         name="synopsis"
-        component={SemanticFormTextArea}
+        component={SemanticFormField}
         as={Form.TextArea}
-        placeholder="Enter Synopsis"
-        validate={[required]}
+        autoHeight
+        rows="10"
+        placeholder="Enter Narrative Synopsis"
+        validate={required}
       />
       <SemanticField
         name="genre"
         options={options}
-        component={SemanticFormDropdown}
+        component={SemanticFormField}
+        fluid
+        selection
         as={Form.Dropdown}
         placeholder="Select Genre"
-        validate={[required]}
+        validate={required}
       />
+      <SemanticField
+        name="explicit"
+        component={SemanticFormField}
+        as={Form.Checkbox}
+        label="Contains Explicit Material"
+      />
+      <CreateNarrativesRoles roles={props.roles} />
 
       {error && (
         <Message
@@ -90,11 +100,11 @@ function CreateNarrativesForm(props) {
 }
 
 CreateNarrativesForm.propTypes = {
+  roles: PropTypes.object,
   error: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string,
   ]),
-  handleSubmit: PropTypes.func,
   pristine: PropTypes.bool,
   loading: PropTypes.bool,
   submitSucceeded: PropTypes.bool,

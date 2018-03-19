@@ -38,6 +38,7 @@ function LoginForm(props) {
         placeholder="Email"
         type="email"
         icon="user"
+        iconPosition="left"
         validate={[email, required]}
       />
       <SemanticField
@@ -47,6 +48,7 @@ function LoginForm(props) {
         placeholder="Password"
         type="password"
         icon="lock"
+        iconPosition="left"
         validate={[required, password]}
       />
 
