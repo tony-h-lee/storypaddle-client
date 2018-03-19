@@ -22,6 +22,7 @@ const options = [
 
 function CreateNarrativesForm(props) {
   const {
+    actions,
     loading,
     pristine,
     error,
@@ -67,7 +68,7 @@ function CreateNarrativesForm(props) {
 
       <Message color="yellow" size="tiny">
         <Message.Header> Explicit Content Warning </Message.Header>
-        <p> If your Narrative will contain explicit text content, you must check the box below. </p>
+        <p> If your Narrative will contain explicit text content, you must check the box right below. </p>
         <SemanticField
           name="explicit"
           component={SemanticFormField}
@@ -76,7 +77,7 @@ function CreateNarrativesForm(props) {
         />
       </Message>
 
-      <Message info size="tiny">
+      <Message info size="small">
         <Message.Header> Add / Remove Characters </Message.Header>
         <Message.List
           items={[
@@ -87,6 +88,21 @@ function CreateNarrativesForm(props) {
       </Message>
 
       <CreateNarrativesRoles roles={props.roles} />
+
+      <Button.Group floated="right" style={{ marginBottom: '2rem' }}>
+        <Button
+          onClick={actions.removeCharacter}
+          type="button"
+          icon="minus"
+          color="orange"
+        />
+        <Button
+          onClick={actions.addCharacter}
+          type="button"
+          icon="plus"
+          color="blue"
+        />
+      </Button.Group>
 
       {error && (
         <Message
@@ -108,6 +124,7 @@ function CreateNarrativesForm(props) {
         color="orange"
         fluid
         size="large"
+        type="submit"
         loading={loading}
         disabled={pristine || loading || submitSucceeded}
       >
@@ -118,6 +135,7 @@ function CreateNarrativesForm(props) {
 }
 
 CreateNarrativesForm.propTypes = {
+  actions: PropTypes.object,
   roles: PropTypes.object,
   error: PropTypes.oneOfType([
     PropTypes.bool,

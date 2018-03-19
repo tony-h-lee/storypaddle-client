@@ -25,7 +25,10 @@ function CreateNarrativesPageComponent(props) {
       >
         <Grid.Column style={{ maxWidth: 450 }}>
           <Container textAlign="left">
-            <CreateNarrativesForm roles={props.createNarrativesPage.get('roles')} />
+            <CreateNarrativesForm
+              roles={props.createNarrativesPage.get('roles')}
+              actions={props.actions}
+            />
           </Container>
         </Grid.Column>
       </Grid>
@@ -35,6 +38,7 @@ function CreateNarrativesPageComponent(props) {
 
 CreateNarrativesPageComponent.propTypes = {
   createNarrativesPage: PropTypes.object,
+  actions: PropTypes.object,
 };
 
 export default CreateNarrativesPageComponent;

@@ -45,7 +45,7 @@ function CreateNarrativesRoles(props) {
     );
   }
   return (
-    <div>
+    <div style={{ marginBottom: '1.5rem' }}>
       { content }
     </div>
   );
