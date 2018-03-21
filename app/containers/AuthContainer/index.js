@@ -33,6 +33,7 @@ import { setToken } from './actions';
 
 export class AuthContainer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
+  // Initialize retrieving auth token saved in storage and user data
   componentWillMount() {
     const localToken = localStorage.getItem('nl_token');
     if (localToken !== null) this.props.setToken(localToken);
@@ -85,6 +86,7 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             component={RouteWrapper}
             innerComponent={CreateNarrativesPage}
             token={this.props.auth.get('token')}
+            user={this.props.auth.get('user')}
             redirectTo={'/'}
           />
           <PropsRoute

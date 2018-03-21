@@ -11,6 +11,7 @@ import { reduxForm } from 'redux-form/immutable';
 import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
 import { Form, Message, Button } from 'semantic-ui-react';
 import { required } from 'components/FormValidation/syncValidation';
+import { MIN_CHARACTERS } from 'containers/CreateNarrativesPage/constants';
 // import styled from 'styled-components';
 import CreateNarrativesRoles from './CreateNarrativesRoles';
 
@@ -90,12 +91,23 @@ function CreateNarrativesForm(props) {
       <CreateNarrativesRoles roles={props.roles} />
 
       <Button.Group floated="right" style={{ marginBottom: '2rem' }}>
-        <Button
-          onClick={actions.removeCharacter}
-          type="button"
-          icon="minus"
-          color="orange"
-        />
+        {
+          props.roles.size > MIN_CHARACTERS ?
+            (
+              <Button
+                onClick={() => {
+                  props.change(`role_${props.roles.size - 1}`, '');
+                  props.change(`role_description_${props.roles.size - 1}`, '');
+                  props.untouch('createNarrativesForm',
+                    `role_${props.roles.size - 1}`, `role_description_${props.roles.size - 1}`);
+                  actions.removeCharacter();
+                }}
+                type="button"
+                icon="minus"
+                color="red"
+              />
+            ) : null
+        }
         <Button
           onClick={actions.addCharacter}
           type="button"
@@ -135,6 +147,8 @@ function CreateNarrativesForm(props) {
 }
 
 CreateNarrativesForm.propTypes = {
+  untouch: PropTypes.func,
+  change: PropTypes.func,
   actions: PropTypes.object,
   roles: PropTypes.object,
   error: PropTypes.oneOfType([
