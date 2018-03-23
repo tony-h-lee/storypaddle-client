@@ -9,10 +9,11 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { reduxForm } from 'redux-form/immutable';
 import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
-import { Form, Message, Button } from 'semantic-ui-react';
+import { Form, Message, Button, Icon } from 'semantic-ui-react';
 import { required } from 'components/FormValidation/syncValidation';
 import { MIN_CHARACTERS, MEMBER_MAX_CHARACTERS, BASIC_MAX_CHARACTERS } from 'containers/CreateNarrativesPage/constants';
 // import styled from 'styled-components';
+import { createNarrative } from 'containers/CreateNarrativesPage/actions';
 import CreateNarrativesRoles from './CreateNarrativesRoles';
 
 const options = [
@@ -31,12 +32,13 @@ function CreateNarrativesForm(props) {
     pristine,
     error,
     submitSucceeded,
+    handleSubmit,
   } = props;
   return (
     <Form
       size="large"
       style={{ marginBottom: '1rem' }}
-      onSubmit={(e, values) => console.log(values)}
+      onSubmit={handleSubmit(createNarrative)}
       error={error !== false}
     >
 
@@ -131,16 +133,10 @@ function CreateNarrativesForm(props) {
         <Message
           size="tiny"
           error
-          content={error}
-        />)
-      }
-
-      {submitSucceeded && (
-        <Message
-          size="tiny"
-          positive
-          content="Email sent! Please check your email"
-        />)
+        >
+          <Icon name="exclamation circle" />
+          {error}
+        </Message>)
       }
 
       <Button
@@ -161,6 +157,7 @@ CreateNarrativesForm.propTypes = {
   user: PropTypes.object,
   untouch: PropTypes.func,
   change: PropTypes.func,
+  handleSubmit: PropTypes.func,
   actions: PropTypes.object,
   roles: PropTypes.object,
   error: PropTypes.oneOfType([

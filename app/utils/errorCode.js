@@ -71,3 +71,20 @@ export const getResetPasswordErrors = (code) => {
       });
   }
 };
+
+export const getCreateNarrativesErrors = (code) => {
+  switch (code) {
+    case 401:
+      return new SubmissionError({
+        _error: 'Authentication required',
+      });
+    case 400:
+      return new SubmissionError({
+        _error: 'Invalid fields submitted. Please double check your fields',
+      });
+    default:
+      return new SubmissionError({
+        _error: 'Error creating Narrative. Please try again later',
+      });
+  }
+};

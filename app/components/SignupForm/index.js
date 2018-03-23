@@ -8,6 +8,7 @@ import React from 'react';
 import {
   Form,
   Message,
+  Icon,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import FormButton from 'components/FormButton';
@@ -67,8 +68,10 @@ function SignupForm(props) {
         <Message
           size="tiny"
           error
-          content={error}
-        />)
+        >
+          <Icon name="exclamation circle" />
+          {error}
+        </Message>)
       }
 
       <FormButton

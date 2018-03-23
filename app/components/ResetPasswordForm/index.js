@@ -8,6 +8,7 @@ import React from 'react';
 import {
   Form,
   Message,
+  Icon,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
@@ -53,17 +54,16 @@ function ResetPasswordForm(props) {
         validate={[required, password]}
       />
 
+
       {error && (
         <Message
           size="tiny"
           error
-          content={
-            <div>
-              <p> { error } </p>
-              <Link to={'/forgot-password'}> Click here to send a new email </Link>
-            </div>
-          }
-        />)
+        >
+          <Icon name="exclamation circle" />
+          {error}
+          <Link to={'/forgot-password'}> Click here to send a new email </Link>
+        </Message>)
       }
 
       {submitSucceeded && (
