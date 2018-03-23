@@ -11,7 +11,7 @@ import { reduxForm } from 'redux-form/immutable';
 import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
 import { Form, Message, Button } from 'semantic-ui-react';
 import { required } from 'components/FormValidation/syncValidation';
-import { MIN_CHARACTERS } from 'containers/CreateNarrativesPage/constants';
+import { MIN_CHARACTERS, MEMBER_MAX_CHARACTERS, BASIC_MAX_CHARACTERS } from 'containers/CreateNarrativesPage/constants';
 // import styled from 'styled-components';
 import CreateNarrativesRoles from './CreateNarrativesRoles';
 
@@ -20,6 +20,9 @@ const options = [
   { key: 'science fiction', text: 'Science Fiction', value: 'science_fiction' },
   { key: 'historical fiction', text: 'Historical Fiction', value: 'historical_fiction' },
 ];
+
+const getMaxRoles = (accountType) => accountType === MEMBER_MAX_CHARACTERS ? MEMBER_MAX_CHARACTERS :
+  BASIC_MAX_CHARACTERS;
 
 function CreateNarrativesForm(props) {
   const {
@@ -84,6 +87,9 @@ function CreateNarrativesForm(props) {
           items={[
             'You must create at least two characters.',
             'Character 1 will be your role.',
+            'Other roles can be filled by any users.',
+            'Basic accounts can make up to 4 roles.',
+            'Member accounts can make up to 8 roles.',
           ]}
         />
       </Message>
@@ -108,12 +114,17 @@ function CreateNarrativesForm(props) {
               />
             ) : null
         }
-        <Button
-          onClick={actions.addCharacter}
-          type="button"
-          icon="plus"
-          color="blue"
-        />
+        {
+          props.roles.size < getMaxRoles(props.user.accountType) ?
+            (
+              <Button
+                onClick={actions.addCharacter}
+                type="button"
+                icon="plus"
+                color="blue"
+              />
+            ) : null
+        }
       </Button.Group>
 
       {error && (
@@ -147,6 +158,7 @@ function CreateNarrativesForm(props) {
 }
 
 CreateNarrativesForm.propTypes = {
+  user: PropTypes.object,
   untouch: PropTypes.func,
   change: PropTypes.func,
   actions: PropTypes.object,

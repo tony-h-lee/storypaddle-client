@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import { Switch, withRouter } from 'react-router-dom';
 
 import RouteWrapper from 'components/RouteWrapper';
@@ -29,14 +29,15 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectAuthContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import { setToken } from './actions';
+import * as authActions from './actions';
 
 export class AuthContainer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   // Initialize retrieving auth token saved in storage and user data
   componentWillMount() {
     const localToken = localStorage.getItem('nl_token');
-    if (localToken !== null) this.props.setToken(localToken);
+    if (localToken !== null) this.props.actions.setToken(localToken);
+    this.props.actions.getMe(localToken);
   }
 
   render() {
@@ -102,7 +103,7 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
 
 AuthContainer.propTypes = {
   auth: PropTypes.object,
-  setToken: PropTypes.func,
+  actions: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -111,7 +112,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    setToken: (token) => dispatch(setToken(token)),
+    actions: bindActionCreators(authActions, dispatch),
   };
 }
 

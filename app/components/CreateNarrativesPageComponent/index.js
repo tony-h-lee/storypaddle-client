@@ -27,6 +27,7 @@ function CreateNarrativesPageComponent(props) {
           <Container textAlign="left">
             <CreateNarrativesForm
               roles={props.createNarrativesPage.get('roles')}
+              user={props.user}
               actions={props.actions}
             />
           </Container>
@@ -39,6 +40,7 @@ function CreateNarrativesPageComponent(props) {
 CreateNarrativesPageComponent.propTypes = {
   createNarrativesPage: PropTypes.object,
   actions: PropTypes.object,
+  user: PropTypes.object,
 };
 
 export default CreateNarrativesPageComponent;

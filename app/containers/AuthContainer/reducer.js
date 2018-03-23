@@ -44,7 +44,7 @@ function authContainerReducer(state = initialState, action) {
         .set('user', action.user);
     case GET_ME_FAILURE:
       return state
-        .set('error', action.payload.errors)
+        .set('error', action.error)
         .set('loading', false);
     default:
       return state;
