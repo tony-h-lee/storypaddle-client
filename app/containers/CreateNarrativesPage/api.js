@@ -5,7 +5,7 @@ export function createNarrative(values) {
   return new Request()
     .setUrl(url)
     .setPost()
-    .addHeader({ 'Content-Type': 'application/json' })
+    .addHeader({ 'Content-Type': 'application/x-www-form-urlencoded' })
     .setToken(values.token)
     .setBody(values)
     .go();

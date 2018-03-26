@@ -7,11 +7,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import { reduxForm } from 'redux-form/immutable';
+import { reduxForm, FieldArray } from 'redux-form/immutable';
 import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
 import { Form, Message, Button, Icon } from 'semantic-ui-react';
-import { required } from 'components/FormValidation/syncValidation';
-import { MIN_CHARACTERS, MEMBER_MAX_CHARACTERS, BASIC_MAX_CHARACTERS } from 'containers/CreateNarrativesPage/constants';
+import { required, validateRoles } from 'components/FormValidation/syncValidation';
 // import styled from 'styled-components';
 import { createNarrative } from 'containers/CreateNarrativesPage/actions';
 import CreateNarrativesRoles from './CreateNarrativesRoles';
@@ -22,23 +21,19 @@ const options = [
   { key: 'historical fiction', text: 'Historical Fiction', value: 'historical_fiction' },
 ];
 
-const getMaxRoles = (accountType) => accountType === MEMBER_MAX_CHARACTERS ? MEMBER_MAX_CHARACTERS :
-  BASIC_MAX_CHARACTERS;
-
 function CreateNarrativesForm(props) {
   const {
-    actions,
     loading,
     pristine,
     error,
-    submitSucceeded,
     handleSubmit,
   } = props;
   return (
     <Form
       size="large"
       style={{ marginBottom: '1rem' }}
-      onSubmit={handleSubmit(createNarrative)}
+      onSubmit={handleSubmit((values, dispatch) =>
+        createNarrative({ form: values, token: props.token }, dispatch))}
       error={error !== false}
     >
 
@@ -96,38 +91,12 @@ function CreateNarrativesForm(props) {
         />
       </Message>
 
-      <CreateNarrativesRoles roles={props.roles} />
-
-      <Button.Group floated="right" style={{ marginBottom: '2rem' }}>
-        {
-          props.roles.size > MIN_CHARACTERS ?
-            (
-              <Button
-                onClick={() => {
-                  props.change(`role_${props.roles.size - 1}`, '');
-                  props.change(`role_description_${props.roles.size - 1}`, '');
-                  props.untouch('createNarrativesForm',
-                    `role_${props.roles.size - 1}`, `role_description_${props.roles.size - 1}`);
-                  actions.removeCharacter();
-                }}
-                type="button"
-                icon="minus"
-                color="red"
-              />
-            ) : null
-        }
-        {
-          props.roles.size < getMaxRoles(props.user.accountType) ?
-            (
-              <Button
-                onClick={actions.addCharacter}
-                type="button"
-                icon="plus"
-                color="blue"
-              />
-            ) : null
-        }
-      </Button.Group>
+      <FieldArray
+        validate={validateRoles}
+        name="roles"
+        component={CreateNarrativesRoles}
+        accountType={props.user.accountType}
+      />
 
       {error && (
         <Message
@@ -139,13 +108,21 @@ function CreateNarrativesForm(props) {
         </Message>)
       }
 
+      <Message
+        info
+        size="mini"
+      >
+        <Icon name="exclamation" />
+        Please make sure you fill all required fields.
+      </Message>
+
       <Button
         color="orange"
         fluid
         size="large"
         type="submit"
         loading={loading}
-        disabled={pristine || loading || submitSucceeded}
+        disabled={pristine || loading}
       >
         Create
       </Button>
@@ -154,19 +131,18 @@ function CreateNarrativesForm(props) {
 }
 
 CreateNarrativesForm.propTypes = {
-  user: PropTypes.object,
-  untouch: PropTypes.func,
-  change: PropTypes.func,
+  token: PropTypes.string,
+  user: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object,
+  ]),
   handleSubmit: PropTypes.func,
-  actions: PropTypes.object,
-  roles: PropTypes.object,
   error: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string,
   ]),
   pristine: PropTypes.bool,
   loading: PropTypes.bool,
-  submitSucceeded: PropTypes.bool,
 };
 
 export default compose(

@@ -16,7 +16,7 @@ export default class Request {
   }
 
   setToken(token) {
-    this.headers = Object.assign(this.headers, { authorization: `Bearer ${token}` });
+    this.headers = Object.assign(this.headers, { Authorization: `Bearer ${token}` });
     return this;
   }
   removeToken() {

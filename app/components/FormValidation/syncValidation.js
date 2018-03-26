@@ -1,3 +1,5 @@
+import { MIN_CHARACTERS } from 'containers/CreateNarrativesPage/constants';
+
 const MIN_PASSWORD_LENGTH = 6;
 
 export const required = (value) => (value ? undefined : 'Required');
@@ -20,4 +22,11 @@ export const validate = (values) => {
   }
 
   return errors;
+};
+
+export const validateRoles = (roles) => {
+  if (!roles || roles.size < MIN_CHARACTERS) {
+    return 'You must enter at least two roles.';
+  }
+  return undefined;
 };

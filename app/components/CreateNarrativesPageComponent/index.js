@@ -29,6 +29,7 @@ function CreateNarrativesPageComponent(props) {
               roles={props.createNarrativesPage.get('roles')}
               user={props.user}
               actions={props.actions}
+              token={props.token}
             />
           </Container>
         </Grid.Column>
@@ -40,7 +41,11 @@ function CreateNarrativesPageComponent(props) {
 CreateNarrativesPageComponent.propTypes = {
   createNarrativesPage: PropTypes.object,
   actions: PropTypes.object,
-  user: PropTypes.object,
+  user: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object,
+  ]),
+  token: PropTypes.string,
 };
 
 export default CreateNarrativesPageComponent;
