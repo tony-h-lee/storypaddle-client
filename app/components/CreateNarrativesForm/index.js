@@ -74,6 +74,7 @@ function CreateNarrativesForm(props) {
           name="explicit"
           component={SemanticFormField}
           as={Form.Checkbox}
+          value={false}
           label="Confirm explicit content"
         />
       </Message>

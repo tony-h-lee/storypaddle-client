@@ -11,10 +11,8 @@ function* handleCreateNarrativeSaga(action) {
   const form = action.payload.form.toJS();
   const token = action.payload.token;
 
-  console.log(form);
-
   try {
-    const response = yield call(api.createNarrative, { form, token }); // calling our api method
+    const response = yield call(api.createNarrative, { ...form }, token); // calling our api method
     yield put(createNarrative.success());
     yield apply(history, history.push, [`/narrative/${response.id}`]);
   } catch (error) {
