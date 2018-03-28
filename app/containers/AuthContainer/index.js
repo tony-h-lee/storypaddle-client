@@ -22,6 +22,7 @@ import ForgotPasswordPage from 'containers/ForgotPasswordPage/Loadable';
 import ResetPasswordPage from 'containers/ResetPasswordPage/Loadable';
 import NarrativesPage from 'containers/NarrativesPage/Loadable';
 import CreateNarrativesPage from 'containers/CreateNarrativesPage/Loadable';
+import NarrativeOverviewPage from 'containers/NarrativeOverviewPage/Loadable';
 import { PropsRoute, PrivateRoute } from 'containers/CustomRoute';
 
 import injectSaga from 'utils/injectSaga';
@@ -80,6 +81,12 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             path="/narratives"
             component={RouteWrapper}
             innerComponent={NarrativesPage}
+          />
+          <PropsRoute
+            exact
+            path="/narrative/:id"
+            component={RouteWrapper}
+            innerComponent={NarrativeOverviewPage}
           />
           <PrivateRoute
             exact

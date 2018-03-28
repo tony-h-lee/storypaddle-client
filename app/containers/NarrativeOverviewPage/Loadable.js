@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for NarrativeOverviewPageContainer
+ * Asynchronously loads the component for NarrativeOverviewPage
  *
  */
 
