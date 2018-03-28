@@ -26,7 +26,8 @@ export class NarrativeOverviewPage extends React.PureComponent { // eslint-disab
     return (
       <div>
         <Helmet>
-          <title> Narrative </title>
+          <title> {this.props.narrativeOverviewPage ?
+            this.props.narrativeOverviewPage.get('narrative').title : null} </title>
           <meta name="description" content="Read and join this narrative!" />
         </Helmet>
         <NarrativeOverviewPageComponent />
@@ -36,6 +37,7 @@ export class NarrativeOverviewPage extends React.PureComponent { // eslint-disab
 }
 
 NarrativeOverviewPage.propTypes = {
+  narrativeOverviewPage: PropTypes.object,
   actions: PropTypes.object,
   match: PropTypes.object,
 };

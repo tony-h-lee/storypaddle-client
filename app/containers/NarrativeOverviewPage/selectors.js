@@ -16,7 +16,7 @@ const selectNarrativeOverviewPageDomain = (state) => state.get('narrativeOvervie
 
 const makeSelectNarrativeOverviewPage = () => createSelector(
   selectNarrativeOverviewPageDomain,
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
 export default makeSelectNarrativeOverviewPage;
