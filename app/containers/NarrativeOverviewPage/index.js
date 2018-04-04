@@ -26,8 +26,8 @@ export class NarrativeOverviewPage extends React.PureComponent { // eslint-disab
     return (
       <div>
         <Helmet>
-          <title> {this.props.narrativeOverviewPage ?
-            this.props.narrativeOverviewPage.get('narrative').title : null} </title>
+          <title> {this.props.narrativeOverviewPage.get('narrative').title !== undefined ?
+            this.props.narrativeOverviewPage.get('narrative').title : 'Storypaddle'} </title>
           <meta name="description" content="Read and join this narrative!" />
         </Helmet>
         <NarrativeOverviewPageComponent />
