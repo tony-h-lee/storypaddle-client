@@ -16,9 +16,9 @@ import { createNarrative } from 'containers/CreateNarrativesPage/actions';
 import CreateNarrativesRoles from './CreateNarrativesRoles';
 
 const options = [
-  { key: 'fantasy', text: 'Fantasy', value: 'fantasy' },
-  { key: 'science fiction', text: 'Science Fiction', value: 'science_fiction' },
-  { key: 'historical fiction', text: 'Historical Fiction', value: 'historical_fiction' },
+  { key: 'fantasy', text: 'Fantasy', value: 'Fantasy' },
+  { key: 'science fiction', text: 'Science Fiction', value: 'Science Fiction' },
+  { key: 'historical fiction', text: 'Historical Fiction', value: 'Historical Fiction' },
 ];
 
 function CreateNarrativesForm(props) {

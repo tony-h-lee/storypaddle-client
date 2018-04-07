@@ -30,7 +30,7 @@ export class NarrativeOverviewPage extends React.PureComponent { // eslint-disab
             this.props.narrativeOverviewPage.get('narrative').title : 'Storypaddle'} </title>
           <meta name="description" content="Read and join this narrative!" />
         </Helmet>
-        <NarrativeOverviewPageComponent />
+        <NarrativeOverviewPageComponent {...this.props} />
       </div>
     );
   }
