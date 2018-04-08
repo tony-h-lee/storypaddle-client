@@ -14,9 +14,9 @@ function RoleItem(props) {
   return (
     <Segment padded>
       <Header> { item.name } </Header>
-      <p style={{ whiteSpace: 'pre-wrap' }}> { item.synopsis } </p>
+      <p style={{ whiteSpace: 'pre-line' }}> { item.synopsis } </p>
       {
-        !item.user ?
+        !item.user && moreProps.author !== moreProps.user ?
           <Button
             primary
             compact
@@ -25,12 +25,7 @@ function RoleItem(props) {
             Join as
           </Button>
           :
-          <Button
-            disabled
-            compact
-          >
-            Unavailable
-          </Button>
+          null
       }
     </Segment>
   );

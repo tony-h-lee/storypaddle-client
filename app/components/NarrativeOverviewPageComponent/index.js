@@ -27,14 +27,17 @@ function NarrativeOverviewPageComponent(props) {
         <h1> { narrative.title } </h1>
         <Meta> { narrative.genre } </Meta>
         { narrative.explicit ? <Warning> Explicit </Warning> : null }
-        <div style={{ margin: '1.5rem 0 3rem 0', whiteSpace: 'pre-wrap' }}>
+        <div style={{ margin: '1.5rem 0 3rem 0', whiteSpace: 'pre-line' }}>
           <p> { narrative.synopsis } </p>
         </div>
         <Divider />
         <NarrativeOverviewRoles
+          error={props.narrativeOverviewPage.get('error')}
           roles={narrative.roles}
           id={narrative.id}
+          author={narrative.author.id}
           token={props.token}
+          user={props.user ? props.user.id : null}
           join={props.actions.joinNarrative}
         />
       </Container>
@@ -48,6 +51,10 @@ NarrativeOverviewPageComponent.propTypes = {
   actions: PropTypes.object,
   token: PropTypes.oneOfType([
     PropTypes.string,
+    PropTypes.bool,
+  ]),
+  user: PropTypes.oneOfType([
+    PropTypes.object,
     PropTypes.bool,
   ]),
 };

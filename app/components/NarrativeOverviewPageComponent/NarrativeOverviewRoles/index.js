@@ -23,6 +23,8 @@ function NarrativeOverviewRoles(props) {
           join: props.join,
           id: props.id,
           token: props.token,
+          user: props.user,
+          author: props.author,
         }
         }
       />
@@ -31,6 +33,11 @@ function NarrativeOverviewRoles(props) {
 }
 
 NarrativeOverviewRoles.propTypes = {
+  author: PropTypes.string,
+  user: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
   roles: PropTypes.array,
   join: PropTypes.func,
   id: PropTypes.string,
