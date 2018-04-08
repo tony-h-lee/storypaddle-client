@@ -23,7 +23,7 @@ const options = [
 
 function CreateNarrativesForm(props) {
   const {
-    loading,
+    submitting,
     pristine,
     error,
     handleSubmit,
@@ -122,8 +122,8 @@ function CreateNarrativesForm(props) {
         fluid
         size="large"
         type="submit"
-        loading={loading}
-        disabled={pristine || loading}
+        loading={submitting}
+        disabled={pristine || submitting}
       >
         Create
       </Button>
@@ -143,7 +143,7 @@ CreateNarrativesForm.propTypes = {
     PropTypes.string,
   ]),
   pristine: PropTypes.bool,
-  loading: PropTypes.bool,
+  submitting: PropTypes.bool,
 };
 
 export default compose(

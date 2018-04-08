@@ -80,11 +80,32 @@ export const getCreateNarrativesErrors = (code) => {
       });
     case 400:
       return new SubmissionError({
-        _error: 'Invalid fields submitted. Please double check your fields',
+        _error: 'Please ensure you filled all required fields and you have no duplicate role names',
       });
     default:
       return new SubmissionError({
         _error: 'Error creating Narrative. Please try again later',
       });
+  }
+};
+
+
+export const getJoinNarrativeErrors = (name, code) => {
+  switch (code) {
+    case 401:
+      return {
+        name,
+        message: 'Authentication required',
+      };
+    case 400:
+      return {
+        name,
+        message: 'You already have a role in this Narrative!',
+      };
+    default:
+      return {
+        name,
+        message: 'Failed to join Narrative. Please try again later',
+      };
   }
 };
