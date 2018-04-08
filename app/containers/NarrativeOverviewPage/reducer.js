@@ -9,6 +9,9 @@ import {
   GET_NARRATIVE_REQUEST,
   GET_NARRATIVE_SUCCESS,
   GET_NARRATIVE_FAILURE,
+  JOIN_NARRATIVE_REQUEST,
+  JOIN_NARRATIVE_SUCCESS,
+  JOIN_NARRATIVE_FAILURE,
 } from './constants';
 
 const initialState = fromJS({
@@ -28,6 +31,18 @@ function narrativeOverviewPageReducer(state = initialState, action) {
         .set('loading', false)
         .set('narrative', action.narrative);
     case GET_NARRATIVE_FAILURE:
+      return state
+        .set('error', action.error)
+        .set('loading', false);
+    case JOIN_NARRATIVE_REQUEST:
+      return state
+        .set('loading', true)
+        .set('error', false);
+    case JOIN_NARRATIVE_SUCCESS:
+      return state
+        .set('loading', false)
+        .updateIn('narrative', ['roles', action.name], action.user);
+    case JOIN_NARRATIVE_FAILURE:
       return state
         .set('error', action.error)
         .set('loading', false);

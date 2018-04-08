@@ -87,6 +87,7 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             path="/narrative/:id"
             component={RouteWrapper}
             innerComponent={NarrativeOverviewPage}
+            token={this.props.auth.get('token')}
           />
           <PrivateRoute
             exact

@@ -1,9 +1,9 @@
 // import React from 'react';
 // import { shallow } from 'enzyme';
 
-// import List from '../index';
+// import NarrativeOverviewRoles from '../index';
 
-describe('<List />', () => {
+describe('<NarrativeOverviewRoles />', () => {
   it('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });

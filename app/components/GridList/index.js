@@ -1,13 +1,14 @@
 /**
- *
- * List
- *
- */
+*
+* List
+*
+*/
 
 import React from 'react';
+import { Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-function List(props) {
+function GridList(props) {
   const ComponentToRender = props.component;
   let content = (<div></div>);
   if (props.items.length > 0) {
@@ -22,16 +23,21 @@ function List(props) {
   }
 
   return (
-    <div>
+    <Grid
+      columns={4}
+      padded
+      stackable
+      doubling
+    >
       {content}
-    </div>
+    </Grid>
   );
 }
 
-List.propTypes = {
+GridList.propTypes = {
   items: PropTypes.array.isRequired,
   component: PropTypes.func.isRequired,
   moreProps: PropTypes.object,
 };
 
-export default List;
+export default GridList;

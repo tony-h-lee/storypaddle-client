@@ -1,26 +1,49 @@
-import { call, takeLatest, put, fork } from 'redux-saga/effects';
+import { call, takeLatest, put, fork, apply } from 'redux-saga/effects';
+import history from 'history';
 import {
   GET_NARRATIVE_REQUEST,
+  JOIN_NARRATIVE_REQUEST,
 } from './constants';
-import { getNarrativeSuccess, getNarrativeFailure } from './actions';
+import {
+  getNarrativeSuccess,
+  getNarrativeFailure,
+  joinNarrativeSuccess,
+  joinNarrativeFailure,
+} from './actions';
 import * as api from './api';
 
 function* handleGetNarrative(action) {
   const { id } = action;
   try {
-    const response = yield call(api.getNarrative, { id }); // calling our api method
+    const response = yield call(api.getNarrative, { id });
     yield put(getNarrativeSuccess(response));
   } catch (error) {
     yield put(getNarrativeFailure(error));
   }
 }
 
+function* handleJoinRole(action) {
+  const { id, name, token } = action;
+  try {
+    const response = yield call(api.joinRole, { id, name, token });
+    yield put(joinNarrativeSuccess(name, response));
+  } catch (error) {
+    yield apply(history, history.push, ['/signup']);
+    yield put(joinNarrativeFailure(error));
+  }
+}
+
 function* handleGetNarrativeSaga() {
-  yield takeLatest(GET_NARRATIVE_REQUEST, handleGetNarrative); // see details what is REQUEST param below
+  yield takeLatest(GET_NARRATIVE_REQUEST, handleGetNarrative);
+}
+
+function* handleJoinRoleSaga() {
+  yield takeLatest(JOIN_NARRATIVE_REQUEST, handleJoinRole);
 }
 
 export function* rootSaga() {
   yield fork(handleGetNarrativeSaga);
+  yield fork(handleJoinRoleSaga);
 }
 
 export default rootSaga;

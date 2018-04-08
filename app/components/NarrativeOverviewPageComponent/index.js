@@ -6,8 +6,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container } from 'semantic-ui-react';
+import { Container, Divider } from 'semantic-ui-react';
 import styled from 'styled-components';
+import NarrativeOverviewRoles from './NarrativeOverviewRoles';
 
 const Meta = styled.p`
   font-size: 1rem;
@@ -26,9 +27,16 @@ function NarrativeOverviewPageComponent(props) {
         <h1> { narrative.title } </h1>
         <Meta> { narrative.genre } </Meta>
         { narrative.explicit ? <Warning> Explicit </Warning> : null }
-        <div style={{ marginTop: '1.5rem', whiteSpace: 'pre-wrap' }}>
+        <div style={{ margin: '1.5rem 0 3rem 0', whiteSpace: 'pre-wrap' }}>
           <p> { narrative.synopsis } </p>
         </div>
+        <Divider />
+        <NarrativeOverviewRoles
+          roles={narrative.roles}
+          id={narrative.id}
+          token={props.token}
+          join={props.actions.joinNarrative}
+        />
       </Container>
     );
   }
@@ -37,6 +45,11 @@ function NarrativeOverviewPageComponent(props) {
 
 NarrativeOverviewPageComponent.propTypes = {
   narrativeOverviewPage: PropTypes.object,
+  actions: PropTypes.object,
+  token: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
 };
 
 export default NarrativeOverviewPageComponent;

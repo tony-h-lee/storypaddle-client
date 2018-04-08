@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Header, Container } from 'semantic-ui-react';
-import List from 'components/List';
+import GridList from 'components/GridList';
 import DashboardSectionButton from 'components/DashboardSectionButton';
 import DashboardSectionWrapper from 'components/DashboardSectionWrapper';
 import Sections from './Sections';
@@ -23,7 +23,7 @@ function DashboardPageComponent(props) {
         My Dashboard
       </Header>
       <Container>
-        <List
+        <GridList
           component={DashboardSectionButton}
           items={Sections}
           moreProps={{ logout: props.logout }}
