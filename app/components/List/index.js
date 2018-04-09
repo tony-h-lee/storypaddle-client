@@ -1,3 +1,4 @@
+/* eslint no-underscore-dangle: 0 */
 /**
  *
  * List
@@ -13,7 +14,7 @@ function List(props) {
   if (props.items.length > 0) {
     content = props.items.map((item) => (
       <ComponentToRender
-        key={item.id}
+        key={item.id ? item.id : item._id}
         item={item}
         actions={props.actions}
         moreProps={props.moreProps}
