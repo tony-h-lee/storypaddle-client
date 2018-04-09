@@ -37,8 +37,10 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
   // Initialize retrieving auth token saved in storage and user data
   componentWillMount() {
     const localToken = localStorage.getItem('nl_token');
-    if (localToken !== null) this.props.actions.setToken(localToken);
-    this.props.actions.getMe(localToken);
+    if (localToken !== null) {
+      this.props.actions.setToken(localToken);
+      this.props.actions.getMe(localToken);
+    }
   }
 
   render() {
