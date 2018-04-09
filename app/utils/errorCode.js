@@ -90,21 +90,21 @@ export const getCreateNarrativesErrors = (code) => {
 };
 
 
-export const getJoinNarrativeErrors = (name, code) => {
+export const getJoinNarrativeErrors = (roleId, code) => {
   switch (code) {
     case 401:
       return {
-        name,
+        roleId,
         message: 'Authentication required',
       };
     case 400:
       return {
-        name,
+        roleId,
         message: 'You already have a role in this Narrative!',
       };
     default:
       return {
-        name,
+        roleId,
         message: 'Failed to join Narrative. Please try again later',
       };
   }

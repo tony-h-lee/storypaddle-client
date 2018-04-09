@@ -24,13 +24,14 @@ function* handleGetNarrative(action) {
 }
 
 function* handleJoinRole(action) {
-  const { id, name, token } = action;
+  const { narrativeId, roleId, token, user } = action;
   try {
-    const response = yield call(api.joinRole, { id, name, token });
-    yield put(joinNarrativeSuccess(name, response));
+    const response = yield call(api.joinRole, { narrativeId, roleId, token, user });
+    yield put(joinNarrativeSuccess(response));
+    yield apply(history, history.push, [`/scene/${narrativeId}`]);
   } catch (error) {
     if (error === 401) yield apply(history, history.push, ['/signup']);
-    yield put(joinNarrativeFailure(getJoinNarrativeErrors(name, error)));
+    yield put(joinNarrativeFailure(getJoinNarrativeErrors(roleId, error)));
   }
 }
 

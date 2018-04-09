@@ -19,6 +19,11 @@ const Warning = styled(Meta)`
   color: #912d2b;
 `;
 
+const alreadyIn = (roles, userId) => roles.some((role) => {
+  if (role.user) return role.user === userId;
+  return false;
+});
+
 function NarrativeOverviewPageComponent(props) {
   const narrative = props.narrativeOverviewPage.get('narrative');
   if (narrative) {
@@ -31,15 +36,23 @@ function NarrativeOverviewPageComponent(props) {
           <p> { narrative.synopsis } </p>
         </div>
         <Divider />
-        <NarrativeOverviewRoles
-          error={props.narrativeOverviewPage.get('error')}
-          roles={narrative.roles}
-          id={narrative.id}
-          author={narrative.author.id}
-          token={props.token}
-          user={props.user ? props.user.id : null}
-          join={props.actions.joinNarrative}
-        />
+        {
+          alreadyIn(narrative.roles, props.user.id) ?
+            <NarrativeOverviewRoles
+              static
+              roles={narrative.roles}
+            /> :
+            <NarrativeOverviewRoles
+              static={false}
+              error={props.narrativeOverviewPage.get('error')}
+              roles={narrative.roles}
+              id={narrative.id}
+              token={props.token}
+              user={props.user ? props.user.id : null}
+              join={props.actions.joinNarrative}
+            />
+        }
+
       </Container>
     );
   }

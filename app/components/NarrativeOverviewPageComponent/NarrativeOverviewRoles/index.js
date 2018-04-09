@@ -20,11 +20,12 @@ function NarrativeOverviewRoles(props) {
         component={RoleItem}
         moreProps={
         {
+          static: props.static,
           join: props.join,
           id: props.id,
           token: props.token,
           user: props.user,
-          author: props.author,
+          error: props.error,
         }
         }
       />
@@ -33,7 +34,7 @@ function NarrativeOverviewRoles(props) {
 }
 
 NarrativeOverviewRoles.propTypes = {
-  author: PropTypes.string,
+  static: PropTypes.bool,
   user: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,
@@ -43,6 +44,10 @@ NarrativeOverviewRoles.propTypes = {
   id: PropTypes.string,
   token: PropTypes.oneOfType([
     PropTypes.string,
+    PropTypes.bool,
+  ]),
+  error: PropTypes.oneOfType([
+    PropTypes.object,
     PropTypes.bool,
   ]),
 };

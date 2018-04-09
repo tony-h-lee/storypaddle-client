@@ -31,6 +31,8 @@ export function getNarrative(id) {
 /**
  * Dispatched when Narrative successfully retrieved from api
  *
+ * @param  {object} -> narrative : The narrative object retrieved from endpoint
+ *
  * @return {object} : An action object with a type of GET_NARRATIVE_SUCCESS and the narrative object
  */
 export function getNarrativeSuccess(narrative) {
@@ -59,19 +61,21 @@ export function getNarrativeFailure(error) {
 /**
  * Send request to join a Narrative as a role
  *
- * @param {string} -> id : The id of the Narrative with the role
- * @param {string} -> name : The name of the role to join.
+ * @param {string} -> narrativeId : The id of the Narrative with the role
+ * @param {string} -> roleId : The id of the role to join.
  * @param {string} -> token : Auth token required to join a role.
+ * @param {string} -> user : User id of the requesting user.
  *
  * @return {object} : An action object with a type of GET_NARRATIVE_REQUEST and the name of the
  * role and the Narrative id
  */
-export function joinNarrative(id, name, token) {
+export function joinNarrative(narrativeId, roleId, token, user) {
   return {
     type: JOIN_NARRATIVE_REQUEST,
-    id,
-    name,
+    narrativeId,
+    roleId,
     token,
+    user,
   };
 }
 
@@ -79,16 +83,14 @@ export function joinNarrative(id, name, token) {
 /**
  * Dispatched when user successfully joins a role in a Narrative
  *
- * @param {string} -> name : The name of the role that was joined.
- * @param {string} -> user : The id of the user that joined the role.
+ * @param  {object} -> narrative : The narrative object retrieved from endpoint
  *
- * @return {object} : An action object with a type of JOIN_NARRATIVE_SUCCESS and the name of the role and the user id
+ * @return {object} : An action object with a type of JOIN_NARRATIVE_SUCCESS and the narrative object
  */
-export function joinNarrativeSuccess(name, user) {
+export function joinNarrativeSuccess(narrative) {
   return {
     type: JOIN_NARRATIVE_SUCCESS,
-    name,
-    user,
+    narrative,
   };
 }
 

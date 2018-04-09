@@ -18,7 +18,7 @@ function* handleGetMe(action) {
     yield put(getMeSuccess(response));
   } catch (error) {
     yield put(getMeFailure(error));
-    yield handleLogoutSaga();
+    yield call(() => localStorage.removeItem('nl_token'));
   }
 }
 

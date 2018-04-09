@@ -41,7 +41,7 @@ function narrativeOverviewPageReducer(state = initialState, action) {
     case JOIN_NARRATIVE_SUCCESS:
       return state
         .set('loading', false)
-        .updateIn('narrative', ['roles', action.name], action.user);
+        .set('narrative', action.narrative);
     case JOIN_NARRATIVE_FAILURE:
       return state
         .set('error', action.error)
