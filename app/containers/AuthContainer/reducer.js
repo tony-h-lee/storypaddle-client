@@ -12,6 +12,8 @@ import {
   GET_ME_REQUEST,
   GET_ME_SUCCESS,
   GET_ME_FAILURE,
+  SET_JOINED_NARRATIVE,
+  SET_CREATED_NARRATIVE,
 } from './constants';
 
 const initialState = fromJS({
@@ -46,6 +48,12 @@ function authContainerReducer(state = initialState, action) {
       return state
         .set('error', action.error)
         .set('loading', false);
+    case SET_CREATED_NARRATIVE:
+      return state.update('user', (user) =>
+        Object.assign(user, { ...user, ownedNarratives: user.ownedNarratives.concat(action.narrative) }));
+    case SET_JOINED_NARRATIVE:
+      return state.update('user', (user) =>
+        Object.assign(user, { ...user, joinedNarratives: user.joinedNarratives.concat(action.narrative) }));
     default:
       return state;
   }

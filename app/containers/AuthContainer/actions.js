@@ -11,6 +11,8 @@ import {
   GET_ME_REQUEST,
   GET_ME_SUCCESS,
   GET_ME_FAILURE,
+  SET_JOINED_NARRATIVE,
+  SET_CREATED_NARRATIVE,
 } from './constants';
 
 
@@ -90,5 +92,35 @@ export function getMeFailure(error) {
   return {
     type: GET_ME_FAILURE,
     error,
+  };
+}
+
+
+/**
+ * Dispatched when user successfully creates a narrative
+ *
+ * @param  {string} -> narrative : The narrative id of the narrative successfully created
+ *
+ * @return {object} : An action object with a type of SET_JOINED_NARRATIVE and the narrative id
+ */
+export function setCreatedNarrative(narrative) {
+  return {
+    type: SET_CREATED_NARRATIVE,
+    narrative,
+  };
+}
+
+
+/**
+ * Dispatched when user successfully joins a narrative with a role
+ *
+ * @param  {string} -> narrative : The narrative id of the narrative successfully joined
+ *
+ * @return {object} : An action object with a type of SET_JOINED_NARRATIVE and the narrative id
+ */
+export function setJoinedNarrative(narrative) {
+  return {
+    type: SET_JOINED_NARRATIVE,
+    narrative,
   };
 }
