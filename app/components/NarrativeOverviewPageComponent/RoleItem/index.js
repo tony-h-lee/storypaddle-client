@@ -27,7 +27,7 @@ function RoleItem(props) {
     )
       :
     (
-      <Segment padded>
+      <Segment padded clearing>
         <Header> { item.name } </Header>
         <p style={{ whiteSpace: 'pre-line' }}> { item.synopsis } </p>
         {
@@ -35,6 +35,7 @@ function RoleItem(props) {
             <Button
               primary
               compact
+              floated="right"
               onClick={() => moreProps.join(moreProps.id, item._id, moreProps.token, moreProps.user)}
             >
               Join as {item.name}
