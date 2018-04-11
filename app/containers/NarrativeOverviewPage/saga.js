@@ -1,6 +1,7 @@
 import { call, takeLatest, put, fork, apply } from 'redux-saga/effects';
 import history from 'history';
 import { getJoinNarrativeErrors } from 'utils/errorCode';
+import { setJoinedNarrative } from 'containers/AuthContainer/actions';
 import {
   GET_NARRATIVE_REQUEST,
   JOIN_NARRATIVE_REQUEST,
@@ -27,7 +28,7 @@ function* handleJoinRole(action) {
   const { narrativeId, roleId, token, user } = action;
   try {
     const response = yield call(api.joinRole, { narrativeId, roleId, token, user });
-    yield put(joinNarrativeSuccess(response));
+    yield [put(joinNarrativeSuccess(response)), put(setJoinedNarrative(response.id))];
     yield apply(history, history.push, [`/scene/${narrativeId}`]);
   } catch (error) {
     if (error === 401) yield apply(history, history.push, ['/signup']);
