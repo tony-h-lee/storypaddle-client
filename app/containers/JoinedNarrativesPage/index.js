@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
@@ -18,6 +19,11 @@ import reducer from './reducer';
 import saga from './saga';
 
 export class JoinedNarrativesPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+  componentWillMount() {
+    this.props.actions.loadJoinedNarratives(this.props.token);
+  }
+
   render() {
     return (
       <div>
@@ -32,6 +38,8 @@ export class JoinedNarrativesPage extends React.PureComponent { // eslint-disabl
 }
 
 JoinedNarrativesPage.propTypes = {
+  token: PropTypes.string.isRequired,
+  actions: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
