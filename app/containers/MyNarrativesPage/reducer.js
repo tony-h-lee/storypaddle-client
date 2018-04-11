@@ -1,14 +1,14 @@
 /*
  *
- * JoinedNarrativesPage reducer
+ * MyNarrativesPage reducer
  *
  */
 
 import { fromJS } from 'immutable';
 import {
-  LOAD_JOINED_REQUEST,
-  LOAD_JOINED_SUCCESS,
-  LOAD_JOINED_FAILURE,
+  MY_NARRATIVES_REQUEST,
+  MY_NARRATIVES_SUCCESS,
+  MY_NARRATIVES_FAILURE,
 } from './constants';
 
 const initialState = fromJS({
@@ -17,17 +17,17 @@ const initialState = fromJS({
   error: false,
 });
 
-function joinedNarrativesPageReducer(state = initialState, action) {
+function myNarrativesPageReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_JOINED_REQUEST:
+    case MY_NARRATIVES_REQUEST:
       return state
         .set('loading', true)
         .set('error', false);
-    case LOAD_JOINED_SUCCESS:
+    case MY_NARRATIVES_SUCCESS:
       return state
         .set('loading', false)
         .set('narratives', action.narratives);
-    case LOAD_JOINED_FAILURE:
+    case MY_NARRATIVES_FAILURE:
       return state
         .set('loading', false)
         .set('error', action.error);
@@ -36,4 +36,4 @@ function joinedNarrativesPageReducer(state = initialState, action) {
   }
 }
 
-export default joinedNarrativesPageReducer;
+export default myNarrativesPageReducer;
