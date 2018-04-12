@@ -12,6 +12,7 @@ import {
   JOIN_NARRATIVE_REQUEST,
   JOIN_NARRATIVE_SUCCESS,
   JOIN_NARRATIVE_FAILURE,
+  LEAVE_NARRATIVE,
 } from './constants';
 
 const initialState = fromJS({
@@ -30,7 +31,7 @@ function narrativeOverviewPageReducer(state = initialState, action) {
     case GET_NARRATIVE_SUCCESS:
       return state
         .set('loading', false)
-        .set('narrative', action.narrative);
+        .set('narrative', fromJS(action.narrative));
     case GET_NARRATIVE_FAILURE:
       return state
         .set('error', action.error)
@@ -41,17 +42,10 @@ function narrativeOverviewPageReducer(state = initialState, action) {
         .set('error', false);
     case JOIN_NARRATIVE_SUCCESS:
       return state
-        .set('loading', false)
-        .update('narrative', (narrative) =>
-          Object.assign(narrative,
-            { ...narrative,
-              roles: narrative.roles.map((role) => {
-                if (role.id === action.roleId) return Object.assign(role, { ...role, user: action.user });
-                return role;
-              }),
-            }
-          )
-        );
+        .set('loading', false);
+    case LEAVE_NARRATIVE:
+      return state
+        .set('loading', false);
     case JOIN_NARRATIVE_FAILURE:
       return state
         .set('error', action.error)

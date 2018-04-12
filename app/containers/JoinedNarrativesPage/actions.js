@@ -63,14 +63,16 @@ export function loadJoinedNarrativesFailure(error) {
  *
  * @param  {string} -> token : The access token retrieved from auth
  * @param  {string} -> narrative : The id of the narrative that the user wants to leave
+ * @param  {string} -> roleId : The id of the role that the user wants to leave
  *
  * @return {object} : An action object with a type of LEAVE_NARRATIVE_REQUEST and token string
  */
-export function leaveNarrative(token, narrative) {
+export function leaveNarrative(token, narrative, roleId) {
   return {
     type: LEAVE_NARRATIVE_REQUEST,
     token,
     narrative,
+    roleId,
   };
 }
 

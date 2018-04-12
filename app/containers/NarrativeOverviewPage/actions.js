@@ -11,6 +11,7 @@ import {
   JOIN_NARRATIVE_REQUEST,
   JOIN_NARRATIVE_SUCCESS,
   JOIN_NARRATIVE_FAILURE,
+  LEAVE_NARRATIVE,
 } from './constants';
 
 /**
@@ -108,5 +109,20 @@ export function joinNarrativeFailure(error) {
   return {
     type: JOIN_NARRATIVE_FAILURE,
     error,
+  };
+}
+
+
+/**
+ * Dispatched when user successfully joins a role in a Narrative
+ *
+ * @param  {string} -> roleId : The id of the role that was left
+ *
+ * @return {object} : An action object with a type of LEAVE_NARRATIVE and the role and user ids
+ */
+export function leaveNarrative(roleId) {
+  return {
+    type: LEAVE_NARRATIVE,
+    roleId,
   };
 }

@@ -13,6 +13,7 @@ import {
   GET_ME_SUCCESS,
   GET_ME_FAILURE,
   SET_JOINED_NARRATIVE,
+  UNSET_JOINED_NARRATIVE,
   SET_CREATED_NARRATIVE,
 } from './constants';
 
@@ -28,7 +29,7 @@ function authContainerReducer(state = initialState, action) {
     case SET_AUTH:
       return state
         .set('token', action.token)
-        .set('user', action.user);
+        .set('user', fromJS(action.user));
     case UNSET_AUTH:
       return state
         .set('token', false)
@@ -43,7 +44,7 @@ function authContainerReducer(state = initialState, action) {
     case GET_ME_SUCCESS:
       return state
         .set('loading', false)
-        .set('user', action.user);
+        .set('user', fromJS(action.user));
     case GET_ME_FAILURE:
       return state
         .set('error', action.error)
@@ -51,6 +52,10 @@ function authContainerReducer(state = initialState, action) {
     case SET_CREATED_NARRATIVE:
       return state.update('user', (user) =>
         Object.assign(user, { ...user, ownedNarratives: user.ownedNarratives.concat(action.narrative) }));
+    case UNSET_JOINED_NARRATIVE:
+      return state.update('user', (user) =>
+        Object.assign(user, { ...user,
+          ownedNarratives: user.ownedNarratives.filter((narrative) => narrative.id !== action.narrative) }));
     case SET_JOINED_NARRATIVE:
       return state.update('user', (user) =>
         Object.assign(user, { ...user, joinedNarratives: user.joinedNarratives.concat(action.narrative) }));

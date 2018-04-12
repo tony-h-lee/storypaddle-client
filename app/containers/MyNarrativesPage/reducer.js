@@ -26,7 +26,7 @@ function myNarrativesPageReducer(state = initialState, action) {
     case MY_NARRATIVES_SUCCESS:
       return state
         .set('loading', false)
-        .set('narratives', action.narratives);
+        .set('narratives', fromJS(action.narratives));
     case MY_NARRATIVES_FAILURE:
       return state
         .set('loading', false)

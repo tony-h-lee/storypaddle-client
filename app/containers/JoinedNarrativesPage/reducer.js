@@ -24,14 +24,16 @@ function joinedNarrativesPageReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_JOINED_REQUEST:
       return state
+        .set('narratives', false)
         .set('loading', true)
         .set('error', false);
     case LOAD_JOINED_SUCCESS:
       return state
         .set('loading', false)
-        .set('narratives', action.narratives);
+        .set('narratives', fromJS(action.narratives));
     case LOAD_JOINED_FAILURE:
       return state
+        .set('narratives', false)
         .set('loading', false)
         .set('error', action.error);
     case LEAVE_NARRATIVE_REQUEST:
@@ -40,8 +42,7 @@ function joinedNarrativesPageReducer(state = initialState, action) {
         .set('error', false);
     case LEAVE_NARRATIVE_SUCCESS:
       return state
-        .set('loading', false)
-        .set('narratives', (narratives) => narratives.filter((narrative) => narrative.id !== action.narrativeId));
+        .set('loading', false);
     case LEAVE_NARRATIVE_FAILURE:
       return state
         .set('loading', false)

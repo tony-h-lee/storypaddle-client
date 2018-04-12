@@ -14,9 +14,11 @@ import JoinedNarrativesWrapper from './JoinedNarrativesWrapper';
 
 
 function JoinedNarrativesPageComponent(props) {
+  console.log(props.joinedNarrativesPage.get('narratives'));
   return (
     <DashboardSectionWrapper>
       <h1> Joined Narratives </h1>
+
       <Container text textAlign="left">
         <AsyncWrapper
           spinner
