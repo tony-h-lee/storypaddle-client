@@ -7,17 +7,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Divider } from 'semantic-ui-react';
-import styled from 'styled-components';
+import { Meta, Warning } from 'components/NarrativeHeaderComponents';
 import NarrativeOverviewRoles from './NarrativeOverviewRoles';
-
-const Meta = styled.p`
-  font-size: 1rem;
-  margin: 0 0 0.3rem 0;
-`;
-
-const Warning = styled(Meta)`
-  color: #912d2b;
-`;
 
 const alreadyIn = (roles, userId) => roles.some((role) => {
   if (role.user) return role.user === userId;

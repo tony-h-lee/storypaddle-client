@@ -25,6 +25,7 @@ function narrativeOverviewPageReducer(state = initialState, action) {
     case GET_NARRATIVE_REQUEST:
       return state
         .set('loading', true)
+        .set('narrative', false)
         .set('error', false);
     case GET_NARRATIVE_SUCCESS:
       return state

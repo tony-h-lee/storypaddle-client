@@ -15,6 +15,7 @@ const initialState = fromJS({
   narratives: false,
   loading: false,
   error: false,
+  confirmIsOpen: true,
 });
 
 function joinedNarrativesPageReducer(state = initialState, action) {
