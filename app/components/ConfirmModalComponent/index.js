@@ -37,7 +37,7 @@ function ConfirmModalComponent(props) {
       cancelButton={confirmModal.get('cancelButton') ? confirmModal.get('cancelButton') : defaults.cancelButton}
       confirmButton={confirmModal.get('confirmButton') ? confirmModal.get('confirmButton') : defaults.confirmButton}
       onCancel={confirmModal.get('handleCancel') ? confirmModal.get('handleCancel') : props.actions.close}
-      onConfirm={confirmModal.get('handleConfirm') ? confirmModal.get('handleConfirm') : () => console.log('confirm')}
+      onConfirm={confirmModal.get('handleConfirm') ? confirmModal.get('handleConfirm') : () => false}
     />
   );
 }

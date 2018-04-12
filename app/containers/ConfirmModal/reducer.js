@@ -24,7 +24,7 @@ function confirmModalReducer(state = initialState, action) {
   switch (action.type) {
     case OPEN:
       return state
-        .set('header', true)
+        .set('open', true)
         .set('header', action.header)
         .set('content', action.content)
         .set('button', action.button)

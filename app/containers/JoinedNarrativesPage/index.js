@@ -13,6 +13,7 @@ import { compose, bindActionCreators } from 'redux';
 import JoinedNarrativesPageComponent from 'components/JoinedNarrativesPageComponent';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+import { open } from 'containers/ConfirmModal/actions';
 import * as joinedNarrativesActions from './actions';
 import makeSelectJoinedNarrativesPage from './selectors';
 import reducer from './reducer';
@@ -49,6 +50,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(joinedNarrativesActions, dispatch),
+    openConfirm: (header, content, button, size, handleConfirm, handleCancel) =>
+      dispatch(open(header, content, button, size, handleConfirm, handleCancel)),
   };
 }
 

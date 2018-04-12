@@ -33,7 +33,12 @@ function JoinedNarrativesItem(props) {
         <Button as={Link} to={`/scene/${props.item.id}`} basic color="grey">
           Read
         </Button>
-        <Button basic color="red">
+        <Button
+          basic
+          color="red"
+          onClick={() => props.moreProps
+            .openConfirm('hi', 'he', 'eh', 'eh', () => console.log('confirm'), null)}
+        >
           Leave Role
         </Button>
       </Button.Group>
@@ -44,6 +49,7 @@ function JoinedNarrativesItem(props) {
 
 JoinedNarrativesItem.propTypes = {
   item: PropTypes.object,
+  moreProps: PropTypes.object,
 };
 
 export default JoinedNarrativesItem;

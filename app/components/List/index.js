@@ -16,7 +16,6 @@ function List(props) {
       <ComponentToRender
         key={item.id ? item.id : item._id}
         item={item}
-        actions={props.actions}
         moreProps={props.moreProps}
       />
     ));

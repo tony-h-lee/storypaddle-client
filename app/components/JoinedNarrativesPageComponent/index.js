@@ -23,6 +23,7 @@ function JoinedNarrativesPageComponent(props) {
           payload={props.joinedNarrativesPage.get('narratives')}
           error={props.joinedNarrativesPage.get('error')}
           loading={props.joinedNarrativesPage.get('loading')}
+          actions={{ openConfirm: props.openConfirm }}
         />
       </Container>
     </DashboardSectionWrapper>
@@ -31,6 +32,7 @@ function JoinedNarrativesPageComponent(props) {
 
 JoinedNarrativesPageComponent.propTypes = {
   joinedNarrativesPage: PropTypes.object,
+  openConfirm: PropTypes.func,
 };
 
 export default JoinedNarrativesPageComponent;

@@ -14,7 +14,11 @@ import JoinedNarrativesItem from 'components/JoinedNarrativesPageComponent/Joine
 function JoinedNarrativesWrapper(props) {
   const content = (
     <div style={{ marginTop: '2rem' }}>
-      <List items={props.data} component={JoinedNarrativesItem} />
+      <List
+        items={props.data}
+        component={JoinedNarrativesItem}
+        moreProps={props.actions}
+      />
     </div>
   );
 
@@ -28,6 +32,7 @@ function JoinedNarrativesWrapper(props) {
 JoinedNarrativesWrapper.propTypes = {
   data: PropTypes.array,
   animate: PropTypes.bool,
+  actions: PropTypes.object,
 };
 
 export default JoinedNarrativesWrapper;
