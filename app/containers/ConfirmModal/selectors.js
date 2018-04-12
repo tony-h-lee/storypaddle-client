@@ -16,7 +16,7 @@ const selectConfirmModalDomain = (state) => state.get('confirmModal');
 
 const makeSelectConfirmModal = () => createSelector(
   selectConfirmModalDomain,
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
 export default makeSelectConfirmModal;

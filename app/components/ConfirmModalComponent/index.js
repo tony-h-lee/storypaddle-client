@@ -17,22 +17,34 @@ const inline = {
   },
 };
 
+const defaults = {
+  header: 'Are you sure you wish to perform this action?',
+  content: 'Please confirm to continue',
+  cancelButton: 'Cancel',
+  confirmButton: 'Confirm',
+  size: 'large',
+};
+
 
 function ConfirmModalComponent(props) {
+  const { confirmModal } = props;
   return (
     <Confirm
       style={inline.modal}
-      open={props.open}
-      onCancel={props.handleCancel}
-      onConfirm={props.handleConfirm}
+      open={confirmModal.get('open')}
+      header={confirmModal.get('header') ? confirmModal.get('header') : defaults.header}
+      content={confirmModal.get('content') ? confirmModal.get('content') : defaults.content}
+      cancelButton={confirmModal.get('cancelButton') ? confirmModal.get('cancelButton') : defaults.cancelButton}
+      confirmButton={confirmModal.get('confirmButton') ? confirmModal.get('confirmButton') : defaults.confirmButton}
+      onCancel={confirmModal.get('handleCancel') ? confirmModal.get('handleCancel') : props.actions.close}
+      onConfirm={confirmModal.get('handleConfirm') ? confirmModal.get('handleConfirm') : () => console.log('confirm')}
     />
   );
 }
 
 ConfirmModalComponent.propTypes = {
-  open: PropTypes.bool,
-  handleCancel: PropTypes.func.isRequired,
-  handleConfirm: PropTypes.func.isRequired,
+  confirmModal: PropTypes.object,
+  actions: PropTypes.object,
 };
 
 export default ConfirmModalComponent;

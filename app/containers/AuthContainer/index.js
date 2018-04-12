@@ -21,6 +21,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import ForgotPasswordPage from 'containers/ForgotPasswordPage/Loadable';
 import ResetPasswordPage from 'containers/ResetPasswordPage/Loadable';
 import NarrativesPage from 'containers/NarrativesPage/Loadable';
+import ConfirmModal from 'containers/ConfirmModal/Loadable';
 
 import NarrativeOverviewPage from 'containers/NarrativeOverviewPage/Loadable';
 import { PropsRoute, PrivateRoute } from 'containers/CustomRoute';
@@ -53,6 +54,7 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
     return (
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <NavbarContainer token={this.props.auth.get('token')} />
+        <ConfirmModal />
         <Switch>
           <PropsRoute
             exact
