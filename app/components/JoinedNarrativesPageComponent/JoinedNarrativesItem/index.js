@@ -12,7 +12,7 @@ import { Meta, Warning } from 'components/NarrativeHeaderComponents';
 // import styled from 'styled-components';
 
 function JoinedNarrativesItem(props) {
-  const getRoleName = () => props.item.roles.find((role) => role.user === props.moreProps.userId).name;
+  const getRoleName = () => props.item.roles.find((role) => role.user && role.user === props.moreProps.userId).name;
 
   const confirm = {
     header: 'Leave Role?',
@@ -61,7 +61,7 @@ function JoinedNarrativesItem(props) {
               confirm.confirmButton,
               confirm.cancelButton,
               confirm.size,
-              () => console.log('confirm'),
+              () => props.moreProps.actions.leave(props.moreProps.token, props.item.id),
               null)
           }
         >

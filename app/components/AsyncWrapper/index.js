@@ -28,7 +28,7 @@ function AsyncWrapper(props) {
       <props.innerComponent
         animate={animate}
         data={payload}
-        moreProps={{ actions: props.actions, userId: props.user.id }}
+        moreProps={props.moreProps}
       />)
       : (<div></div>);
   }

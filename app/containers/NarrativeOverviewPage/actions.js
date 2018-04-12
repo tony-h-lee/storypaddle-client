@@ -61,7 +61,7 @@ export function getNarrativeFailure(error) {
 /**
  * Send request to join a Narrative as a role
  *
- * @param {string} -> narrativeId : The id of the Narrative with the role
+ * @param {string} -> narrative : The id of the Narrative with the role
  * @param {string} -> roleId : The id of the role to join.
  * @param {string} -> token : Auth token required to join a role.
  * @param {string} -> user : User id of the requesting user.
@@ -69,10 +69,10 @@ export function getNarrativeFailure(error) {
  * @return {object} : An action object with a type of GET_NARRATIVE_REQUEST and the name of the
  * role and the Narrative id
  */
-export function joinNarrative(narrativeId, roleId, token, user) {
+export function joinNarrative(narrative, roleId, token, user) {
   return {
     type: JOIN_NARRATIVE_REQUEST,
-    narrativeId,
+    narrative,
     roleId,
     token,
     user,
@@ -83,14 +83,16 @@ export function joinNarrative(narrativeId, roleId, token, user) {
 /**
  * Dispatched when user successfully joins a role in a Narrative
  *
- * @param  {object} -> narrative : The narrative object retrieved from endpoint
+ * @param  {string} -> roleId : The id of the role that was joined
+ * @param  {string} -> user : The id of the user that requested to join
  *
- * @return {object} : An action object with a type of JOIN_NARRATIVE_SUCCESS and the narrative object
+ * @return {object} : An action object with a type of JOIN_NARRATIVE_SUCCESS and the role and user ids
  */
-export function joinNarrativeSuccess(narrative) {
+export function joinNarrativeSuccess(roleId, user) {
   return {
     type: JOIN_NARRATIVE_SUCCESS,
-    narrative,
+    roleId,
+    user,
   };
 }
 

@@ -12,6 +12,7 @@ import {
   GET_ME_SUCCESS,
   GET_ME_FAILURE,
   SET_JOINED_NARRATIVE,
+  UNSET_JOINED_NARRATIVE,
   SET_CREATED_NARRATIVE,
 } from './constants';
 
@@ -121,6 +122,21 @@ export function setCreatedNarrative(narrative) {
 export function setJoinedNarrative(narrative) {
   return {
     type: SET_JOINED_NARRATIVE,
+    narrative,
+  };
+}
+
+
+/**
+ * Dispatched when user successfully leaves their role in a narrative
+ *
+ * @param  {string} -> narrative : The narrative id of the narrative successfully left
+ *
+ * @return {object} : An action object with a type of UNSET_JOINED_NARRATIVE and the narrative id
+ */
+export function unsetJoinedNarrative(narrative) {
+  return {
+    type: UNSET_JOINED_NARRATIVE,
     narrative,
   };
 }

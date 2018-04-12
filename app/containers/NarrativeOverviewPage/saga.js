@@ -25,11 +25,11 @@ function* handleGetNarrative(action) {
 }
 
 function* handleJoinRole(action) {
-  const { narrativeId, roleId, token, user } = action;
+  const { narrative, roleId, token, user } = action;
   try {
-    const response = yield call(api.joinRole, { narrativeId, roleId, token, user });
-    yield [put(joinNarrativeSuccess(response)), put(setJoinedNarrative(response.id))];
-    yield apply(history, history.push, [`/scene/${narrativeId}`]);
+    yield call(api.joinRole, { narrative, roleId, token, user });
+    yield [put(joinNarrativeSuccess(roleId, user)), put(setJoinedNarrative(narrative))];
+    yield apply(history, history.push, [`/scene/${narrative}`]);
   } catch (error) {
     if (error === 401) yield apply(history, history.push, ['/signup']);
     yield put(joinNarrativeFailure(getJoinNarrativeErrors(roleId, error)));

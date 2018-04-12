@@ -10,11 +10,11 @@ export function getNarrative(values) {
 }
 
 export function joinRole(values) {
-  const url = `http://localhost:9000/api/narratives/roles/${values.narrativeId}`;
+  const url = `http://localhost:9000/api/narratives/roles/${values.narrative}`;
   return new Request()
     .setUrl(url)
     .setPut()
-    .setBody({ roleId: values.roleId })
+    .setBody({ roleId: values.roleId, add: true })
     .addHeader({ 'Content-Type': 'application/json' })
     .setToken(values.token)
     .go();

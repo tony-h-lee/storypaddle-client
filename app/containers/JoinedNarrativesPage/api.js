@@ -9,3 +9,14 @@ export function getJoinedNarratives(values) {
     .addHeader({ 'Content-Type': 'application/json' })
     .go();
 }
+
+export function leaveNarrative(values) {
+  const url = `http://localhost:9000/api/narratives/roles/${values.narrative}`;
+  return new Request()
+    .setUrl(url)
+    .setPut()
+    .setToken(values.token)
+    .setBody({ id: values.narrative, add: false })
+    .addHeader({ 'Content-Type': 'application/json' })
+    .go();
+}

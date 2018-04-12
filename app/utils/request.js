@@ -64,10 +64,12 @@ export default class Request {
     headers: this.headers,
     body: this.body,
   })
-    .then(this.checkStatus)
-    .then(this.parseJSON);
+    .then(this.checkAndParse);
 
-  checkStatus = (response) => {
+  checkAndParse = (response) => {
+    if (response.status === 204 || response.status === 205) {
+      return null;
+    }
     if (response.status >= 200 && response.status < 300) {
       return Promise.resolve(response.json());
     }
@@ -76,13 +78,6 @@ export default class Request {
     error.response = response;
     error.message = response.message;
     return Promise.reject(response.status);
-  }
-
-  parseJson = (response) => {
-    if (response.status === 204 || response.status === 205) {
-      return null;
-    }
-    return Promise.resolve(response.json());
-  }
+  };
 
 }

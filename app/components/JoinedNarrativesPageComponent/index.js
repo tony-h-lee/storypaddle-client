@@ -19,12 +19,16 @@ function JoinedNarrativesPageComponent(props) {
       <h1> Joined Narratives </h1>
       <Container text textAlign="left">
         <AsyncWrapper
+          spinner
           innerComponent={JoinedNarrativesWrapper}
           payload={props.joinedNarrativesPage.get('narratives')}
           error={props.joinedNarrativesPage.get('error')}
           loading={props.joinedNarrativesPage.get('loading')}
-          actions={{ openConfirm: props.openConfirm }}
-          user={props.user}
+          moreProps={{
+            actions: { leave: props.actions.leaveNarrative, openConfirm: props.openConfirm },
+            userId: props.user.id,
+            token: props.token,
+          }}
         />
       </Container>
     </DashboardSectionWrapper>
@@ -34,7 +38,9 @@ function JoinedNarrativesPageComponent(props) {
 JoinedNarrativesPageComponent.propTypes = {
   joinedNarrativesPage: PropTypes.object,
   openConfirm: PropTypes.func,
+  actions: PropTypes.object,
   user: PropTypes.object,
+  token: PropTypes.string,
 };
 
 export default JoinedNarrativesPageComponent;

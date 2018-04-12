@@ -27,7 +27,7 @@ function RoleItem(props) {
     )
       :
     (
-      <Segment padded clearing>
+      <Segment padded clearing attached>
         <Header> { item.name } </Header>
         <p style={{ whiteSpace: 'pre-line' }}> { item.synopsis } </p>
         {

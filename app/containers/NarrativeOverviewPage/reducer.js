@@ -42,7 +42,16 @@ function narrativeOverviewPageReducer(state = initialState, action) {
     case JOIN_NARRATIVE_SUCCESS:
       return state
         .set('loading', false)
-        .set('narrative', action.narrative);
+        .update('narrative', (narrative) =>
+          Object.assign(narrative,
+            { ...narrative,
+              roles: narrative.roles.map((role) => {
+                if (role.id === action.roleId) return Object.assign(role, { ...role, user: action.user });
+                return role;
+              }),
+            }
+          )
+        );
     case JOIN_NARRATIVE_FAILURE:
       return state
         .set('error', action.error)
