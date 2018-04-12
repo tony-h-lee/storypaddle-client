@@ -50,8 +50,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(joinedNarrativesActions, dispatch),
-    openConfirm: (header, content, button, size, handleConfirm, handleCancel) =>
-      dispatch(open(header, content, button, size, handleConfirm, handleCancel)),
+    openConfirm: (header, content, confirmButton, cancelButton, size, handleConfirm, handleCancel) =>
+      dispatch(open(header, content, confirmButton, cancelButton, size, handleConfirm, handleCancel)),
   };
 }
 

@@ -28,7 +28,7 @@ function AsyncWrapper(props) {
       <props.innerComponent
         animate={animate}
         data={payload}
-        actions={props.actions}
+        moreProps={{ actions: props.actions, userId: props.user.id }}
       />)
       : (<div></div>);
   }
@@ -42,10 +42,13 @@ AsyncWrapper.propTypes = {
     PropTypes.array,
     PropTypes.bool,
   ]),
-  error: PropTypes.bool,
+  error: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.bool,
+  ]),
   loading: PropTypes.bool,
   innerComponent: PropTypes.func.isRequired,
-  actions: PropTypes.object,
+  moreProps: PropTypes.object,
 };
 
 export default AsyncWrapper;

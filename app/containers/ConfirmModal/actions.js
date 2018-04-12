@@ -9,12 +9,13 @@ import {
   CLOSE,
 } from './constants';
 
-export function open(header, content, button, size, handleConfirm, handleCancel) {
+export function open(header, content, confirmButton, cancelButton, size, handleConfirm, handleCancel) {
   return {
     type: OPEN,
     header,
     content,
-    button,
+    confirmButton,
+    cancelButton,
     size,
     handleConfirm,
     handleCancel,

@@ -20,7 +20,7 @@ function RoleItem(props) {
   const { item, moreProps } = props;
   return (moreProps.static ?
     (
-      <Segment padded>
+      <Segment padded attached>
         <Header> { item.name } </Header>
         <p style={{ whiteSpace: 'pre-line' }}> { item.synopsis } </p>
       </Segment>

@@ -5,7 +5,7 @@
 */
 
 import React from 'react';
-import { Confirm } from 'semantic-ui-react';
+import { Confirm, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
@@ -20,7 +20,11 @@ const inline = {
 const defaults = {
   header: 'Are you sure you wish to perform this action?',
   content: 'Please confirm to continue',
-  cancelButton: 'Cancel',
+  cancelButton: (
+    <Button basic>
+      Cancel
+    </Button>
+  ),
   confirmButton: 'Confirm',
   size: 'large',
 };

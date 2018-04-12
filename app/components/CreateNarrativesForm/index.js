@@ -69,7 +69,7 @@ function CreateNarrativesForm(props) {
 
       <Message color="yellow" size="tiny">
         <Message.Header> Explicit Content Warning </Message.Header>
-        <p> If your Narrative will contain explicit text content, you must check the box right below. </p>
+        <p> If your Narrative will contain explicit content, you must check the box right below. </p>
         <SemanticField
           name="explicit"
           component={SemanticFormField}

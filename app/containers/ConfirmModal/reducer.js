@@ -14,7 +14,8 @@ const initialState = fromJS({
   open: false,
   header: false,
   content: false,
-  button: false,
+  cancelButton: false,
+  confirmButton: false,
   size: false,
   handleConfirm: false,
   handleCancel: false,
@@ -27,7 +28,8 @@ function confirmModalReducer(state = initialState, action) {
         .set('open', true)
         .set('header', action.header)
         .set('content', action.content)
-        .set('button', action.button)
+        .set('confirmButton', action.confirmButton)
+        .set('cancelButton', action.cancelButton)
         .set('size', action.size)
         .set('handleConfirm', action.handleConfirm)
         .set('handleCancel', action.handleCancel);
@@ -36,7 +38,8 @@ function confirmModalReducer(state = initialState, action) {
         .set('open', false)
         .set('header', false)
         .set('content', false)
-        .set('button', false)
+        .set('confirmButton', false)
+        .set('cancelButton', false)
         .set('size', false)
         .set('handleConfirm', false)
         .set('handleCancel', false);
