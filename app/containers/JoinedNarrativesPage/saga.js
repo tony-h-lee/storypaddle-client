@@ -35,7 +35,7 @@ function* handleLeaveNarrative(action) {
       put(close()),
     ];
   } catch (error) {
-    yield put(leaveNarrativeFailure(error));
+    yield [put(leaveNarrativeFailure(error.message)), put(close())];
   }
 }
 

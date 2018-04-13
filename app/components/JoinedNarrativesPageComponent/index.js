@@ -22,6 +22,7 @@ function JoinedNarrativesPageComponent(props) {
       <Container text textAlign="left">
         <AsyncWrapper
           spinner
+          animate
           innerComponent={JoinedNarrativesWrapper}
           errorComponent={
             <ErrorComponent
