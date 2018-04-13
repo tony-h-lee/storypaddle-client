@@ -21,6 +21,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import ForgotPasswordPage from 'containers/ForgotPasswordPage/Loadable';
 import ResetPasswordPage from 'containers/ResetPasswordPage/Loadable';
 import NarrativesPage from 'containers/NarrativesPage/Loadable';
+import ErrorPage from 'containers/ErrorPage/Loadable';
 import ConfirmModal from 'containers/ConfirmModal/Loadable';
 
 import NarrativeOverviewPage from 'containers/NarrativeOverviewPage/Loadable';
@@ -126,6 +127,12 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             token={this.props.auth.get('token')}
             user={this.props.auth.get('user')}
             redirectTo={'/'}
+          />
+          <PropsRoute
+            exact
+            path="/error"
+            component={RouteWrapper}
+            innerComponent={ErrorPage}
           />
           <PropsRoute
             component={RouteWrapper}

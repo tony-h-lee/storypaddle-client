@@ -22,7 +22,7 @@ function AsyncWrapper(props) {
   let content = (<div></div>);
 
   if (spinner && loading) content = (<Loader active size="large" />);
-  else if (error) content = (<div> Error retrieving Narratives </div>);
+  else if (error) content = props.errorComponent;
   else {
     content = payload && !loading ? (
       <props.innerComponent
@@ -48,6 +48,7 @@ AsyncWrapper.propTypes = {
   ]),
   loading: PropTypes.bool,
   innerComponent: PropTypes.func.isRequired,
+  errorComponent: PropTypes.node,
   moreProps: PropTypes.object,
 };
 

@@ -20,6 +20,8 @@ function* handleCreateNarrativeSaga(action) {
     ];
     yield apply(history, history.push, [`/narrative/${response.id}`]);
   } catch (error) {
+    // ------------- Ensure error redirect only occurs for server connection status codes!!
+    yield apply(history, history.push, ['/error']);
     yield put(createNarrative.failure(getCreateNarrativesErrors(error)));
   }
 }

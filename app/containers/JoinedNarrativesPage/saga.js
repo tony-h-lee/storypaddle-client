@@ -1,4 +1,5 @@
-import { call, takeLatest, put, fork } from 'redux-saga/effects';
+import { call, takeLatest, put, fork, apply } from 'redux-saga/effects';
+import history from 'history';
 import { unsetJoinedNarrative } from 'containers/AuthContainer/actions';
 import { leaveNarrative } from 'containers/NarrativeOverviewPage/actions';
 import { close } from 'containers/ConfirmModal/actions';
@@ -20,6 +21,8 @@ function* handleLoadJoinedNarratives(action) {
     const response = yield call(api.getJoinedNarratives, { token });
     yield put(loadJoinedNarrativesSuccess(response));
   } catch (error) {
+    // ------------- Ensure error redirect only occurs for server connection status codes!!
+    yield apply(history, history.push, ['/error']);
     yield put(loadJoinedNarrativesFailure(error));
   }
 }
@@ -35,6 +38,8 @@ function* handleLeaveNarrative(action) {
       put(close()),
     ];
   } catch (error) {
+    // ------------- Ensure error redirect only occurs for server connection status codes!!
+    yield apply(history, history.push, ['/error']);
     yield put(leaveNarrativeFailure(error));
   }
 }
