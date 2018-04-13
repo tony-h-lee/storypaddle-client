@@ -42,7 +42,9 @@ function joinedNarrativesPageReducer(state = initialState, action) {
         .set('error', false);
     case LEAVE_NARRATIVE_SUCCESS:
       return state
-        .set('loading', false);
+        .set('loading', false)
+        .update('narratives', (narratives) =>
+          narratives.filter((narrative) => narrative.get('id') !== action.narrative));
     case LEAVE_NARRATIVE_FAILURE:
       return state
         .set('loading', false)

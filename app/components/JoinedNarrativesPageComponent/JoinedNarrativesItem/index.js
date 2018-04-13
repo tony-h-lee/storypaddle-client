@@ -12,12 +12,12 @@ import { Meta, Warning } from 'components/NarrativeHeaderComponents';
 // import styled from 'styled-components';
 
 function JoinedNarrativesItem(props) {
-  const getRole = props.item.roles.find((role) => role.user && role.user === props.moreProps.userId);
+  const myRole = props.item.get('roles').find((role) => role.get('user') === props.moreProps.userId);
 
   const confirm = {
     header: 'Leave Role?',
     content: (
-      <div className="content"> <p> Are you certain you wish to leave <b>{props.item.title}</b>?
+      <div className="content"> <p> Are you certain you wish to leave <b>{props.item.get('title')}</b>?
         Your current role will be open for someone else to take and you will not
         be able to reclaim the role until it is vacant again. </p>
       </div>
@@ -31,25 +31,25 @@ function JoinedNarrativesItem(props) {
     size: 'large',
   };
 
-  return props.item.roles.length > 0 ? (
+  return props.item.get('roles').size > 0 ? (
     <Segment padded attached>
-      <h1> {getRole.name} </h1>
+      <h1> {myRole.get('name')} </h1>
       <Header
         as={Link}
-        to={`/narrative/${props.item.id}`}
+        to={`/narrative/${props.item.get('id')}`}
         size="small"
       >
-        { props.item.title}
+        { props.item.get('title')}
       </Header>
-      <Meta style={{ margin: '0' }}> { props.item.genre } </Meta>
+      <Meta style={{ margin: '0' }}> { props.item.get('genre') } </Meta>
       {
-        props.item.explicit ?
+        props.item.get('explicit') ?
           <Warning> Explicit </Warning>
           : null
       }
 
       <Button.Group style={{ marginTop: '1rem' }} size="small" compact>
-        <Button as={Link} to={`/scene/${props.item.id}`} basic color="grey">
+        <Button as={Link} to={`/scene/${props.item.get('id')}`} basic color="grey">
           Read
         </Button>
         <Button
@@ -61,7 +61,7 @@ function JoinedNarrativesItem(props) {
               confirm.confirmButton,
               confirm.cancelButton,
               confirm.size,
-              () => props.moreProps.actions.leave(props.moreProps.token, props.item.id, getRole.id),
+              () => props.moreProps.actions.leave(props.moreProps.token, props.item.get('id'), myRole.get('id')),
               null)
           }
         >

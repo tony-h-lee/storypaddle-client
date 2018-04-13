@@ -14,7 +14,6 @@ import JoinedNarrativesWrapper from './JoinedNarrativesWrapper';
 
 
 function JoinedNarrativesPageComponent(props) {
-  console.log(props.joinedNarrativesPage.get('narratives'));
   return (
     <DashboardSectionWrapper>
       <h1> Joined Narratives </h1>
@@ -28,7 +27,7 @@ function JoinedNarrativesPageComponent(props) {
           loading={props.joinedNarrativesPage.get('loading')}
           moreProps={{
             actions: { leave: props.actions.leaveNarrative, openConfirm: props.openConfirm },
-            userId: props.user.id,
+            userId: props.user.get('id'),
             token: props.token,
           }}
         />

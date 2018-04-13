@@ -39,11 +39,11 @@ AsyncWrapper.propTypes = {
   spinner: PropTypes.bool,
   animate: PropTypes.bool,
   payload: PropTypes.oneOfType([
-    PropTypes.array,
+    PropTypes.object,
     PropTypes.bool,
   ]),
   error: PropTypes.oneOfType([
-    PropTypes.number,
+    PropTypes.object,
     PropTypes.bool,
   ]),
   loading: PropTypes.bool,

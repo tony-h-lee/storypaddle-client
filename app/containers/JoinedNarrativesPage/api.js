@@ -16,7 +16,7 @@ export function leaveNarrative(values) {
     .setUrl(url)
     .setPut()
     .setToken(values.token)
-    .setBody({ id: values.narrative, add: false })
+    .setBody({ id: values.narrative })
     .addHeader({ 'Content-Type': 'application/json' })
     .go();
 }

@@ -1,6 +1,7 @@
 import { call, takeLatest, put, fork } from 'redux-saga/effects';
 import { unsetJoinedNarrative } from 'containers/AuthContainer/actions';
 import { leaveNarrative } from 'containers/NarrativeOverviewPage/actions';
+import { close } from 'containers/ConfirmModal/actions';
 import {
   LOAD_JOINED_REQUEST,
   LEAVE_NARRATIVE_REQUEST,
@@ -31,6 +32,7 @@ function* handleLeaveNarrative(action) {
       put(leaveNarrativeSuccess(narrative)),
       put(unsetJoinedNarrative(narrative)),
       put(leaveNarrative(roleId)),
+      put(close()),
     ];
   } catch (error) {
     yield put(leaveNarrativeFailure(error));

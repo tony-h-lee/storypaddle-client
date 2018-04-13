@@ -15,7 +15,7 @@ function JoinedNarrativesWrapper(props) {
   const content = (
     <div style={{ marginTop: '2rem' }}>
       {
-        props.data.length > 0 ?
+        props.data.size > 0 ?
           <List
             items={props.data}
             component={JoinedNarrativesItem}
@@ -35,7 +35,7 @@ function JoinedNarrativesWrapper(props) {
 }
 
 JoinedNarrativesWrapper.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.object,
   animate: PropTypes.bool,
   moreProps: PropTypes.object,
 };
