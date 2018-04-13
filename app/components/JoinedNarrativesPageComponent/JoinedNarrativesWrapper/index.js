@@ -6,8 +6,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Transition } from 'semantic-ui-react';
+import { Transition, Grid, Container, Icon, Button } from 'semantic-ui-react';
 import List from 'components/List';
+import { Link } from 'react-router-dom';
 import JoinedNarrativesItem from 'components/JoinedNarrativesPageComponent/JoinedNarrativesItem';
 // import styled from 'styled-components';
 
@@ -22,7 +23,30 @@ function JoinedNarrativesWrapper(props) {
             moreProps={props.moreProps}
           />
           :
-          <p> You have not joined any Narratives! </p>
+          (
+            <Grid
+              textAlign="center"
+            >
+              <Grid.Column style={{ maxWidth: 450 }}>
+                <Container textAlign="center">
+                  <Icon name="folder open outline" size="huge" style={{ marginBottom: '1rem' }} />
+                  <p> You have not joined any Narratives! </p>
+                  <Button
+                    style={{ marginTop: '3rem' }}
+                    as={Link}
+                    to={'/narratives'}
+                    primary
+                    size="large"
+                    fluid
+                    icon="search"
+                    content="Search for Narratives to join!"
+                  />
+                </Container>
+              </Grid.Column>
+            </Grid>
+          )
+
+
       }
     </div>
   );
