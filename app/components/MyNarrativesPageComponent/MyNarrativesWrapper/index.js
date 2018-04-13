@@ -1,6 +1,6 @@
 /**
 *
-* JoinedNarrativesWrapper
+* MyNarrativesWrapper
 *
 */
 
@@ -9,17 +9,18 @@ import PropTypes from 'prop-types';
 import { Transition, Grid, Container, Icon, Button } from 'semantic-ui-react';
 import List from 'components/List';
 import { Link } from 'react-router-dom';
-import JoinedNarrativesItem from 'components/JoinedNarrativesPageComponent/JoinedNarrativesItem';
+import MyNarrativesItem from 'components/MyNarrativesPageComponent/MyNarrativesItem';
 // import styled from 'styled-components';
 
-function JoinedNarrativesWrapper(props) {
+
+function MyNarrativesWrapper(props) {
   const content = (
     <div style={{ marginTop: '2rem' }}>
       {
         props.data.size > 0 ?
           <List
             items={props.data}
-            component={JoinedNarrativesItem}
+            component={MyNarrativesItem}
             moreProps={props.moreProps}
           />
           :
@@ -29,24 +30,22 @@ function JoinedNarrativesWrapper(props) {
             >
               <Grid.Column style={{ maxWidth: 450 }}>
                 <Container textAlign="center">
-                  <Icon name="folder open outline" size="huge" style={{ marginBottom: '2rem' }} />
-                  <p> You have not joined any Narratives! </p>
+                  <Icon size="huge" name="folder open outline" style={{ marginBottom: '2rem' }} />
+                  <p> You have not made any Narratives! </p>
                   <Button
                     style={{ marginTop: '2rem' }}
                     as={Link}
-                    to={'/narratives'}
-                    primary
+                    to={'/create-narrative'}
+                    color="orange"
                     size="large"
                     fluid
-                    icon="search"
-                    content="Search for Narratives to join!"
+                    icon="write"
+                    content="Create a Narrative!"
                   />
                 </Container>
               </Grid.Column>
             </Grid>
           )
-
-
       }
     </div>
   );
@@ -58,10 +57,10 @@ function JoinedNarrativesWrapper(props) {
     : content;
 }
 
-JoinedNarrativesWrapper.propTypes = {
+MyNarrativesWrapper.propTypes = {
   data: PropTypes.object,
   animate: PropTypes.bool,
   moreProps: PropTypes.object,
 };
 
-export default JoinedNarrativesWrapper;
+export default MyNarrativesWrapper;

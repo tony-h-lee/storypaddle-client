@@ -1,6 +1,6 @@
 /**
 *
-* JoinedNarrativesItem
+* MyNarrativesItem
 *
 */
 
@@ -8,23 +8,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Segment, Header, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
 import { Meta, Warning } from 'components/NarrativeHeaderComponents';
 // import styled from 'styled-components';
 
-function JoinedNarrativesItem(props) {
-  const myRole = props.item.get('roles').find((role) => role.get('user') === props.moreProps.userId);
-
+function MyNarrativesItem(props) {
   const confirm = {
-    header: 'Leave Role?',
+    header: 'Delete Narrative?',
     content: (
-      <div className="content"> <p> Are you certain you wish to leave <b>{props.item.get('title')}</b>?
-        Your current role will be open for someone else to take and you will not
-        be able to reclaim the role until it is vacant again. </p>
+      <div className="content"> <p> Are you certain you wish to delete <b>{props.item.get('title')}</b>?
+        Other participants will no longer be able to access this narrative.
+        Once deleted, you cannot reverse this action. </p>
       </div>
     ),
     confirmButton: (
       <Button negative>
-        Leave Role
+        Delete
       </Button>
     ),
     cancelButton: null,
@@ -33,7 +32,6 @@ function JoinedNarrativesItem(props) {
 
   return props.item.get('roles').size > 0 ? (
     <Segment padded attached>
-      <h1> {myRole.get('name')} </h1>
       <Header
         as={Link}
         to={`/narrative/${props.item.get('id')}`}
@@ -41,6 +39,7 @@ function JoinedNarrativesItem(props) {
       >
         { props.item.get('title')}
       </Header>
+      <Meta style={{ margin: '0' }}> Published on {format(props.item.get('createdAt'), 'MMMM D, YYYY')}</Meta>
       <Meta style={{ margin: '0' }}> { props.item.get('genre') } </Meta>
       {
         props.item.get('explicit') ?
@@ -49,10 +48,16 @@ function JoinedNarrativesItem(props) {
       }
 
       <Button.Group style={{ marginTop: '1rem' }} basic size="medium">
-        <Button as={Link} to={`/scene/${props.item.get('id')}`} icon="file text" content="Read" />
         <Button
-          icon="user close"
-          content="Leave Role"
+          as={Link}
+          to={`/scene/${props.item.get('id')}`}
+          icon="file text"
+          content="Read"
+        />
+        <Button as={Link} to={`/edit/${props.item.get('id')}`} icon="edit" content="Edit" />
+        <Button
+          icon="trash"
+          content="Delete"
           onClick={() => props.moreProps.actions
             .openConfirm(
               confirm.header,
@@ -60,7 +65,7 @@ function JoinedNarrativesItem(props) {
               confirm.confirmButton,
               confirm.cancelButton,
               confirm.size,
-              () => props.moreProps.actions.leave(props.moreProps.token, props.item.get('id'), myRole.get('id')),
+              () => props.moreProps.actions.deleteNarrative(props.moreProps.token, props.item.get('id')),
               null
             )
           }
@@ -71,9 +76,9 @@ function JoinedNarrativesItem(props) {
   ) : (<p> You have not joined any Narratives! </p>);
 }
 
-JoinedNarrativesItem.propTypes = {
+MyNarrativesItem.propTypes = {
   item: PropTypes.object,
   moreProps: PropTypes.object,
 };
 
-export default JoinedNarrativesItem;
+export default MyNarrativesItem;
