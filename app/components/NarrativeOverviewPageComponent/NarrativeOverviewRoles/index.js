@@ -39,7 +39,7 @@ NarrativeOverviewRoles.propTypes = {
     PropTypes.string,
     PropTypes.bool,
   ]),
-  roles: PropTypes.array,
+  roles: PropTypes.object,
   join: PropTypes.func,
   id: PropTypes.string,
   token: PropTypes.oneOfType([

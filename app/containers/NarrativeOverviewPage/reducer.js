@@ -42,7 +42,12 @@ function narrativeOverviewPageReducer(state = initialState, action) {
         .set('error', false);
     case JOIN_NARRATIVE_SUCCESS:
       return state
-        .set('loading', false);
+        .set('loading', false)
+        .updateIn(['narrative', 'roles'], (roles) => roles.map((role) => {
+          if (role.get('id') === action.roleId) return role.set('user', action.user);
+          return role;
+        })
+      );
     case LEAVE_NARRATIVE:
       return state
         .set('loading', false);

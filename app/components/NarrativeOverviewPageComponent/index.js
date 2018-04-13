@@ -10,40 +10,35 @@ import { Container, Divider } from 'semantic-ui-react';
 import { Meta, Warning } from 'components/NarrativeHeaderComponents';
 import NarrativeOverviewRoles from './NarrativeOverviewRoles';
 
-const alreadyIn = (roles, userId) => roles.some((role) => {
-  if (role.user) return role.user === userId;
-  return false;
-});
-
 function NarrativeOverviewPageComponent(props) {
   const narrative = props.narrativeOverviewPage.get('narrative');
   if (narrative) {
+    const alreadyIn = narrative.get('roles')
+      .some((role) => role.get('user') === props.user.get('id'));
     return (
       <Container text style={{ marginTop: '3rem' }}>
-        <h1> { narrative.title } </h1>
-        <Meta> { narrative.genre } </Meta>
-        { narrative.explicit ? <Warning> Explicit </Warning> : null }
+        <h1> { narrative.get('title') } </h1>
+        <Meta> { narrative.get('genre') } </Meta>
+        { narrative.get('explicit') ? <Warning> Explicit </Warning> : null }
         <div style={{ margin: '1.5rem 0 3rem 0', whiteSpace: 'pre-line' }}>
-          <p> { narrative.synopsis } </p>
+          <p> { narrative.get('synopsis') } </p>
         </div>
         <Divider />
         {
-          alreadyIn(narrative.roles, props.user.id) ?
+          alreadyIn ?
             <NarrativeOverviewRoles
               static
-              roles={narrative.roles}
+              roles={narrative.get('roles')}
             /> :
             <NarrativeOverviewRoles
-              static={false}
               error={props.narrativeOverviewPage.get('error')}
-              roles={narrative.roles}
-              id={narrative.id}
+              roles={narrative.get('roles')}
+              id={narrative.get('id')}
               token={props.token}
-              user={props.user ? props.user.id : null}
+              user={props.user ? props.user.get('id') : null}
               join={props.actions.joinNarrative}
             />
         }
-
       </Container>
     );
   }

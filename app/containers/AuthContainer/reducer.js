@@ -50,15 +50,13 @@ function authContainerReducer(state = initialState, action) {
         .set('error', action.error)
         .set('loading', false);
     case SET_CREATED_NARRATIVE:
-      return state.update('user', (user) =>
-        Object.assign(user, { ...user, ownedNarratives: user.ownedNarratives.concat(action.narrative) }));
+      return state.updateIn(['user', 'ownedNarratives'], (narratives) => narratives.push(action.narrative));
     case UNSET_JOINED_NARRATIVE:
       return state.update('user', (user) =>
         Object.assign(user, { ...user,
           ownedNarratives: user.ownedNarratives.filter((narrative) => narrative.id !== action.narrative) }));
     case SET_JOINED_NARRATIVE:
-      return state.update('user', (user) =>
-        Object.assign(user, { ...user, joinedNarratives: user.joinedNarratives.concat(action.narrative) }));
+      return state.updateIn(['user', 'joinedNarratives'], (narratives) => narratives.push(action.narrative));
     default:
       return state;
   }

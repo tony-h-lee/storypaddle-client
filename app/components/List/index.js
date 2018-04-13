@@ -11,10 +11,10 @@ import PropTypes from 'prop-types';
 function List(props) {
   const ComponentToRender = props.component;
   let content = (<div></div>);
-  if (props.items.length > 0) {
+  if (props.items.size > 0) {
     content = props.items.map((item) => (
       <ComponentToRender
-        key={item.id ? item.id : item._id}
+        key={item.get('id')}
         item={item}
         moreProps={props.moreProps}
       />
@@ -29,7 +29,7 @@ function List(props) {
 }
 
 List.propTypes = {
-  items: PropTypes.array.isRequired,
+  items: PropTypes.object.isRequired,
   component: PropTypes.func.isRequired,
   moreProps: PropTypes.object,
 };

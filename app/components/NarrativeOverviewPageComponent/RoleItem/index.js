@@ -21,30 +21,31 @@ function RoleItem(props) {
   return (moreProps.static ?
     (
       <Segment padded attached>
-        <Header> { item.name } </Header>
-        <p style={{ whiteSpace: 'pre-line' }}> { item.synopsis } </p>
+        <Header> { item.get('name') } </Header>
+        <p style={{ whiteSpace: 'pre-line' }}> { item.get('synopsis') } </p>
       </Segment>
     )
       :
     (
       <Segment padded clearing attached>
-        <Header> { item.name } </Header>
-        <p style={{ whiteSpace: 'pre-line' }}> { item.synopsis } </p>
+        <Header> { item.get('name') } </Header>
+        <p style={{ whiteSpace: 'pre-line' }}> { item.get('synopsis') } </p>
         {
-          !item.user ?
+          !item.get('user') ?
             <Button
               primary
               compact
               floated="right"
-              onClick={() => moreProps.join(moreProps.id, item._id, moreProps.token, moreProps.user)}
+              onClick={() => moreProps
+                .join(moreProps.id, item.get('id'), moreProps.token, moreProps.user)}
             >
-              Join as {item.name}
+              Join as {item.get('name')}
             </Button>
             :
             null
         }
         {
-          moreProps.error && moreProps.error.roleId === item._id ?
+          moreProps.error && moreProps.error.roleId === item.get('id') ?
             <Error> You already have a role in this Narrative! </Error>
             : null
         }
