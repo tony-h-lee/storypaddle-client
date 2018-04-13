@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose, bindActionCreators } from 'redux';
 import NarrativeOverviewPageComponent from 'components/NarrativeOverviewPageComponent';
+import ErrorPage from 'containers/ErrorPage';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectNarrativeOverviewPage from './selectors';
@@ -30,7 +31,13 @@ export class NarrativeOverviewPage extends React.PureComponent { // eslint-disab
             this.props.narrativeOverviewPage.get('narrative').title : 'Storypaddle'} </title>
           <meta name="description" content="Read and join this narrative!" />
         </Helmet>
-        <NarrativeOverviewPageComponent {...this.props} />
+        {
+          this.props.narrativeOverviewPage.get('error')
+          && this.props.narrativeOverviewPage.get('error') === 'Failed to fetch' ?
+            <ErrorPage />
+            : <NarrativeOverviewPageComponent {...this.props} />
+        }
+
       </div>
     );
   }

@@ -13,7 +13,6 @@ function ErrorComponent(props) {
   return (
     <Grid
       textAlign="center"
-      verticalAlign="center"
       style={{ marginTop: '2rem' }}
     >
       <Grid.Column style={{ maxWidth: 450 }}>

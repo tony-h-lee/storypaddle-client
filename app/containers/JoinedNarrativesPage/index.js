@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose, bindActionCreators } from 'redux';
 import JoinedNarrativesPageComponent from 'components/JoinedNarrativesPageComponent';
+import ErrorPage from 'containers/ErrorPage';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { open } from 'containers/ConfirmModal/actions';
@@ -32,7 +33,12 @@ export class JoinedNarrativesPage extends React.PureComponent { // eslint-disabl
           <title> Joined Narratives | Storypaddle </title>
           <meta name="description" content="A list of my joined narratives." />
         </Helmet>
-        <JoinedNarrativesPageComponent {...this.props} />
+        {
+          this.props.joinedNarrativesPage.get('error')
+          && this.props.joinedNarrativesPage.get('error') === 'Failed to fetch' ?
+            <ErrorPage />
+            : <JoinedNarrativesPageComponent {...this.props} />
+        }
       </div>
     );
   }
@@ -41,6 +47,7 @@ export class JoinedNarrativesPage extends React.PureComponent { // eslint-disabl
 JoinedNarrativesPage.propTypes = {
   token: PropTypes.string.isRequired,
   actions: PropTypes.object,
+  joinedNarrativesPage: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
