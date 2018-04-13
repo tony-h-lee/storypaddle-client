@@ -96,7 +96,7 @@ function CreateNarrativesForm(props) {
         validate={validateRoles}
         name="roles"
         component={CreateNarrativesRoles}
-        accountType={props.user.accountType}
+        accountType={props.user.get('accountType')}
       />
 
       {error && (
