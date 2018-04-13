@@ -28,9 +28,9 @@ import { PropsRoute, PrivateRoute } from 'containers/CustomRoute';
 
 // Dashboard Pages
 import CreateNarrativesPage from 'containers/CreateNarrativesPage/Loadable';
+import EditNarrativesPage from 'containers/EditNarrativesPage/Loadable';
 import JoinedNarrativesPage from 'containers/JoinedNarrativesPage/Loadable';
 import MyNarrativesPage from 'containers/MyNarrativesPage/Loadable';
-
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -105,6 +105,15 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             path="/create-narrative"
             component={RouteWrapper}
             innerComponent={CreateNarrativesPage}
+            token={this.props.auth.get('token')}
+            user={this.props.auth.get('user')}
+            redirectTo={'/'}
+          />
+          <PrivateRoute
+            exact
+            path="/edit-narrative/:id"
+            component={RouteWrapper}
+            innerComponent={EditNarrativesPage}
             token={this.props.auth.get('token')}
             user={this.props.auth.get('user')}
             redirectTo={'/'}

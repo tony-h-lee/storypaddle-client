@@ -54,7 +54,7 @@ function MyNarrativesItem(props) {
           icon="file text"
           content="Read"
         />
-        <Button as={Link} to={`/edit/${props.item.get('id')}`} icon="edit" content="Edit" />
+        <Button as={Link} to={`/edit-narrative/${props.item.get('id')}`} icon="edit" content="Edit" />
         <Button
           icon="trash"
           content="Delete"
