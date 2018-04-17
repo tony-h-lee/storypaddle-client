@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose, bindActionCreators } from 'redux';
 import NarrativeOverviewPageComponent from 'components/NarrativeOverviewPageComponent';
+import NarrativeOverviewNotFound from 'components/NarrativeOverviewPageComponent/NarrativeOverviewNotFound';
 import ErrorWrapper from 'components/ErrorWrapper';
 import ErrorPage from 'containers/ErrorPage';
 import injectSaga from 'utils/injectSaga';
@@ -35,7 +36,7 @@ export class NarrativeOverviewPage extends React.PureComponent { // eslint-disab
         </Helmet>
         <ErrorWrapper
           error={this.props.narrativeOverviewPage.get('error')}
-          notFoundComponent={<div> Missing </div>}
+          notFoundComponent={<NarrativeOverviewNotFound />}
           failedFetchComponent={<ErrorPage />}
           successComponent={<NarrativeOverviewPageComponent {...this.props} />}
         />
