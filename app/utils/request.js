@@ -3,7 +3,7 @@ import 'whatwg-fetch';
 const GET = 'GET';
 const PUT = 'PUT';
 const POST = 'POST';
-const DELETE = ' DELETE';
+const DELETE = 'DELETE';
 
 export default class Request {
 

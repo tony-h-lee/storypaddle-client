@@ -15,6 +15,7 @@ import {
   SET_JOINED_NARRATIVE,
   UNSET_JOINED_NARRATIVE,
   SET_CREATED_NARRATIVE,
+  UNSET_CREATED_NARRATIVE,
 } from './constants';
 
 const initialState = fromJS({
@@ -52,6 +53,10 @@ function authContainerReducer(state = initialState, action) {
     case SET_CREATED_NARRATIVE:
       return state
         .updateIn(['user', 'ownedNarratives'], (narratives) => narratives.push(action.narrative));
+    case UNSET_CREATED_NARRATIVE:
+      return state
+        .updateIn(['user', 'ownedNarratives'], (narratives) =>
+          narratives.filter((narrative) => narrative !== action.narrative));
     case UNSET_JOINED_NARRATIVE:
       return state
         .updateIn(['user', 'joinedNarratives'], (narratives) =>

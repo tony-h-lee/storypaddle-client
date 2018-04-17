@@ -14,6 +14,7 @@ import {
   SET_JOINED_NARRATIVE,
   UNSET_JOINED_NARRATIVE,
   SET_CREATED_NARRATIVE,
+  UNSET_CREATED_NARRATIVE,
 } from './constants';
 
 
@@ -137,6 +138,21 @@ export function setJoinedNarrative(narrative) {
 export function unsetJoinedNarrative(narrative) {
   return {
     type: UNSET_JOINED_NARRATIVE,
+    narrative,
+  };
+}
+
+
+/**
+ * Dispatched when user successfully deletes their narrative
+ *
+ * @param  {string} -> narrative : The narrative id of the narrative successfully deleted
+ *
+ * @return {object} : An action object with a type of UNSET_CREATED_NARRATIVE and the narrative id
+ */
+export function unsetCreatedNarrative(narrative) {
+  return {
+    type: UNSET_CREATED_NARRATIVE,
     narrative,
   };
 }

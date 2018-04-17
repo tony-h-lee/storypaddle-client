@@ -32,7 +32,7 @@ function MyNarrativesPageComponent(props) {
           error={props.ownedNarrativesPage.get('error')}
           loading={props.ownedNarrativesPage.get('loading')}
           moreProps={{
-            actions: { openConfirm: props.openConfirm },
+            actions: { openConfirm: props.openConfirm, deleteNarrative: props.actions.deleteNarrative },
             userId: props.user ? props.user.get('id') : false,
             token: props.token,
           }}
@@ -45,6 +45,7 @@ function MyNarrativesPageComponent(props) {
 MyNarrativesPageComponent.propTypes = {
   ownedNarrativesPage: PropTypes.object,
   openConfirm: PropTypes.func,
+  actions: PropTypes.object,
   user: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.object,

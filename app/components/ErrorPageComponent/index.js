@@ -19,7 +19,7 @@ function ErrorPageComponent() {
       <Grid.Column style={{ maxWidth: 650 }}>
         <Container textAlign="center">
           <h1> Oh no, something went wrong! </h1>
-          <p> Please give us some time before trying again. Mashing refresh will only hurt us more. </p>
+          <p> Please give us some time before trying again. Mashing refresh will make recovery take longer. </p>
           <Image centered src={Dog} size="medium" style={{ marginTop: '2.3rem' }} />
 
         </Container>

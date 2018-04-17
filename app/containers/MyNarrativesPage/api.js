@@ -9,3 +9,13 @@ export function getMyNarratives(values) {
     .addHeader({ 'Content-Type': 'application/json' })
     .go();
 }
+
+
+export function deleteNarrative(values) {
+  const url = `http://localhost:9000/api/narratives/${values.narrative}`;
+  return new Request()
+    .setUrl(url)
+    .setDelete()
+    .setToken(values.token)
+    .go();
+}

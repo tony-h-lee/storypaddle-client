@@ -43,7 +43,7 @@ AsyncWrapper.propTypes = {
     PropTypes.bool,
   ]),
   error: PropTypes.oneOfType([
-    PropTypes.object,
+    PropTypes.string,
     PropTypes.bool,
   ]),
   loading: PropTypes.bool,
