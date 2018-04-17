@@ -20,7 +20,7 @@ function* handleGetNarrative(action) {
     const response = yield call(api.getNarrative, { id });
     yield put(getNarrativeSuccess(response));
   } catch (error) {
-    yield put(getNarrativeFailure(error.message));
+    yield put(getNarrativeFailure((error.message ? error.message : error)));
   }
 }
 

@@ -20,7 +20,7 @@ function* handleLoadJoinedNarratives(action) {
     const response = yield call(api.getJoinedNarratives, { token });
     yield put(loadJoinedNarrativesSuccess(response));
   } catch (error) {
-    yield put(loadJoinedNarrativesFailure(error.message));
+    yield put(loadJoinedNarrativesFailure(error.message ? error.message : error));
   }
 }
 
@@ -35,7 +35,7 @@ function* handleLeaveNarrative(action) {
       put(close()),
     ];
   } catch (error) {
-    yield [put(leaveNarrativeFailure(error.message)), put(close())];
+    yield [put(leaveNarrativeFailure(error.message ? error.message : error)), put(close())];
   }
 }
 

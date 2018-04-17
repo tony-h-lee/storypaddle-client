@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose, bindActionCreators } from 'redux';
 import NarrativeOverviewPageComponent from 'components/NarrativeOverviewPageComponent';
+import ErrorWrapper from 'components/ErrorWrapper';
 import ErrorPage from 'containers/ErrorPage';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -23,6 +24,7 @@ export class NarrativeOverviewPage extends React.PureComponent { // eslint-disab
   componentWillMount() {
     this.props.actions.getNarrative(this.props.match.params.id);
   }
+
   render() {
     return (
       <div>
@@ -31,13 +33,12 @@ export class NarrativeOverviewPage extends React.PureComponent { // eslint-disab
             this.props.narrativeOverviewPage.get('narrative').title : 'Storypaddle'} </title>
           <meta name="description" content="Read and join this narrative!" />
         </Helmet>
-        {
-          this.props.narrativeOverviewPage.get('error')
-          && this.props.narrativeOverviewPage.get('error') === 'Failed to fetch' ?
-            <ErrorPage />
-            : <NarrativeOverviewPageComponent {...this.props} />
-        }
-
+        <ErrorWrapper
+          error={this.props.narrativeOverviewPage.get('error')}
+          notFoundComponent={<div> Missing </div>}
+          failedFetchComponent={<ErrorPage />}
+          successComponent={<NarrativeOverviewPageComponent {...this.props} />}
+        />
       </div>
     );
   }

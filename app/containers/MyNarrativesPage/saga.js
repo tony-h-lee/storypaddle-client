@@ -19,7 +19,7 @@ function* handleLoadMyNarratives(action) {
     const response = yield call(api.getMyNarratives, { token });
     yield put(loadMyNarrativesSuccess(response));
   } catch (error) {
-    yield put(loadMyNarrativesFailure(error.message));
+    yield put(loadMyNarrativesFailure((error.message ? error.message : error)));
   }
 }
 
@@ -34,7 +34,7 @@ function* handleDeleteNarrative(action) {
     ];
   } catch (error) {
     yield [
-      put(deleteNarrativeFailure(error.message)),
+      put(deleteNarrativeFailure((error.message ? error.message : error))),
       put(close()),
     ];
   }

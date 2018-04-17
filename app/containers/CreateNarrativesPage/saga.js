@@ -20,7 +20,7 @@ function* handleCreateNarrativeSaga(action) {
     ];
     yield apply(history, history.push, [`/narrative/${response.id}`]);
   } catch (error) {
-    yield put(createNarrative.failure(getCreateNarrativesErrors(error.message)));
+    yield put(createNarrative.failure(getCreateNarrativesErrors(error.message ? error.message : error)));
   }
 }
 
