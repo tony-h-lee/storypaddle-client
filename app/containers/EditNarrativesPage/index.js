@@ -11,6 +11,9 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose, bindActionCreators } from 'redux';
 import EditNarrativesPageComponent from 'components/EditNarrativesPageComponent';
+import NarrativeOverviewNotFound from 'components/NarrativeOverviewPageComponent/NarrativeOverviewNotFound';
+import ErrorPage from 'containers/ErrorPage';
+import ErrorWrapper from 'components/ErrorWrapper';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import * as editNarrativesActions from './actions';
@@ -26,11 +29,15 @@ export class EditNarrativesPage extends React.PureComponent { // eslint-disable-
     return (
       <div>
         <Helmet>
-          <title> Edit { this.props.editNarrativesPage.get('narrative') ?
-            this.props.editNarrativesPage.getIn(['narrative', 'title']) : 'Narrative' } | Storypaddle </title>
+          <title> Edit Narrative | Storypaddle </title>
           <meta name="description" content="Make changes to your Narrative!" />
         </Helmet>
-        <EditNarrativesPageComponent {...this.props} />
+        <ErrorWrapper
+          error={this.props.editNarrativesPage.get('error')}
+          notFoundComponent={<NarrativeOverviewNotFound />}
+          failedFetchComponent={<ErrorPage />}
+          successComponent={<EditNarrativesPageComponent {...this.props} />}
+        />
       </div>
     );
   }

@@ -9,6 +9,9 @@ import {
   GET_NARRATIVE_REQUEST,
   GET_NARRATIVE_SUCCESS,
   GET_NARRATIVE_FAILURE,
+  EDIT_NARRATIVE_REQUEST,
+  EDIT_NARRATIVE_SUCCESS,
+  EDIT_NARRATIVE_FAILURE,
 } from './constants';
 
 const initialState = fromJS({
@@ -31,6 +34,17 @@ function editNarrativesPageReducer(state = initialState, action) {
     case GET_NARRATIVE_FAILURE:
       return state
         .set('error', action.error)
+        .set('loading', false);
+    case EDIT_NARRATIVE_REQUEST:
+      return state
+        .set('loading', true)
+        .set('error', false);
+    case EDIT_NARRATIVE_SUCCESS:
+      return state
+        .set('loading', false);
+    case EDIT_NARRATIVE_FAILURE:
+      return state
+        .set('error', action.payload.errors)
         .set('loading', false);
     default:
       return state;

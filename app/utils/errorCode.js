@@ -89,6 +89,23 @@ export const getCreateNarrativesErrors = (code) => {
   }
 };
 
+export const getEditNarrativesErrors = (code) => {
+  switch (code) {
+    case 401:
+      return new SubmissionError({
+        _error: 'Authentication required',
+      });
+    case 400:
+      return new SubmissionError({
+        _error: 'Please ensure you filled all required fields and you have no duplicate role names',
+      });
+    default:
+      return new SubmissionError({
+        _error: 'Error editing Narrative. Please try again later',
+      });
+  }
+};
+
 
 export const getJoinNarrativeErrors = (roleId, code) => {
   switch (code) {

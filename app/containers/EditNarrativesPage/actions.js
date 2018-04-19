@@ -4,10 +4,13 @@
  *
  */
 
+import { createFormAction } from 'redux-form-saga';
 import {
   GET_NARRATIVE_REQUEST,
   GET_NARRATIVE_SUCCESS,
   GET_NARRATIVE_FAILURE,
+  EDIT_NARRATIVE_SUCCESS,
+  EDIT_NARRATIVE_FAILURE,
 } from './constants';
 
 /**
@@ -50,6 +53,38 @@ export function getNarrativeSuccess(narrative) {
 export function getNarrativeFailure(error) {
   return {
     type: GET_NARRATIVE_FAILURE,
+    error,
+  };
+}
+
+
+/**
+ * Post request to edit a Narrative
+ */
+export const editNarrative = createFormAction('EDIT_NARRATIVE');
+
+/**
+ * Dispatched when server editNarrative succeeds
+ *
+ * @return {object} : An action object with a type of EDIT_NARRATIVE_SUCCESS
+ */
+export function editNarrativeSuccess() {
+  return {
+    type: EDIT_NARRATIVE_SUCCESS,
+  };
+}
+
+
+/**
+ * Dispatched when server editNarrative fails
+ *
+ * @param  {object} -> error : The error obtained by the saga
+ *
+ * @return {object} : An action object with a type of EDIT_NARRATIVE_ERROR passing the error
+ */
+export function editNarrativeFailure(error) {
+  return {
+    type: EDIT_NARRATIVE_FAILURE,
     error,
   };
 }

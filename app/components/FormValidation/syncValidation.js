@@ -2,7 +2,7 @@ import { MIN_CHARACTERS } from 'containers/CreateNarrativesPage/constants';
 
 const MIN_PASSWORD_LENGTH = 6;
 
-export const required = (value) => (value ? undefined : 'Required');
+export const required = (value) => (value && value.trim().length > 0 ? undefined : 'Required');
 
 export const number = (value) => value && isNaN(Number(value)) ? 'Must be a number' : undefined;
 
