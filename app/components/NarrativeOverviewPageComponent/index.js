@@ -6,7 +6,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Divider } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Container, Divider, Button } from 'semantic-ui-react';
 import { Meta, Warning } from 'components/NarrativeHeaderComponents';
 import NarrativeOverviewRoles from './NarrativeOverviewRoles';
 
@@ -20,9 +21,16 @@ function NarrativeOverviewPageComponent(props) {
         <h1> { narrative.get('title') } </h1>
         <Meta> { narrative.get('genre') } </Meta>
         { narrative.get('explicit') ? <Warning> Explicit </Warning> : null }
-        <div style={{ margin: '1.5rem 0 3rem 0', whiteSpace: 'pre-line' }}>
+        <div style={{ margin: '1.5rem 0 1.5rem 0', whiteSpace: 'pre-line' }}>
           <p> { narrative.get('synopsis') } </p>
         </div>
+        <Button
+          as={Link}
+          to={`/scene/${narrative.get('id')}`}
+          icon="file text"
+          primary
+          content="Read"
+        />
         <Divider />
         {
           alreadyIn ?
