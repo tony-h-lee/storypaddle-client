@@ -12,6 +12,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose, bindActionCreators } from 'redux';
 import JoinedNarrativesPageComponent from 'components/JoinedNarrativesPageComponent';
 import ErrorPage from 'containers/ErrorPage';
+import ErrorWrapper from 'components/ErrorWrapper';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { open } from 'containers/ConfirmModal/actions';
@@ -33,12 +34,12 @@ export class JoinedNarrativesPage extends React.PureComponent { // eslint-disabl
           <title> Joined Narratives | Storypaddle </title>
           <meta name="description" content="A list of my joined narratives." />
         </Helmet>
-        {
-          this.props.joinedNarrativesPage.get('error')
-          && this.props.joinedNarrativesPage.get('error') === 'Failed to fetch' ?
-            <ErrorPage />
-            : <JoinedNarrativesPageComponent {...this.props} />
-        }
+        <ErrorWrapper
+          error={this.props.joinedNarrativesPage.get('error')}
+          notFoundComponent={<div> Not Found </div>}
+          failedFetchComponent={<ErrorPage />}
+          successComponent={<JoinedNarrativesPageComponent {...this.props} />}
+        />
       </div>
     );
   }

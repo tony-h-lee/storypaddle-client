@@ -12,6 +12,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose, bindActionCreators } from 'redux';
 import MyNarrativesPageComponent from 'components/MyNarrativesPageComponent';
 import ErrorPage from 'containers/ErrorPage';
+import ErrorWrapper from 'components/ErrorWrapper';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { open } from 'containers/ConfirmModal/actions';
@@ -33,13 +34,12 @@ export class MyNarrativesPage extends React.PureComponent { // eslint-disable-li
           <title>My Narratives | Storypaddle </title>
           <meta name="description" content="A list of my created Narratives." />
         </Helmet>
-        {
-          this.props.ownedNarrativesPage.get('error')
-          && this.props.ownedNarrativesPage.get('error') === 'Failed to fetch' ?
-            <ErrorPage />
-            : <MyNarrativesPageComponent {...this.props} />
-        }
-
+        <ErrorWrapper
+          error={this.props.ownedNarrativesPage.get('error')}
+          notFoundComponent={<div> Not Found </div>}
+          failedFetchComponent={<ErrorPage />}
+          successComponent={<MyNarrativesPageComponent {...this.props} />}
+        />
       </div>
     );
   }
