@@ -36,7 +36,7 @@ function createNarrativesPageReducer(state = initialState, action) {
         .set('loading', false);
     case CREATE_NARRATIVE_FAILURE:
       return state
-        .set('error', action.payload.errors)
+        .set('error', action.payload.error)
         .set('loading', false);
     default:
       return state;

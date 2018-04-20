@@ -44,7 +44,7 @@ function editNarrativesPageReducer(state = initialState, action) {
         .set('loading', false);
     case EDIT_NARRATIVE_FAILURE:
       return state
-        .set('error', action.payload.errors)
+        .set('error', action.payload.error)
         .set('loading', false);
     default:
       return state;

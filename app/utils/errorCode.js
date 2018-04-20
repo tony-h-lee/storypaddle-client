@@ -16,9 +16,7 @@ export const getSignupErrors = (code) => {
         _error: 'Database error. Please try again later',
       });
     default:
-      return new SubmissionError({
-        _error: 'Sign up connection error. Please try again later',
-      });
+      return { error: 'Failed to fetch' };
   }
 };
 
@@ -34,9 +32,7 @@ export const getLoginErrors = (code) => {
         _error: 'Invalid email or password requirements',
       });
     default:
-      return new SubmissionError({
-        _error: 'Log in connection error. Please try again later',
-      });
+      return { error: 'Failed to fetch' };
   }
 };
 
@@ -48,9 +44,7 @@ export const getForgotPasswordErrors = (code) => {
         _error: 'Failed to send email. Please try again',
       });
     default:
-      return new SubmissionError({
-        _error: 'Error sending reset email. Please try again later',
-      });
+      return { error: 'Failed to fetch' };
   }
 };
 
@@ -66,9 +60,7 @@ export const getResetPasswordErrors = (code) => {
         _error: 'Invalid password fields submitted. Please enter a new password',
       });
     default:
-      return new SubmissionError({
-        _error: 'Error requesting password change. Please try again later',
-      });
+      return { error: 'Failed to fetch' };
   }
 };
 
@@ -83,9 +75,7 @@ export const getCreateNarrativesErrors = (code) => {
         _error: 'Please ensure you filled all required fields and you have no duplicate role names',
       });
     default:
-      return new SubmissionError({
-        _error: 'Error creating Narrative. Please try again later',
-      });
+      return { error: 'Failed to fetch' };
   }
 };
 
@@ -100,9 +90,7 @@ export const getEditNarrativesErrors = (code) => {
         _error: 'Please ensure you filled all required fields and you have no duplicate role names',
       });
     default:
-      return new SubmissionError({
-        _error: 'Error editing Narrative. Please try again later',
-      });
+      return { error: 'Failed to fetch' };
   }
 };
 
