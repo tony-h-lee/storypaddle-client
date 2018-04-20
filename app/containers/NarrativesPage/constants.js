@@ -4,4 +4,7 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/NarrativesPage/DEFAULT_ACTION';
+export const GET_NARRATIVES_REQUEST = 'app/NarrativesPage/GET_NARRATIVES_REQUEST';
+export const GET_NARRATIVES_SUCCESS = 'app/NarrativesPage/GET_NARRATIVES_SUCCESS';
+export const GET_NARRATIVES_FAILURE = 'app/NarrativesPage/GET_NARRATIVES_FAILURE';
+

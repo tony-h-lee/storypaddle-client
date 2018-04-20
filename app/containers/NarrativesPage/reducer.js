@@ -6,15 +6,41 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  GET_NARRATIVES_REQUEST,
+  GET_NARRATIVES_SUCCESS,
+  GET_NARRATIVES_FAILURE,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  narratives: false,
+  loading: false,
+  error: false,
+  next: false,
+  previous: false,
+});
 
 function narrativesPageReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case GET_NARRATIVES_REQUEST:
+      return state
+        .set('narratives', false)
+        .set('next', false)
+        .set('previous', false)
+        .set('loading', true)
+        .set('error', false);
+    case GET_NARRATIVES_SUCCESS:
+      return state
+        .set('loading', false)
+        .set('next', action.narratives.next)
+        .set('previous', action.narratives.previous)
+        .set('narratives', fromJS(action.narratives.results));
+    case GET_NARRATIVES_FAILURE:
+      return state
+        .set('narratives', false)
+        .set('next', false)
+        .set('previous', false)
+        .set('loading', false)
+        .set('error', action.error);
     default:
       return state;
   }

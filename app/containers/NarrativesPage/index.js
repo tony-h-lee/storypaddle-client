@@ -9,15 +9,23 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import NarrativesPageComponent from 'components/NarrativesPageComponent';
+import ErrorPage from 'containers/ErrorPage';
+import ErrorWrapper from 'components/ErrorWrapper';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectNarrativesPage from './selectors';
+import * as narrativeActions from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
 export class NarrativesPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+  componentWillMount() {
+    this.props.actions.getNarratives();
+  }
+
   render() {
     return (
       <div>
@@ -25,14 +33,20 @@ export class NarrativesPage extends React.PureComponent { // eslint-disable-line
           <title>Storypaddle | Narratives </title>
           <meta name="description" content="Browse what others have created." />
         </Helmet>
-        <NarrativesPageComponent />
+        <ErrorWrapper
+          error={this.props.narrativesPage.get('error')}
+          notFoundComponent={<div> Not Found </div>}
+          failedFetchComponent={<ErrorPage />}
+          successComponent={<NarrativesPageComponent {...this.props} />}
+        />
       </div>
     );
   }
 }
 
 NarrativesPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  actions: PropTypes.object,
+  narrativesPage: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -41,7 +55,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    actions: bindActionCreators(narrativeActions, dispatch),
   };
 }
 
