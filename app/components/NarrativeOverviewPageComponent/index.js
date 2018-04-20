@@ -7,6 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { distanceInWordsToNow } from 'date-fns';
 import { Container, Divider, Button } from 'semantic-ui-react';
 import { Meta, Warning } from 'components/NarrativeHeaderComponents';
 import NarrativeOverviewRoles from './NarrativeOverviewRoles';
@@ -14,12 +15,13 @@ import NarrativeOverviewRoles from './NarrativeOverviewRoles';
 function NarrativeOverviewPageComponent(props) {
   const narrative = props.narrativeOverviewPage.get('narrative');
   if (narrative) {
-    const alreadyIn = narrative.get('roles')
-      .some((role) => role.get('user') === props.user.get('id'));
+    const alreadyIn = props.user && narrative.get('roles')
+        .some((role) => role.get('user') === props.user.get('id'));
     return (
       <Container text style={{ marginTop: '3rem' }}>
         <h1> { narrative.get('title') } </h1>
         <Meta> { narrative.get('genre') } </Meta>
+        <Meta> { distanceInWordsToNow(narrative.get('createdAt')) } ago </Meta>
         { narrative.get('explicit') ? <Warning> Explicit </Warning> : null }
         <div style={{ margin: '1.5rem 0 1.5rem 0', whiteSpace: 'pre-line' }}>
           <p> { narrative.get('synopsis') } </p>

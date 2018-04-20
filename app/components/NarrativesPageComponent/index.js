@@ -10,16 +10,17 @@ import { Container } from 'semantic-ui-react';
 import DashboardSectionWrapper from 'components/DashboardSectionWrapper';
 import AsyncWrapper from 'components/AsyncWrapper';
 import ErrorComponent from 'components/ErrorComponent';
+import NarrativesWrapper from './NarrativesWrapper';
 // import styled from 'styled-components';
 
 function NarrativesPageComponent(props) {
   return (
     <DashboardSectionWrapper>
-      <Container text textAlign="left">
+      <Container textAlign="left">
         <AsyncWrapper
           spinner
           animate
-          innerComponent={<div></div>}
+          innerComponent={NarrativesWrapper}
           errorComponent={
             <ErrorComponent
               header={'Sorry, an error occurred!'}

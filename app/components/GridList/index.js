@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 function GridList(props) {
   const ComponentToRender = props.component;
   let content = (<div></div>);
-  if (props.items.size > 0) {
+  if (props.items.length > 0) {
     content = props.items.map((item) => (
       <ComponentToRender
         key={item.id}
