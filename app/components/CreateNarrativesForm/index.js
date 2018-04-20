@@ -86,8 +86,7 @@ function CreateNarrativesForm(props) {
             'You must create at least two characters.',
             'Character 1 will be your role.',
             'Other roles can be filled by any users.',
-            'Basic accounts can make up to 4 roles.',
-            'Member accounts can make up to 8 roles.',
+            'You can make up to 4 roles.',
           ]}
         />
       </Message>

@@ -27,7 +27,7 @@ function NarrativesItem(props) {
       to={`/narrative/${props.item.get('_id')}`}
       style={{ width: '200px', height: '200px', margin: '1rem', background: `url(${Thumb})` }}
     >
-      <Card.Content style={{ background: 'rgba(0,0,0,0.65)' }}>
+      <Card.Content style={{ background: 'rgba(0,0,0,0.7)' }}>
         <Details style={{ color: 'rgba(255,255,255,0.95)' }}> { props.item.get('title') } </Details>
         <Details style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.9rem' }}>
           { distanceInWordsToNow(props.item.get('createdAt'))} ago </Details>
