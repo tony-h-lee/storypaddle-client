@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { distanceInWordsToNow } from 'date-fns';
+import { format } from 'date-fns';
 import { Container, Divider, Button } from 'semantic-ui-react';
 import { Meta, Warning } from 'components/NarrativeHeaderComponents';
 import NarrativeOverviewRoles from './NarrativeOverviewRoles';
@@ -21,7 +21,7 @@ function NarrativeOverviewPageComponent(props) {
       <Container text style={{ marginTop: '3rem' }}>
         <h1> { narrative.get('title') } </h1>
         <Meta> { narrative.get('genre') } </Meta>
-        <Meta> { distanceInWordsToNow(narrative.get('createdAt')) } ago </Meta>
+        <Meta> Published on {format(narrative.get('createdAt'), 'MMMM D, YYYY')} </Meta>
         { narrative.get('explicit') ? <Warning> Explicit </Warning> : null }
         <div style={{ margin: '1.5rem 0 1.5rem 0', whiteSpace: 'pre-line' }}>
           <p> { narrative.get('synopsis') } </p>

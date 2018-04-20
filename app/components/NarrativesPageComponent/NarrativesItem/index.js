@@ -17,6 +17,8 @@ const Details = styled(Card.Description)`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
   }
 `;
 
@@ -27,9 +29,12 @@ function NarrativesItem(props) {
       to={`/narrative/${props.item.get('_id')}`}
       style={{ width: '200px', height: '200px', margin: '1rem', background: `url(${Thumb})` }}
     >
-      <Card.Content style={{ background: 'rgba(0,0,0,0.7)' }}>
-        <Details style={{ color: 'rgba(255,255,255,0.95)' }}> { props.item.get('title') } </Details>
-        <Details style={{ color: 'rgba(255,255,255,0.95)', fontSize: '0.9rem' }}>
+      <Card.Content style={{ background: 'rgba(0,0,0,0.75)' }}>
+        <Details style={{ color: 'rgb(255,255,255)' }}> { props.item.get('title') } </Details>
+        <Details style={{ color: 'rgb(255,255,255)' }}> { props.item.get('genre') } </Details>
+        { props.item.get('explicit') ?
+          <Details style={{ color: 'rgb(255,71,83)', fontSize: '0.95rem', zIndex: 1 }}> Explicit </Details> : null }
+        <Details style={{ color: 'rgb(255,255,255)', fontSize: '0.95rem' }}>
           { distanceInWordsToNow(props.item.get('createdAt'))} ago </Details>
       </Card.Content>
     </Card>

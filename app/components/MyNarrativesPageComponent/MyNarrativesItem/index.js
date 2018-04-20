@@ -39,7 +39,7 @@ function MyNarrativesItem(props) {
       >
         { props.item.get('title')}
       </Header>
-      <Meta style={{ margin: '0' }}> Published on {format(props.item.get('createdAt'), 'MMMM D, YYYY')}</Meta>
+      <Meta style={{ margin: '0' }}> Published on {format(props.item.get('createdAt'), 'MMMM D, YYYY')} </Meta>
       <Meta style={{ margin: '0' }}> { props.item.get('genre') } </Meta>
       {
         props.item.get('explicit') ?
