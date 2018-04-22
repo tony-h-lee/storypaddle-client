@@ -4,42 +4,78 @@
  *
  */
 
-import { fromJS } from 'immutable';
+import { fromJS, List } from 'immutable';
 import {
   GET_NARRATIVES_REQUEST,
   GET_NARRATIVES_SUCCESS,
   GET_NARRATIVES_FAILURE,
+  GET_MORE_NARRATIVES_REQUEST,
+  GET_MORE_NARRATIVES_SUCCESS,
+  GET_MORE_NARRATIVES_FAILURE,
 } from './constants';
 
 const initialState = fromJS({
-  narratives: false,
+  narratives: List([]),
   loading: false,
+  moreLoading: false,
   error: false,
   next: false,
   previous: false,
+  hasNext: false,
+  hasPrevious: false,
 });
 
 function narrativesPageReducer(state = initialState, action) {
   switch (action.type) {
     case GET_NARRATIVES_REQUEST:
       return state
-        .set('narratives', false)
+        .set('loading', true)
+        .set('moreLoading', false)
         .set('next', false)
         .set('previous', false)
-        .set('loading', true)
+        .set('hasNext', false)
+        .set('hasPrevious', false)
+        .set('narratives', List([]))
         .set('error', false);
     case GET_NARRATIVES_SUCCESS:
       return state
         .set('loading', false)
-        .set('next', action.narratives.next)
-        .set('previous', action.narratives.previous)
-        .set('narratives', fromJS(action.narratives.results));
+        .set('next', action.narratives.next || false)
+        .set('previous', action.narratives.previous || false)
+        .set('hasNext', action.narratives.hasNext)
+        .set('hasPrevious', action.narratives.hasPrevious)
+        .update('narratives', (narratives) => narratives.concat(List(action.narratives.results)));
     case GET_NARRATIVES_FAILURE:
       return state
-        .set('narratives', false)
         .set('next', false)
+        .set('moreLoading', false)
+        .set('narratives', List([]))
+        .set('hasNext', false)
+        .set('hasPrevious', false)
         .set('previous', false)
         .set('loading', false)
+        .set('error', action.error);
+    case GET_MORE_NARRATIVES_REQUEST:
+      return state
+        .set('moreLoading', true)
+        .set('error', false);
+    case GET_MORE_NARRATIVES_SUCCESS:
+      return state
+        .set('moreLoading', false)
+        .set('next', action.narratives.next || false)
+        .set('previous', action.narratives.previous || false)
+        .set('hasNext', action.narratives.hasNext)
+        .set('hasPrevious', action.narratives.hasPrevious)
+        .update('narratives', (narratives) => narratives.concat(List(action.narratives.results)));
+    case GET_MORE_NARRATIVES_FAILURE:
+      return state
+        .set('next', false)
+        .set('narratives', List([]))
+        .set('hasNext', false)
+        .set('hasPrevious', false)
+        .set('previous', false)
+        .set('loading', false)
+        .set('moreLoading', false)
         .set('error', action.error);
     default:
       return state;

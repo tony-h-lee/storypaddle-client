@@ -10,19 +10,31 @@ import { Transition, Grid, Container, Icon, Button } from 'semantic-ui-react';
 import NarrativeGridList from 'components/NarrativeGridList';
 import { Link } from 'react-router-dom';
 import NarrativesItem from 'components/NarrativesPageComponent/NarrativesItem';
+import Waypoint from 'react-waypoint';
 // import styled from 'styled-components';
 
-
 function NarrativesWrapper(props) {
+  const getMoreNarratives = () => {
+    if (!(!props.moreProps.hasNext && props.moreProps.hasPrevious)) {
+      return actions.getMoreNarratives(props.moreProps.next);
+    }
+    return false;
+  };
+  const actions = props.moreProps.actions;
   const content = (
-    <div style={{ marginTop: '2rem' }}>
+    <div style={{ marginTop: '2rem', height: '100%' }}>
       {
         props.data.size > 0 ?
-          <NarrativeGridList
-            items={props.data}
-            component={NarrativesItem}
-            moreProps={props.moreProps}
-          />
+          <div>
+            <NarrativeGridList
+              items={props.data}
+              component={NarrativesItem}
+              moreProps={props.moreProps}
+            />
+            <Waypoint
+              onEnter={getMoreNarratives}
+            />
+          </div>
           :
           (
             <Grid

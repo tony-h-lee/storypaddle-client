@@ -29,6 +29,10 @@ function NarrativesPageComponent(props) {
           payload={props.narrativesPage.get('narratives')}
           error={props.narrativesPage.get('error')}
           loading={props.narrativesPage.get('loading')}
+          moreProps={{ actions: props.actions,
+            next: props.narrativesPage.get('next'),
+            hasNext: props.narrativesPage.get('hasNext'),
+            hasPrevious: props.narrativesPage.get('hasPrevious') }}
         />
       </Container>
     </DashboardSectionWrapper>
@@ -37,6 +41,7 @@ function NarrativesPageComponent(props) {
 
 NarrativesPageComponent.propTypes = {
   narrativesPage: PropTypes.object,
+  actions: PropTypes.object,
 };
 
 export default NarrativesPageComponent;
