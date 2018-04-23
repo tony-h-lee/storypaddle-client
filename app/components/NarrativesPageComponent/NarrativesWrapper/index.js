@@ -29,7 +29,7 @@ function NarrativesWrapper(props) {
   };
   const actions = props.moreProps.actions;
   const content = (
-    <div style={{ marginTop: '2rem', height: '100%' }}>
+    <div style={{ marginTop: '2rem', height: '100%', minHeight: '100vh' }}>
       {
         props.data.size > 0 ?
           <div>
@@ -51,6 +51,7 @@ function NarrativesWrapper(props) {
             />
             <Waypoint
               onEnter={getMoreNarratives}
+              topOffset={'80%'}
             />
             <Loader
               size="medium"
