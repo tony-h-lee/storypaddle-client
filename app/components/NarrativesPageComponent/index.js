@@ -19,7 +19,6 @@ function NarrativesPageComponent(props) {
       <Container textAlign="left">
         <AsyncWrapper
           spinner
-          animate
           innerComponent={NarrativesWrapper}
           errorComponent={
             <ErrorComponent
