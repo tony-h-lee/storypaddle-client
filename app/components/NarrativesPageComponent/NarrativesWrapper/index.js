@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Transition, Grid, Container, Icon, Button } from 'semantic-ui-react';
+import { Transition, Grid, Container, Icon, Button, Loader } from 'semantic-ui-react';
 import NarrativeGridList from 'components/NarrativeGridList';
 import { Link } from 'react-router-dom';
 import NarrativesItem from 'components/NarrativesPageComponent/NarrativesItem';
@@ -33,6 +33,12 @@ function NarrativesWrapper(props) {
             />
             <Waypoint
               onEnter={getMoreNarratives}
+            />
+            <Loader
+              size="medium"
+              inline="centered"
+              active
+              style={{ visibility: props.moreProps.moreLoading ? 'visible' : 'hidden' }}
             />
           </div>
           :

@@ -11,6 +11,8 @@ import {
   GET_MORE_NARRATIVES_REQUEST,
   GET_MORE_NARRATIVES_SUCCESS,
   GET_MORE_NARRATIVES_FAILURE,
+  SET_CREATED_NARRATIVE,
+  UNSET_DELETED_NARRATIVE,
 } from './constants';
 
 /**
@@ -96,5 +98,35 @@ export function getMoreNarrativesFailure(error) {
   return {
     type: GET_MORE_NARRATIVES_FAILURE,
     error,
+  };
+}
+
+
+/**
+ * Dispatched when a user successfully creates a narrative
+ *
+ * @param  {object} -> narrative : Narrative object successfully created by the user
+ *
+ * @return {object} : An action object with a type of SET_CREATED_NARRATIVE and the narrative object.
+ */
+export function setCreatedNarrativeList(narrative) {
+  return {
+    type: SET_CREATED_NARRATIVE,
+    narrative,
+  };
+}
+
+
+/**
+ * Dispatched when a user successfully deletes a narrative
+ *
+ * @param  {string} -> narrative : The id of the Narrative that a user successfully deletes.
+ *
+ * @return {object} : An action object with a type of UNSET_DELETED_NARRATIVE and the narrative id string.
+ */
+export function unsetDeletedNarrativeList(narrative) {
+  return {
+    type: UNSET_DELETED_NARRATIVE,
+    narrative,
   };
 }

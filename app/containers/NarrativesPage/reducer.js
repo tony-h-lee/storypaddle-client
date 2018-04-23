@@ -12,6 +12,8 @@ import {
   GET_MORE_NARRATIVES_REQUEST,
   GET_MORE_NARRATIVES_SUCCESS,
   GET_MORE_NARRATIVES_FAILURE,
+  SET_CREATED_NARRATIVE,
+  UNSET_DELETED_NARRATIVE,
 } from './constants';
 
 const initialState = fromJS({
@@ -76,6 +78,14 @@ function narrativesPageReducer(state = initialState, action) {
         .set('loading', false)
         .set('moreLoading', false)
         .set('error', action.error);
+    case SET_CREATED_NARRATIVE:
+      return state
+        .update('narratives', (narratives) =>
+          narratives.insert(0, action.narrative));
+    case UNSET_DELETED_NARRATIVE:
+      return state
+        .update('narratives', (narratives) =>
+          narratives.filter((narrative) => narrative.id !== action.narrative));
     default:
       return state;
   }

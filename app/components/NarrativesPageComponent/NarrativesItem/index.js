@@ -1,4 +1,3 @@
-/* eslint no-underscore-dangle: 0 */
 /**
 *
 * NarrativesItem
@@ -26,7 +25,7 @@ function NarrativesItem(props) {
   return (
     <Card
       as={Link}
-      to={`/narrative/${props.item._id}`}
+      to={`/narrative/${props.item.id}`}
       style={{ width: '200px', height: '200px', margin: '1rem', background: `url(${Thumb})` }}
     >
       <Card.Content style={{ background: 'rgba(0,0,0,0.75)' }}>

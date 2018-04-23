@@ -32,6 +32,7 @@ function NarrativesPageComponent(props) {
           moreProps={{ actions: props.actions,
             next: props.narrativesPage.get('next'),
             hasNext: props.narrativesPage.get('hasNext'),
+            moreLoading: props.narrativesPage.get('moreLoading'),
             hasPrevious: props.narrativesPage.get('hasPrevious') }}
         />
       </Container>

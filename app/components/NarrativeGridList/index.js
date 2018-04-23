@@ -1,4 +1,3 @@
-/* eslint no-underscore-dangle: 0 */
 /**
 *
 * NarrativeGridList
@@ -18,7 +17,7 @@ function NarrativeGridList(props) {
     // Item property should be get('_id') from rest server since view function is not called on the narrative docs
     content = props.items.map((item) => (
       <ComponentToRender
-        key={item._id}
+        key={item.id ? item.id : item.get('id')}
         item={item}
         actions={props.actions}
         moreProps={props.moreProps}
