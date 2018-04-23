@@ -23,7 +23,7 @@ import saga from './saga';
 export class NarrativesPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
-    this.props.actions.getNarratives();
+    if (this.props.narrativesPage.get('narratives').size < 1) this.props.actions.getNarratives();
   }
 
   render() {

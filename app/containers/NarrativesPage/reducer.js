@@ -35,7 +35,6 @@ function narrativesPageReducer(state = initialState, action) {
         .set('previous', false)
         .set('hasNext', false)
         .set('hasPrevious', false)
-        .set('narratives', List([]))
         .set('error', false);
     case GET_NARRATIVES_SUCCESS:
       return state

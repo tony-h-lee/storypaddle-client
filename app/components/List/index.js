@@ -14,7 +14,7 @@ function List(props) {
   if (props.items.size > 0) {
     content = props.items.map((item) => (
       <ComponentToRender
-        key={item.id ? item.id : item.get('_id')}
+        key={item.id ? item.id : item.get('id')}
         item={item}
         moreProps={props.moreProps}
       />
