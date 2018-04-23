@@ -6,12 +6,19 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Transition, Grid, Container, Icon, Button, Loader } from 'semantic-ui-react';
+import { Transition, Grid, Container, Icon, Button, Loader, Dropdown } from 'semantic-ui-react';
 import NarrativeGridList from 'components/NarrativeGridList';
 import { Link } from 'react-router-dom';
 import NarrativesItem from 'components/NarrativesPageComponent/NarrativesItem';
 import Waypoint from 'react-waypoint';
 // import styled from 'styled-components';
+
+const options = [
+  { key: 'all', text: 'All', value: 'All' },
+  { key: 'fantasy', text: 'Fantasy', value: 'Fantasy' },
+  { key: 'science fiction', text: 'Science Fiction', value: 'Science Fiction' },
+  { key: 'historical fiction', text: 'Historical Fiction', value: 'Historical Fiction' },
+];
 
 function NarrativesWrapper(props) {
   const getMoreNarratives = () => {
@@ -26,6 +33,17 @@ function NarrativesWrapper(props) {
       {
         props.data.size > 0 ?
           <div>
+            <Button.Group basic style={{ marginBottom: '2rem' }}>
+              <Button>Trending</Button>
+              <Button>New</Button>
+              <Dropdown
+                button
+                placeholder="Filter Genre"
+                options={options}
+                onChange={(e, { value }) => actions.setGenreFilter(value)}
+              />
+            </Button.Group>
+
             <NarrativeGridList
               items={props.data}
               component={NarrativesItem}

@@ -13,6 +13,7 @@ import {
   GET_MORE_NARRATIVES_FAILURE,
   SET_CREATED_NARRATIVE,
   UNSET_DELETED_NARRATIVE,
+  SET_GENRE_FILTER,
 } from './constants';
 
 /**
@@ -128,5 +129,20 @@ export function unsetDeletedNarrativeList(narrative) {
   return {
     type: UNSET_DELETED_NARRATIVE,
     narrative,
+  };
+}
+
+
+/**
+ * Set the filter string to filter narrative genres
+ *
+ * @param  {string} -> genre : The string of the genre to filter.
+ *
+ * @return {object} : An action object with a type of UNSET_DELETED_NARRATIVE and the genre string.
+ */
+export function setGenreFilter(genre) {
+  return {
+    type: SET_GENRE_FILTER,
+    genre,
   };
 }

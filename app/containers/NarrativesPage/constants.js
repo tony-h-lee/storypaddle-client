@@ -14,3 +14,8 @@ export const GET_MORE_NARRATIVES_FAILURE = 'app/NarrativesPage/GET_MORE_NARRATIV
 
 export const SET_CREATED_NARRATIVE = 'app/NarrativesPage/SET_CREATED_NARRATIVE';
 export const UNSET_DELETED_NARRATIVE = 'app/NarrativesPage/UNSET_DELETED_NARRATIVE';
+
+export const SET_GENRE_FILTER = 'app/NarrativesPage/SET_GENRE_FILTER';
+
+export const NEW = 'NEW';
+export const TRENDING = 'TRENDING';
