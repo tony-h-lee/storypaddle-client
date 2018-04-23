@@ -19,11 +19,14 @@ import {
 /**
  * Dispatched on Narratives Page init
  *
+ * @param  {string} -> pagination : The string to order the narratives by
+ *
  * @return {object} : An action object with a type of GET_NARRATIVES_REQUEST
  */
-export function getNarratives() {
+export function getNarratives(pagination) {
   return {
     type: GET_NARRATIVES_REQUEST,
+    pagination,
   };
 }
 

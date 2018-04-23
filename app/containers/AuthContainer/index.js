@@ -25,6 +25,7 @@ import ConfirmModal from 'containers/ConfirmModal/Loadable';
 
 import NarrativeOverviewPage from 'containers/NarrativeOverviewPage/Loadable';
 import { PropsRoute, PrivateRoute } from 'containers/CustomRoute';
+import { NEW, TRENDING } from 'containers/NarrativesPage/constants';
 
 // Dashboard Pages
 import CreateNarrativesPage from 'containers/CreateNarrativesPage/Loadable';
@@ -88,9 +89,17 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
           />
           <PropsRoute
             exact
-            path="/narratives"
+            path="/narratives/new"
             component={RouteWrapper}
             innerComponent={NarrativesPage}
+            pagination={NEW}
+          />
+          <PropsRoute
+            exact
+            path="/narratives/trending"
+            component={RouteWrapper}
+            innerComponent={NarrativesPage}
+            pagination={TRENDING}
           />
           <PropsRoute
             exact

@@ -29,6 +29,7 @@ function NarrativesPageComponent(props) {
           error={props.narrativesPage.get('error')}
           loading={props.narrativesPage.get('loading')}
           moreProps={{ actions: props.actions,
+            pagination: props.pagination,
             next: props.narrativesPage.get('next'),
             hasNext: props.narrativesPage.get('hasNext'),
             moreLoading: props.narrativesPage.get('moreLoading'),
@@ -42,6 +43,7 @@ function NarrativesPageComponent(props) {
 NarrativesPageComponent.propTypes = {
   narrativesPage: PropTypes.object,
   narratives: PropTypes.object,
+  pagination: PropTypes.string,
   actions: PropTypes.object,
 };
 

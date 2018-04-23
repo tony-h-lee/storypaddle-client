@@ -11,9 +11,10 @@ import {
 } from './actions';
 import * as api from './api';
 
-function* handleGetNarratives() {
+function* handleGetNarratives(action) {
+  const { pagination } = action;
   try {
-    const response = yield call(api.getNarratives);
+    const response = yield call(api.getNarratives, { pagination });
     yield put(getNarrativesSuccess(response, {}));
   } catch (error) {
     yield put(getNarrativesFailure(error.message ? error.message : error));

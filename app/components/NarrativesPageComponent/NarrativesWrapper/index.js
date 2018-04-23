@@ -10,6 +10,7 @@ import { Transition, Grid, Container, Icon, Button, Loader, Dropdown } from 'sem
 import NarrativeGridList from 'components/NarrativeGridList';
 import { Link } from 'react-router-dom';
 import NarrativesItem from 'components/NarrativesPageComponent/NarrativesItem';
+import { NEW, TRENDING } from 'containers/NarrativesPage/constants';
 import Waypoint from 'react-waypoint';
 // import styled from 'styled-components';
 
@@ -34,8 +35,18 @@ function NarrativesWrapper(props) {
         props.data.size > 0 ?
           <div>
             <Button.Group basic style={{ marginBottom: '2rem' }}>
-              <Button>Trending</Button>
-              <Button>New</Button>
+              <Button
+                as={Link}
+                to={'/narratives/trending'}
+                active={props.moreProps.pagination === TRENDING}
+              >Trending
+              </Button>
+              <Button
+                as={Link}
+                to={'/narratives/new'}
+                active={props.moreProps.pagination === NEW}
+              >New
+              </Button>
               <Dropdown
                 button
                 placeholder="Filter Genre"

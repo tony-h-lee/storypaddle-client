@@ -25,7 +25,7 @@ function NavbarAuth(props) {
       />
       <Menu.Item
         as={Link}
-        to={'/narratives'}
+        to={'/narratives/trending'}
         name="Narratives"
       />
       <Menu.Item>

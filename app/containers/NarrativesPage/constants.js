@@ -17,5 +17,5 @@ export const UNSET_DELETED_NARRATIVE = 'app/NarrativesPage/UNSET_DELETED_NARRATI
 
 export const SET_GENRE_FILTER = 'app/NarrativesPage/SET_GENRE_FILTER';
 
-export const NEW = 'NEW';
-export const TRENDING = 'TRENDING';
+export const NEW = 'createdAt';
+export const TRENDING = 'updatedAt';

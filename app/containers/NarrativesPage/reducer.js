@@ -37,6 +37,7 @@ function narrativesPageReducer(state = initialState, action) {
       return state
         .set('loading', true)
         .set('moreLoading', false)
+        .set('narratives', List([]))
         .set('next', false)
         .set('previous', false)
         .set('hasNext', false)

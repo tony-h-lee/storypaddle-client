@@ -23,7 +23,13 @@ import saga from './saga';
 export class NarrativesPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
-    if (this.props.narrativesPage.get('narratives').size < 1) this.props.actions.getNarratives();
+    if (this.props.narrativesPage.get('narratives').size < 1) this.props.actions.getNarratives(this.props.pagination);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.path !== nextProps.match.path) {
+      this.props.actions.getNarratives(nextProps.pagination);
+    }
   }
 
   render() {
@@ -46,7 +52,9 @@ export class NarrativesPage extends React.PureComponent { // eslint-disable-line
 
 NarrativesPage.propTypes = {
   actions: PropTypes.object,
+  pagination: PropTypes.string,
   narrativesPage: PropTypes.object,
+  match: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
