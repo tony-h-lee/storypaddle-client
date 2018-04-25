@@ -3,7 +3,7 @@ import formActionSaga from 'redux-form-saga';
 import history from 'history';
 import { getCreateNarrativesErrors } from 'utils/errorCode';
 import { setCreatedNarrative } from 'containers/AuthContainer/actions';
-import { setCreatedNarrativeList } from 'containers/NarrativesPage/actions';
+import { setCreatedNarrativeNewList } from 'containers/NarrativesNewPage/actions';
 import * as api from './api';
 import {
   createNarrative,
@@ -17,7 +17,7 @@ function* handleCreateNarrativeSaga(action) {
     const response = yield call(api.createNarrative, { ...form }, token); // calling our api method
     yield [
       put(createNarrative.success()),
-      put(setCreatedNarrativeList(response)),
+      put(setCreatedNarrativeNewList(response)),
       put(setCreatedNarrative(response.id)),
     ];
     yield apply(history, history.push, [`/narrative/${response.id}`]);

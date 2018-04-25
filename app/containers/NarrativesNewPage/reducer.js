@@ -1,6 +1,6 @@
 /*
  *
- * NarrativesPage reducer
+ * NarrativesNewPage reducer
  *
  */
 

@@ -10,7 +10,8 @@ import { Transition, Grid, Container, Icon, Button, Loader, Dropdown } from 'sem
 import NarrativeGridList from 'components/NarrativeGridList';
 import { Link } from 'react-router-dom';
 import NarrativesItem from 'components/NarrativesPageComponent/NarrativesItem';
-import { NEW, TRENDING } from 'containers/NarrativesPage/constants';
+import { NEW } from 'containers/NarrativesNewPage/constants';
+import { TRENDING } from 'containers/NarrativesTrendingPage/constants';
 import Waypoint from 'react-waypoint';
 // import styled from 'styled-components';
 
@@ -38,13 +39,13 @@ function NarrativesWrapper(props) {
               <Button
                 as={Link}
                 to={'/narratives/trending'}
-                active={props.moreProps.pagination === TRENDING}
+                active={props.moreProps.paginationField === TRENDING}
               >Trending
               </Button>
               <Button
                 as={Link}
                 to={'/narratives/new'}
-                active={props.moreProps.pagination === NEW}
+                active={props.moreProps.paginationField === NEW}
               >New
               </Button>
               <Dropdown

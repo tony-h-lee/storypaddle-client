@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for NarrativesPage
+ * Asynchronously loads the component for NarrativesNewPage
  *
  */
 

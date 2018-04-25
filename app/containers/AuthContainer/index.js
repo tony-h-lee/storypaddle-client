@@ -20,12 +20,12 @@ import SignupPage from 'containers/SignupPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import ForgotPasswordPage from 'containers/ForgotPasswordPage/Loadable';
 import ResetPasswordPage from 'containers/ResetPasswordPage/Loadable';
-import NarrativesPage from 'containers/NarrativesPage/Loadable';
+import NarrativesNewPage from 'containers/NarrativesNewPage/Loadable';
+import NarrativesTrendingPage from 'containers/NarrativesTrendingPage/Loadable';
 import ConfirmModal from 'containers/ConfirmModal/Loadable';
 
 import NarrativeOverviewPage from 'containers/NarrativeOverviewPage/Loadable';
 import { PropsRoute, PrivateRoute } from 'containers/CustomRoute';
-import { NEW, TRENDING } from 'containers/NarrativesPage/constants';
 
 // Dashboard Pages
 import CreateNarrativesPage from 'containers/CreateNarrativesPage/Loadable';
@@ -91,15 +91,13 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             exact
             path="/narratives/new"
             component={RouteWrapper}
-            innerComponent={NarrativesPage}
-            pagination={NEW}
+            innerComponent={NarrativesNewPage}
           />
           <PropsRoute
             exact
             path="/narratives/trending"
             component={RouteWrapper}
-            innerComponent={NarrativesPage}
-            pagination={TRENDING}
+            innerComponent={NarrativesTrendingPage}
           />
           <PropsRoute
             exact

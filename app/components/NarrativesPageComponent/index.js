@@ -14,6 +14,7 @@ import NarrativesWrapper from './NarrativesWrapper';
 // import styled from 'styled-components';
 
 function NarrativesPageComponent(props) {
+  const narrativesData = props.narrativesNewPage ? props.narrativesNewPage : props.narrativesTrendingPage;
   return (
     <DashboardSectionWrapper>
       <Container textAlign="left">
@@ -26,14 +27,14 @@ function NarrativesPageComponent(props) {
             />
           }
           payload={props.narratives}
-          error={props.narrativesPage.get('error')}
-          loading={props.narrativesPage.get('loading')}
+          error={narrativesData.get('error')}
+          loading={narrativesData.get('loading')}
           moreProps={{ actions: props.actions,
-            pagination: props.pagination,
-            next: props.narrativesPage.get('next'),
-            hasNext: props.narrativesPage.get('hasNext'),
-            moreLoading: props.narrativesPage.get('moreLoading'),
-            hasPrevious: props.narrativesPage.get('hasPrevious') }}
+            paginationField: narrativesData.get('paginationField'),
+            next: narrativesData.get('next'),
+            hasNext: narrativesData.get('hasNext'),
+            moreLoading: narrativesData.get('moreLoading'),
+            hasPrevious: narrativesData.get('hasPrevious') }}
         />
       </Container>
     </DashboardSectionWrapper>
@@ -41,9 +42,9 @@ function NarrativesPageComponent(props) {
 }
 
 NarrativesPageComponent.propTypes = {
-  narrativesPage: PropTypes.object,
+  narrativesNewPage: PropTypes.object,
+  narrativesTrendingPage: PropTypes.object,
   narratives: PropTypes.object,
-  pagination: PropTypes.string,
   actions: PropTypes.object,
 };
 

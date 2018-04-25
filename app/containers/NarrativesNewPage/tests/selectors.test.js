@@ -1,7 +1,7 @@
 // import { fromJS } from 'immutable';
-// import { selectNarrativesPageContainerDomain } from '../selectors';
+// import { selectNarrativesNewPageContainerDomain } from '../selectors';
 
-describe('selectNarrativesPageContainerDomain', () => {
+describe('selectNarrativesNewPageContainerDomain', () => {
   it('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });

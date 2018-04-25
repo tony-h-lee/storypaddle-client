@@ -1,6 +1,6 @@
 /**
  *
- * NarrativesPage
+ * NarrativesNewPage
  *
  */
 
@@ -15,20 +15,16 @@ import ErrorPage from 'containers/ErrorPage';
 import ErrorWrapper from 'components/ErrorWrapper';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectNarrativesPage, { makeSelectNarrativesList } from './selectors';
+import makeSelectNarrativesNewPage, { makeSelectNarrativesList } from './selectors';
 import * as narrativeActions from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
-export class NarrativesPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class NarrativesNewPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
-    if (this.props.narrativesPage.get('narratives').size < 1) this.props.actions.getNarratives(this.props.pagination);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.match.path !== nextProps.match.path) {
-      this.props.actions.getNarratives(nextProps.pagination);
+    if (this.props.narrativesNewPage.get('narratives').size < 1) {
+      this.props.actions.getNarratives();
     }
   }
 
@@ -40,7 +36,7 @@ export class NarrativesPage extends React.PureComponent { // eslint-disable-line
           <meta name="description" content="Browse what others have created." />
         </Helmet>
         <ErrorWrapper
-          error={this.props.narrativesPage.get('error')}
+          error={this.props.narrativesNewPage.get('error')}
           notFoundComponent={<div> Not Found </div>}
           failedFetchComponent={<ErrorPage />}
           successComponent={<NarrativesPageComponent {...this.props} />}
@@ -50,15 +46,13 @@ export class NarrativesPage extends React.PureComponent { // eslint-disable-line
   }
 }
 
-NarrativesPage.propTypes = {
+NarrativesNewPage.propTypes = {
   actions: PropTypes.object,
-  pagination: PropTypes.string,
-  narrativesPage: PropTypes.object,
-  match: PropTypes.object,
+  narrativesNewPage: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  narrativesPage: makeSelectNarrativesPage(),
+  narrativesNewPage: makeSelectNarrativesNewPage(),
   narratives: makeSelectNarrativesList(),
 });
 
@@ -70,11 +64,11 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'narrativesPage', reducer });
-const withSaga = injectSaga({ key: 'narrativesPage', saga });
+const withReducer = injectReducer({ key: 'narrativesNewPage', reducer });
+const withSaga = injectSaga({ key: 'narrativesNewPage', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(NarrativesPage);
+)(NarrativesNewPage);

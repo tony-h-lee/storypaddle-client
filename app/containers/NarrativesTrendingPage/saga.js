@@ -14,7 +14,7 @@ import * as api from './api';
 function* handleGetNarratives(action) {
   const { pagination } = action;
   try {
-    const response = yield call(api.getNarratives, { pagination });
+    const response = yield call(api.getTrendingNarratives, { pagination });
     yield put(getNarrativesSuccess(response, {}));
   } catch (error) {
     yield put(getNarrativesFailure(error.message ? error.message : error));
@@ -24,7 +24,7 @@ function* handleGetNarratives(action) {
 function* handleGetMoreNarratives(action) {
   const { next } = action;
   try {
-    const response = yield call(api.getNarratives, { next });
+    const response = yield call(api.getTrendingNarratives, { next });
     yield put(getMoreNarrativesSuccess(response));
   } catch (error) {
     yield put(getMoreNarrativesFailure(error.message ? error.message : error));
