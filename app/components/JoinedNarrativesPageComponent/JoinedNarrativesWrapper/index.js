@@ -34,7 +34,7 @@ function JoinedNarrativesWrapper(props) {
                   <Button
                     style={{ marginTop: '2rem' }}
                     as={Link}
-                    to={'/narratives'}
+                    to={'/narratives/trending'}
                     primary
                     size="large"
                     fluid

@@ -81,16 +81,28 @@ function NarrativesWrapper(props) {
                 <Container textAlign="center">
                   <Icon size="huge" name="folder open outline" style={{ marginBottom: '2rem' }} />
                   <p> There are currently no narratives with the current filter to display. </p>
-                  <Button
-                    style={{ marginTop: '2rem' }}
-                    as={Link}
-                    to={'/create-narrative'}
-                    color="orange"
-                    size="large"
-                    fluid
-                    icon="write"
-                    content="Create a Narrative!"
-                  />
+                  { props.token ?
+                    <Button
+                      style={{ marginTop: '2rem' }}
+                      as={Link}
+                      to={'/create-narrative'}
+                      color="orange"
+                      size="large"
+                      fluid
+                      icon="write"
+                      content="Create a Narrative!"
+                    /> :
+                    <Button
+                      style={{ marginTop: '2rem' }}
+                      as={Link}
+                      to={'/signup'}
+                      color="orange"
+                      size="large"
+                      fluid
+                      icon="write"
+                      content="Create a Narrative!"
+                    />}
+
                 </Container>
               </Grid.Column>
             </Grid>
@@ -107,6 +119,10 @@ function NarrativesWrapper(props) {
 }
 
 NarrativesWrapper.propTypes = {
+  token: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]),
   data: PropTypes.object,
   animate: PropTypes.bool,
   moreProps: PropTypes.object,

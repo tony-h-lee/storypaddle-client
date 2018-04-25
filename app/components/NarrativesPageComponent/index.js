@@ -32,6 +32,7 @@ function NarrativesPageComponent(props) {
           moreProps={{ actions: props.actions,
             paginationField: narrativesData.get('paginationField'),
             next: narrativesData.get('next'),
+            token: props.token,
             genreFilter: narrativesData.get('filter'),
             hasNext: narrativesData.get('hasNext'),
             moreLoading: narrativesData.get('moreLoading'),
@@ -43,6 +44,10 @@ function NarrativesPageComponent(props) {
 }
 
 NarrativesPageComponent.propTypes = {
+  token: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]),
   narrativesNewPage: PropTypes.object,
   narrativesTrendingPage: PropTypes.object,
   narratives: PropTypes.object,

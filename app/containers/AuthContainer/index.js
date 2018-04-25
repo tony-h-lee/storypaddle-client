@@ -92,12 +92,14 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             path="/narratives/new"
             component={RouteWrapper}
             innerComponent={NarrativesNewPage}
+            token={this.props.auth.get('token')}
           />
           <PropsRoute
             exact
             path="/narratives/trending"
             component={RouteWrapper}
             innerComponent={NarrativesTrendingPage}
+            token={this.props.auth.get('token')}
           />
           <PropsRoute
             exact
