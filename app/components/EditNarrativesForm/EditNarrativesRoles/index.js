@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Message, Icon, Header, Label, Segment } from 'semantic-ui-react';
+import { Form, Message, Icon, Header, Label, Segment, Divider } from 'semantic-ui-react';
 import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
 import { required } from 'components/FormValidation/syncValidation';
 // import styled from 'styled-components';
@@ -27,6 +27,13 @@ function EditNarrativesRoles(props) {
               </Header.Subheader>
             </Header>
 
+            <Header style={{ margin: '1rem 0' }}>
+              Gender
+              <Header.Subheader>
+                {fields.get(index).get('gender')}
+              </Header.Subheader>
+            </Header>
+
             <Header as="h4" style={{ margin: '1rem 0' }}>
               Description
               <Label color="green" size="tiny"> Editable </Label>
@@ -41,6 +48,7 @@ function EditNarrativesRoles(props) {
               type="text"
               validate={required}
             />
+            <Divider />
 
           </Segment>
         ))

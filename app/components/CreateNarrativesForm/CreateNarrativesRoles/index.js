@@ -16,6 +16,11 @@ import { required } from 'components/FormValidation/syncValidation';
 const getMaxRoles = (accountType) => accountType === MEMBER_MAX_CHARACTERS ? MEMBER_MAX_CHARACTERS :
   BASIC_MAX_CHARACTERS;
 
+const options = [
+  { key: 'female', text: 'Female', value: 'Female' },
+  { key: 'male', text: 'Male', value: 'Male' },
+  { key: 'nonbinary', text: 'Non-binary', value: 'Non-binary' },
+];
 
 function CreateNarrativesRoles(props) {
   const {
@@ -28,11 +33,12 @@ function CreateNarrativesRoles(props) {
         fields.map((role, index) => (
           <Card fluid key={role}>
             <Card.Content>
-              <Card.Description style={{ marginBottom: '0.7rem' }}>
+              <Card.Header style={{ marginBottom: '0.7rem' }}>
                 Character {index + 1}
-              </Card.Description>
+              </Card.Header>
               <SemanticField
                 name={`${role}.name`}
+                label="Character Name"
                 component={SemanticFormField}
                 as={Form.Input}
                 fluid
@@ -41,7 +47,19 @@ function CreateNarrativesRoles(props) {
                 validate={required}
               />
               <SemanticField
+                name={`${role}.gender`}
+                label={'Character Gender'}
+                options={options}
+                component={SemanticFormField}
+                fluid
+                selection
+                as={Form.Dropdown}
+                placeholder="Select Gender"
+                validate={required}
+              />
+              <SemanticField
                 name={`${role}.synopsis`}
+                label="Character Synopsis"
                 component={SemanticFormField}
                 as={Form.TextArea}
                 autoHeight

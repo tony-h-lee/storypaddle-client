@@ -20,14 +20,18 @@ function RoleItem(props) {
   return (moreProps.static ?
     (
       <Segment padded attached>
-        <Header> { item.get('name') } </Header>
+        <Header> { item.get('name') }
+          <Header.Subheader> { item.get('gender') } </Header.Subheader>
+        </Header>
         <p style={{ whiteSpace: 'pre-line' }}> { item.get('synopsis') } </p>
       </Segment>
     )
       :
     (
       <Segment padded clearing attached>
-        <Header> { item.get('name') } </Header>
+        <Header> { item.get('name') }
+          <Header.Subheader> { item.get('gender') } </Header.Subheader>
+        </Header>
         <p style={{ whiteSpace: 'pre-line' }}> { item.get('synopsis') } </p>
         {
           !item.get('user') ?

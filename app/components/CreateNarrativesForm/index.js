@@ -39,6 +39,7 @@ function CreateNarrativesForm(props) {
 
       <SemanticField
         name="title"
+        label={'Narrative Title'}
         component={SemanticFormField}
         as={Form.Input}
         fluid
@@ -48,6 +49,7 @@ function CreateNarrativesForm(props) {
       />
       <SemanticField
         name="synopsis"
+        label={'Narrative Synopsis'}
         component={SemanticFormField}
         as={Form.TextArea}
         autoHeight
@@ -57,6 +59,7 @@ function CreateNarrativesForm(props) {
       />
       <SemanticField
         name="genre"
+        label={'Select Genre'}
         options={options}
         component={SemanticFormField}
         fluid
@@ -80,10 +83,10 @@ function CreateNarrativesForm(props) {
       </Message>
 
       <Message info size="small">
-        <Message.Header> Add / Remove Characters </Message.Header>
+        <Message.Header> Create Roles </Message.Header>
         <Message.List
           items={[
-            'You must create at least two characters.',
+            'You must create at least two roles.',
             'Character 1 will be your role.',
             'Other roles can be filled by any users.',
             'You can make up to 4 roles.',

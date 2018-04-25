@@ -32,6 +32,7 @@ function NarrativesPageComponent(props) {
           moreProps={{ actions: props.actions,
             paginationField: narrativesData.get('paginationField'),
             next: narrativesData.get('next'),
+            genreFilter: narrativesData.get('filter'),
             hasNext: narrativesData.get('hasNext'),
             moreLoading: narrativesData.get('moreLoading'),
             hasPrevious: narrativesData.get('hasPrevious') }}
