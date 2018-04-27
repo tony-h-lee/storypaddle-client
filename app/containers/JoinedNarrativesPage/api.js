@@ -1,7 +1,7 @@
 import Request from 'utils/request';
 
 export function getJoinedNarratives(values) {
-  const url = 'http://localhost:9000/api/users/me/joined/';
+  const url = `http://localhost:9000/api/narratives?author=${values.author}`;
   return new Request()
     .setUrl(url)
     .setGet()

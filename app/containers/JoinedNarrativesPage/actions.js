@@ -17,13 +17,15 @@ import {
  * Dispatched on Join Narratives Page init
  *
  * @param  {string} -> token : The access token retrieved from auth
+ * @param  {string} -> author : The id of the authenticated user
  *
  * @return {object} : An action object with a type of LOAD_JOINED_REQUEST and token string
  */
-export function loadJoinedNarratives(token) {
+export function loadJoinedNarratives(token, author) {
   return {
     type: LOAD_JOINED_REQUEST,
     token,
+    author,
   };
 }
 

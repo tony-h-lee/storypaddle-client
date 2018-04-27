@@ -17,13 +17,15 @@ import {
  * Dispatched on My Narratives Page init
  *
  * @param  {string} -> token : The access token retrieved from auth
+ * @param  {string} -> author : The id of the user
  *
  * @return {object} : An action object with a type of MY_NARRATIVES_REQUEST and token string
  */
-export function loadMyNarratives(token) {
+export function loadMyNarratives(token, author) {
   return {
     type: MY_NARRATIVES_REQUEST,
     token,
+    author,
   };
 }
 

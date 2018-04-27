@@ -16,9 +16,9 @@ import {
 import * as api from './api';
 
 function* handleLoadMyNarratives(action) {
-  const { token } = action;
+  const { token, author } = action;
   try {
-    const response = yield call(api.getMyNarratives, { token });
+    const response = yield call(api.getMyNarratives, { token, author });
     yield put(loadMyNarrativesSuccess(response));
   } catch (error) {
     yield put(loadMyNarrativesFailure((error.message ? error.message : error)));

@@ -24,7 +24,7 @@ import saga from './saga';
 export class MyNarrativesPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
-    this.props.actions.loadMyNarratives(this.props.token);
+    this.props.actions.loadMyNarratives(this.props.token, this.props.user.get('id'));
   }
 
   render() {
@@ -49,6 +49,7 @@ MyNarrativesPage.propTypes = {
   token: PropTypes.string.isRequired,
   actions: PropTypes.object,
   ownedNarrativesPage: PropTypes.object,
+  user: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

@@ -15,9 +15,9 @@ import {
 import * as api from './api';
 
 function* handleLoadJoinedNarratives(action) {
-  const { token } = action;
+  const { token, author } = action;
   try {
-    const response = yield call(api.getJoinedNarratives, { token });
+    const response = yield call(api.getJoinedNarratives, { token, author });
     yield put(loadJoinedNarrativesSuccess(response));
   } catch (error) {
     yield put(loadJoinedNarrativesFailure(error.message ? error.message : error));
