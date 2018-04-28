@@ -65,7 +65,8 @@ function MyNarrativesItem(props) {
               confirm.confirmButton,
               confirm.cancelButton,
               confirm.size,
-              () => props.moreProps.actions.deleteNarrative(props.moreProps.token, props.item.get('id')),
+              () => props.moreProps.actions.deleteNarrative(props.moreProps.token, props.item.get('id'),
+                props.moreProps.userId),
               null
             )
           }

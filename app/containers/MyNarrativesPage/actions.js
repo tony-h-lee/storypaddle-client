@@ -69,14 +69,16 @@ export function loadMyNarrativesFailure(error) {
  *
  * @param  {string} -> token : The access token retrieved from auth
  * @param  {string} -> narrative : The id of the narrative to delete
+ * @param  {string} -> author : The id of the deleting user that owns the narrative
  *
  * @return {object} : An action object with a type of DELETE_NARRATIVE_REQUEST and token string and narrative id
  */
-export function deleteNarrative(token, narrative) {
+export function deleteNarrative(token, narrative, author) {
   return {
     type: DELETE_NARRATIVE_REQUEST,
     token,
     narrative,
+    author,
   };
 }
 

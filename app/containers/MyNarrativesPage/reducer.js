@@ -57,8 +57,10 @@ function myNarrativesPageReducer(state = initialState, action) {
     case DELETE_NARRATIVE_SUCCESS:
       return state
         .set('loading', false)
-        .update('narratives', (narratives) =>
-          narratives.filter((narrative) => narrative.get('id') !== action.narrative));
+        .set('hasNext', false)
+        .set('hasPrevious', false)
+        .set('next', false)
+        .set('previous', false);
     case DELETE_NARRATIVE_FAILURE:
       return state
         .set('loading', false)
