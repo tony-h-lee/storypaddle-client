@@ -18,14 +18,18 @@ import {
  *
  * @param  {string} -> token : The access token retrieved from auth
  * @param  {string} -> author : The id of the user
+ * @param  {string} -> next : The next cursor for the narrative pagination
+ * @param  {string} -> previous : The previous cursor for the narrative pagination
  *
  * @return {object} : An action object with a type of MY_NARRATIVES_REQUEST and token string
  */
-export function loadMyNarratives(token, author) {
+export function loadMyNarratives(token, author, next, previous) {
   return {
     type: MY_NARRATIVES_REQUEST,
     token,
     author,
+    next,
+    previous,
   };
 }
 

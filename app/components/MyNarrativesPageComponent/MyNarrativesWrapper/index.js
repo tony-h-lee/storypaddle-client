@@ -18,11 +18,43 @@ function MyNarrativesWrapper(props) {
     <div style={{ marginTop: '2rem' }}>
       {
         props.data.size > 0 ?
-          <List
-            items={props.data}
-            component={MyNarrativesItem}
-            moreProps={props.moreProps}
-          />
+          <div>
+            <List
+              items={props.data}
+              component={MyNarrativesItem}
+              moreProps={props.moreProps}
+            />
+            {
+              props.moreProps.hasNext ?
+                <Button
+                  style={{ marginTop: '2rem' }}
+                  as={Link}
+                  to={`/my-narratives?next=${props.moreProps.next ? props.moreProps.next : ''}`}
+                  primary
+                  size="large"
+                  floated="right"
+                >
+                  Next
+                  <Icon name="right chevron" />
+                </Button>
+                : null
+            }
+            {
+              props.moreProps.hasPrevious ?
+                <Button
+                  style={{ marginTop: '2rem' }}
+                  as={Link}
+                  to={`/my-narratives?previous=${props.moreProps.previous ? props.moreProps.previous : ''}`}
+                  primary
+                  size="large"
+                  floated="left"
+                >
+                  <Icon name="left chevron" />
+                  Previous
+                </Button>
+                : null
+            }
+          </div>
           :
           (
             <Grid

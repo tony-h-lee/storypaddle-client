@@ -18,6 +18,10 @@ const initialState = fromJS({
   narratives: false,
   loading: false,
   error: false,
+  next: false,
+  previous: false,
+  hasNext: false,
+  hasPrevious: false,
 });
 
 function myNarrativesPageReducer(state = initialState, action) {
@@ -25,14 +29,26 @@ function myNarrativesPageReducer(state = initialState, action) {
     case MY_NARRATIVES_REQUEST:
       return state
         .set('loading', true)
+        .set('hasNext', false)
+        .set('hasPrevious', false)
+        .set('next', false)
+        .set('previous', false)
         .set('error', false);
     case MY_NARRATIVES_SUCCESS:
       return state
         .set('loading', false)
-        .set('narratives', fromJS(action.narratives));
+        .set('hasNext', action.narratives.hasNext)
+        .set('hasPrevious', action.narratives.hasPrevious)
+        .set('next', action.narratives.next)
+        .set('previous', action.narratives.previous)
+        .set('narratives', fromJS(action.narratives.results));
     case MY_NARRATIVES_FAILURE:
       return state
         .set('loading', false)
+        .set('hasNext', false)
+        .set('hasPrevious', false)
+        .set('next', false)
+        .set('previous', false)
         .set('error', action.error);
     case DELETE_NARRATIVE_REQUEST:
       return state

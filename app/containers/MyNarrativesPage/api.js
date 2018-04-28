@@ -1,7 +1,9 @@
 import Request from 'utils/request';
 
 export function getMyNarratives(values) {
-  const url = `http://localhost:9000/api/narratives?author=${values.author}`;
+  const next = (values && values.next) || '';
+  const previous = (values && values.previous) || '';
+  const url = `http://localhost:9000/api/narratives?author=${values.author}&next=${next}&previous=${previous}`;
   return new Request()
     .setUrl(url)
     .setGet()

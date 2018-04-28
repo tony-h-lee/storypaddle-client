@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import { parse } from 'qs';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -24,7 +25,22 @@ import saga from './saga';
 export class MyNarrativesPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
-    this.props.actions.loadMyNarratives(this.props.token, this.props.user.get('id'));
+    if (this.props.location.search) {
+      const query = parse(this.props.location.search.substr(1));
+      this.props.actions.loadMyNarratives(this.props.token, this.props.user.get('id'),
+        query.next ? query.next : false, query.previous ? query.previous : false);
+    } else {
+      this.props.actions.loadMyNarratives(this.props.token, this.props.user.get('id'), false, false);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.search !== this.props.location.search) {
+      const query = parse(nextProps.location.search.substr(1));
+      this.props.actions.loadMyNarratives(this.props.token, this.props.user.get('id'),
+        query.next ? query.next : false, query.previous ? query.previous : false);
+    }
+    return false;
   }
 
   render() {
@@ -46,6 +62,7 @@ export class MyNarrativesPage extends React.PureComponent { // eslint-disable-li
 }
 
 MyNarrativesPage.propTypes = {
+  location: PropTypes.object,
   token: PropTypes.string.isRequired,
   actions: PropTypes.object,
   ownedNarrativesPage: PropTypes.object,

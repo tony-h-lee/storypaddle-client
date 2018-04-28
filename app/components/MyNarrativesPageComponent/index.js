@@ -35,6 +35,10 @@ function MyNarrativesPageComponent(props) {
             actions: { openConfirm: props.openConfirm, deleteNarrative: props.actions.deleteNarrative },
             userId: props.user ? props.user.get('id') : false,
             token: props.token,
+            next: props.ownedNarrativesPage.get('next'),
+            previous: props.ownedNarrativesPage.get('previous'),
+            hasNext: props.ownedNarrativesPage.get('hasNext'),
+            hasPrevious: props.ownedNarrativesPage.get('hasPrevious'),
           }}
         />
       </Container>

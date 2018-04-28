@@ -128,7 +128,6 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             redirectTo={'/'}
           />
           <PrivateRoute
-            exact
             path="/joined-narratives"
             component={RouteWrapper}
             innerComponent={JoinedNarrativesPage}
@@ -137,7 +136,6 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             redirectTo={'/'}
           />
           <PrivateRoute
-            exact
             path="/my-narratives"
             component={RouteWrapper}
             innerComponent={MyNarrativesPage}
