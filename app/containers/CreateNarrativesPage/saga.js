@@ -2,7 +2,6 @@ import { call, put, takeLatest, fork, apply } from 'redux-saga/effects';
 import formActionSaga from 'redux-form-saga';
 import history from 'history';
 import { getCreateNarrativesErrors } from 'utils/errorCode';
-import { setCreatedNarrative } from 'containers/AuthContainer/actions';
 import { setCreatedNarrativeNewList } from 'containers/NarrativesNewPage/actions';
 import * as api from './api';
 import {
@@ -18,7 +17,6 @@ function* handleCreateNarrativeSaga(action) {
     yield [
       put(createNarrative.success()),
       put(setCreatedNarrativeNewList(response)),
-      put(setCreatedNarrative(response.id)),
     ];
     yield apply(history, history.push, [`/narrative/${response.id}`]);
   } catch (error) {

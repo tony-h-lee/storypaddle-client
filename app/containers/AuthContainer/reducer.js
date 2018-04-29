@@ -12,10 +12,6 @@ import {
   GET_ME_REQUEST,
   GET_ME_SUCCESS,
   GET_ME_FAILURE,
-  SET_JOINED_NARRATIVE,
-  UNSET_JOINED_NARRATIVE,
-  SET_CREATED_NARRATIVE,
-  UNSET_CREATED_NARRATIVE,
 } from './constants';
 
 const initialState = fromJS({
@@ -50,20 +46,6 @@ function authContainerReducer(state = initialState, action) {
       return state
         .set('error', action.error)
         .set('loading', false);
-    case SET_CREATED_NARRATIVE:
-      return state
-        .updateIn(['user', 'ownedNarratives'], (narratives) => narratives.push(action.narrative));
-    case UNSET_CREATED_NARRATIVE:
-      return state
-        .updateIn(['user', 'ownedNarratives'], (narratives) =>
-          narratives.filter((narrative) => narrative !== action.narrative));
-    case UNSET_JOINED_NARRATIVE:
-      return state
-        .updateIn(['user', 'joinedNarratives'], (narratives) =>
-          narratives.filter((narrative) => narrative !== action.narrative));
-    case SET_JOINED_NARRATIVE:
-      return state
-        .updateIn(['user', 'joinedNarratives'], (narratives) => narratives.push(action.narrative));
     default:
       return state;
   }

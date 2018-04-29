@@ -1,6 +1,5 @@
 import { call, takeLatest, put, fork, apply } from 'redux-saga/effects';
 import history from 'history';
-import { unsetJoinedNarrative } from 'containers/AuthContainer/actions';
 import { leaveNarrative } from 'containers/NarrativeOverviewPage/actions';
 import { close } from 'containers/ConfirmModal/actions';
 import {
@@ -34,7 +33,6 @@ function* handleLeaveNarrative(action) {
       apply(history, history.push, ['/joined-narratives']),
       put(leaveNarrativeSuccess()),
       put(loadJoinedNarratives(token, author, false, false)),
-      put(unsetJoinedNarrative(narrative)),
       put(leaveNarrative(roleId)),
       put(close()),
     ];
