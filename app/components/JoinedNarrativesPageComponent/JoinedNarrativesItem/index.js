@@ -31,7 +31,7 @@ function JoinedNarrativesItem(props) {
     size: 'large',
   };
 
-  return props.item.get('roles').size > 0 ? (
+  return props.item.get('roles').size > 0 && myRole ? (
     <Segment padded attached>
       <h1> {myRole.get('name')} </h1>
       <Header
@@ -60,7 +60,8 @@ function JoinedNarrativesItem(props) {
               confirm.confirmButton,
               confirm.cancelButton,
               confirm.size,
-              () => props.moreProps.actions.leave(props.moreProps.token, props.item.get('id'), myRole.get('id')),
+              () => props.moreProps.actions.leave(props.moreProps.token, props.item.get('id'), myRole.get('id'),
+                props.moreProps.userId),
               null
             )
           }

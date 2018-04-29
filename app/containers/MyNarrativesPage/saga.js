@@ -32,7 +32,7 @@ function* handleDeleteNarrative(action) {
     yield call(api.deleteNarrative, { token, narrative });
     yield [
       apply(history, history.push, ['/my-narratives']),
-      put(deleteNarrativeSuccess(narrative)),
+      put(deleteNarrativeSuccess()),
       put(loadMyNarratives(token, author, false, false)),
       put(unsetDeletedNarrativeNewList(narrative)),
       put(unsetDeletedNarrativeTrendingList(narrative)),

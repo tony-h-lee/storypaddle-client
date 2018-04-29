@@ -18,6 +18,10 @@ const initialState = fromJS({
   narratives: false,
   loading: false,
   error: false,
+  next: false,
+  previous: false,
+  hasNext: false,
+  hasPrevious: false,
 });
 
 function joinedNarrativesPageReducer(state = initialState, action) {
@@ -26,15 +30,27 @@ function joinedNarrativesPageReducer(state = initialState, action) {
       return state
         .set('narratives', false)
         .set('loading', true)
+        .set('hasNext', false)
+        .set('hasPrevious', false)
+        .set('next', false)
+        .set('previous', false)
         .set('error', false);
     case LOAD_JOINED_SUCCESS:
       return state
         .set('loading', false)
-        .set('narratives', fromJS(action.narratives));
+        .set('hasNext', action.narratives.hasNext)
+        .set('hasPrevious', action.narratives.hasPrevious)
+        .set('next', action.narratives.next)
+        .set('previous', action.narratives.previous)
+        .set('narratives', fromJS(action.narratives.results));
     case LOAD_JOINED_FAILURE:
       return state
         .set('narratives', false)
         .set('loading', false)
+        .set('hasNext', false)
+        .set('hasPrevious', false)
+        .set('next', false)
+        .set('previous', false)
         .set('error', action.error);
     case LEAVE_NARRATIVE_REQUEST:
       return state
@@ -43,8 +59,10 @@ function joinedNarrativesPageReducer(state = initialState, action) {
     case LEAVE_NARRATIVE_SUCCESS:
       return state
         .set('loading', false)
-        .update('narratives', (narratives) =>
-          narratives.filter((narrative) => narrative.get('id') !== action.narrative));
+        .set('hasNext', false)
+        .set('hasPrevious', false)
+        .set('next', false)
+        .set('previous', false);
     case LEAVE_NARRATIVE_FAILURE:
       return state
         .set('loading', false)

@@ -86,14 +86,11 @@ export function deleteNarrative(token, narrative, author) {
 /**
  * Dispatched when user successfully deletes narrative
  *
- * @param  {string} -> narrative : The id of the narrative that was deleted
- *
  * @return {object} : An action object with a type of DELETE_NARRATIVE_SUCCESS
  */
-export function deleteNarrativeSuccess(narrative) {
+export function deleteNarrativeSuccess() {
   return {
     type: DELETE_NARRATIVE_SUCCESS,
-    narrative,
   };
 }
 

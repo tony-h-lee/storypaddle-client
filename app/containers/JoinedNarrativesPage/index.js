@@ -6,6 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { parse } from 'qs';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
@@ -24,7 +25,22 @@ import saga from './saga';
 export class JoinedNarrativesPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
-    this.props.actions.loadJoinedNarratives(this.props.token, this.props.user.get('id'));
+    if (this.props.location.search) {
+      const query = parse(this.props.location.search.substr(1));
+      this.props.actions.loadJoinedNarratives(this.props.token, this.props.user.get('id'),
+        query.next ? query.next : false, query.previous ? query.previous : false);
+    } else {
+      this.props.actions.loadJoinedNarratives(this.props.token, this.props.user.get('id'), false, false);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.search !== this.props.location.search) {
+      const query = parse(nextProps.location.search.substr(1));
+      this.props.actions.loadJoinedNarratives(this.props.token, this.props.user.get('id'),
+        query.next ? query.next : false, query.previous ? query.previous : false);
+    }
+    return false;
   }
 
   render() {
@@ -46,6 +62,7 @@ export class JoinedNarrativesPage extends React.PureComponent { // eslint-disabl
 }
 
 JoinedNarrativesPage.propTypes = {
+  location: PropTypes.object,
   token: PropTypes.string.isRequired,
   actions: PropTypes.object,
   joinedNarrativesPage: PropTypes.object,

@@ -36,6 +36,10 @@ function JoinedNarrativesPageComponent(props) {
             actions: { leave: props.actions.leaveNarrative, openConfirm: props.openConfirm },
             userId: props.user ? props.user.get('id') : false,
             token: props.token,
+            next: props.joinedNarrativesPage.get('next'),
+            previous: props.joinedNarrativesPage.get('previous'),
+            hasNext: props.joinedNarrativesPage.get('hasNext'),
+            hasPrevious: props.joinedNarrativesPage.get('hasPrevious'),
           }}
         />
       </Container>

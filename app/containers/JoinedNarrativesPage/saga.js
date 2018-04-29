@@ -1,4 +1,5 @@
-import { call, takeLatest, put, fork } from 'redux-saga/effects';
+import { call, takeLatest, put, fork, apply } from 'redux-saga/effects';
+import history from 'history';
 import { unsetJoinedNarrative } from 'containers/AuthContainer/actions';
 import { leaveNarrative } from 'containers/NarrativeOverviewPage/actions';
 import { close } from 'containers/ConfirmModal/actions';
@@ -7,6 +8,7 @@ import {
   LEAVE_NARRATIVE_REQUEST,
 } from './constants';
 import {
+  loadJoinedNarratives,
   loadJoinedNarrativesSuccess,
   loadJoinedNarrativesFailure,
   leaveNarrativeSuccess,
@@ -15,9 +17,9 @@ import {
 import * as api from './api';
 
 function* handleLoadJoinedNarratives(action) {
-  const { token, author } = action;
+  const { token, author, next, previous } = action;
   try {
-    const response = yield call(api.getJoinedNarratives, { token, author });
+    const response = yield call(api.getJoinedNarratives, { token, author, next, previous });
     yield put(loadJoinedNarrativesSuccess(response));
   } catch (error) {
     yield put(loadJoinedNarrativesFailure(error.message ? error.message : error));
@@ -25,11 +27,13 @@ function* handleLoadJoinedNarratives(action) {
 }
 
 function* handleLeaveNarrative(action) {
-  const { token, narrative, roleId } = action;
+  const { token, narrative, roleId, author } = action;
   try {
     yield call(api.leaveNarrative, { token, narrative });
     yield [
-      put(leaveNarrativeSuccess(narrative)),
+      apply(history, history.push, ['/joined-narratives']),
+      put(leaveNarrativeSuccess()),
+      put(loadJoinedNarratives(token, author, false, false)),
       put(unsetJoinedNarrative(narrative)),
       put(leaveNarrative(roleId)),
       put(close()),

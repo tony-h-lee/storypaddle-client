@@ -29,7 +29,8 @@ function NarrativesPageComponent(props) {
           payload={props.narratives}
           error={narrativesData.get('error')}
           loading={narrativesData.get('loading')}
-          moreProps={{ actions: props.actions,
+          moreProps={{
+            actions: props.actions,
             paginationField: narrativesData.get('paginationField'),
             next: narrativesData.get('next'),
             token: props.token,
