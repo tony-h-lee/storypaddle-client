@@ -13,7 +13,6 @@ import {
   GET_MORE_NARRATIVES_SUCCESS,
   GET_MORE_NARRATIVES_FAILURE,
   UNSET_DELETED_NARRATIVE,
-  SET_GENRE_FILTER,
   TRENDING,
 } from './constants';
 
@@ -26,7 +25,6 @@ const initialState = fromJS({
   previous: false,
   hasNext: false,
   hasPrevious: false,
-  filter: false,
   paginationField: TRENDING,
 });
 
@@ -86,9 +84,6 @@ function narrativesPageReducer(state = initialState, action) {
       return state
         .update('narratives', (narratives) =>
           narratives.filter((narrative) => narrative.id !== action.narrative));
-    case SET_GENRE_FILTER:
-      return state
-        .set('filter', action.genre === 'All' ? false : action.genre);
     default:
       return state;
   }

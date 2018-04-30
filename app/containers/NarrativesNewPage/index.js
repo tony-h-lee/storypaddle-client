@@ -15,7 +15,7 @@ import ErrorPage from 'containers/ErrorPage';
 import ErrorWrapper from 'components/ErrorWrapper';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectNarrativesNewPage, { makeSelectNarrativesList } from './selectors';
+import makeSelectNarrativesNewPage from './selectors';
 import * as narrativeActions from './actions';
 import reducer from './reducer';
 import saga from './saga';
@@ -53,7 +53,6 @@ NarrativesNewPage.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   narrativesNewPage: makeSelectNarrativesNewPage(),
-  narratives: makeSelectNarrativesList(),
 });
 
 function mapDispatchToProps(dispatch) {

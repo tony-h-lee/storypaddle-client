@@ -26,7 +26,7 @@ function NarrativesPageComponent(props) {
               header={'Sorry, an error occurred!'}
             />
           }
-          payload={props.narratives}
+          payload={narrativesData.get('narratives')}
           error={narrativesData.get('error')}
           loading={narrativesData.get('loading')}
           moreProps={{
@@ -51,7 +51,6 @@ NarrativesPageComponent.propTypes = {
   ]),
   narrativesNewPage: PropTypes.object,
   narrativesTrendingPage: PropTypes.object,
-  narratives: PropTypes.object,
   actions: PropTypes.object,
 };
 
