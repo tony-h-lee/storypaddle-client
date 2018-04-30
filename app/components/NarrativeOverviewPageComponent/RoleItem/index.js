@@ -38,7 +38,6 @@ function RoleItem(props) {
             <Button
               primary
               compact
-              floated="right"
               onClick={() => moreProps
                 .join(moreProps.id, item.get('id'), moreProps.token, moreProps.user)}
             >

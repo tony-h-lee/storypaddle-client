@@ -28,7 +28,7 @@ function NarrativeOverviewPageComponent(props) {
         </div>
         <Button
           as={Link}
-          to={`/scene/${narrative.get('id')}`}
+          to={`/scene/${narrative.get('scene')}`}
           icon="file text"
           primary
           content="Read"
