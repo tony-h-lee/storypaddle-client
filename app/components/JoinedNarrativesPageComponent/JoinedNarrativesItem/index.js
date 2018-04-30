@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Segment, Header, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
 import { Meta, Warning } from 'components/NarrativeHeaderComponents';
 // import styled from 'styled-components';
 
@@ -47,6 +48,7 @@ function JoinedNarrativesItem(props) {
           <Warning> Explicit </Warning>
           : null
       }
+      <Meta style={{ margin: '0' }}> Published on {format(props.item.get('createdAt'), 'MMMM D, YYYY')} </Meta>
 
       <Button.Group style={{ marginTop: '1rem' }} basic size="medium">
         <Button as={Link} to={`/scene/${props.item.get('id')}`} icon="file text" content="Read" />
