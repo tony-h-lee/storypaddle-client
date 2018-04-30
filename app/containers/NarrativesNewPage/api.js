@@ -3,7 +3,8 @@ import { NEW } from './constants';
 
 export function getNewNarratives(values) {
   const next = (values && values.next) || '';
-  const url = `http://localhost:9000/api/narratives?pagination=${NEW}&next=${next}`;
+  const limit = 20;
+  const url = `http://localhost:9000/api/narratives?limit=${limit}pagination=${NEW}&next=${next}`;
   return new Request()
     .setUrl(url)
     .setGet()

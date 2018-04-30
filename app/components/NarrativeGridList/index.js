@@ -8,8 +8,6 @@ import React from 'react';
 import { Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-const PlaceholderBox = (<div style={{ width: '200px', height: '200px' }} />);
-
 function NarrativeGridList(props) {
   const ComponentToRender = props.component;
   let content = (<div></div>);
@@ -33,11 +31,6 @@ function NarrativeGridList(props) {
       doubling
     >
       {content}
-      {PlaceholderBox}
-      {PlaceholderBox}
-      {PlaceholderBox}
-      {PlaceholderBox}
-      {PlaceholderBox}
     </Grid>
   );
 }

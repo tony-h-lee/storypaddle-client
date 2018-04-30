@@ -17,4 +17,4 @@ export const UNSET_DELETED_NARRATIVE = 'app/NarrativesTrendingPage/UNSET_DELETED
 
 export const SET_GENRE_FILTER = 'app/NarrativesTrendingPage/SET_GENRE_FILTER';
 
-export const TRENDING = 'updatedAt';
+export const TRENDING = 'views';

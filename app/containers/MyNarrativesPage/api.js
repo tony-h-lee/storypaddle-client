@@ -3,7 +3,8 @@ import Request from 'utils/request';
 export function getMyNarratives(values) {
   const next = (values && values.next) || '';
   const previous = (values && values.previous) || '';
-  const url = `http://localhost:9000/api/narratives?author=${values.author}&next=${next}&previous=${previous}`;
+  const limit = 5;
+  const url = `http://localhost:9000/api/narratives?limit=${limit}&author=${values.author}&next=${next}&previous=${previous}`;
   return new Request()
     .setUrl(url)
     .setGet()
