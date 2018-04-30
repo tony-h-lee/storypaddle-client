@@ -9,21 +9,17 @@ import {
   GET_NARRATIVES_REQUEST,
   GET_NARRATIVES_SUCCESS,
   GET_NARRATIVES_FAILURE,
-  SET_PAGINATED_FIELD,
   UNSET_DELETED_NARRATIVE,
-  TRENDING,
 } from './constants';
 
 const initialState = fromJS({
   narratives: false,
   loading: false,
-  moreLoading: false,
   error: false,
   next: false,
   previous: false,
   hasNext: false,
   hasPrevious: false,
-  paginatedField: TRENDING,
 });
 
 function narrativesPageReducer(state = initialState, action) {
@@ -52,9 +48,6 @@ function narrativesPageReducer(state = initialState, action) {
         .set('previous', false)
         .set('loading', false)
         .set('error', action.error);
-    case SET_PAGINATED_FIELD:
-      return state
-        .set('paginatedField', action.field);
     case UNSET_DELETED_NARRATIVE:
       return state
         .update('narratives', (narratives) =>

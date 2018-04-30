@@ -10,28 +10,11 @@ import { Transition, Grid, Container, Icon, Button } from 'semantic-ui-react';
 import NarrativeGridList from 'components/NarrativeGridList';
 import { Link } from 'react-router-dom';
 import NarrativesItem from 'components/NarrativesPageComponent/NarrativesItem';
-import { TRENDING, NEW } from 'containers/NarrativesPage/constants';
 // import styled from 'styled-components';
 
 function NarrativesWrapper(props) {
   const content = (
     <div style={{ marginTop: '2rem', height: '100%', minHeight: '100vh' }}>
-      <Button.Group basic style={{ marginBottom: '2rem' }}>
-        <Button
-          as={Link}
-          to={`/narratives?paginatedField=${TRENDING}`}
-          active={props.moreProps.paginatedField === TRENDING}
-          onClick={() => props.moreProps.actions.setPaginatedField(TRENDING)}
-        >Trending
-        </Button>
-        <Button
-          as={Link}
-          to={`/narratives?paginatedField=${NEW}`}
-          active={props.moreProps.paginatedField === NEW}
-          onClick={() => props.moreProps.actions.setPaginatedField(NEW)}
-        >New
-        </Button>
-      </Button.Group>
       {
         props.data.size > 0 ?
           <div>
@@ -60,7 +43,7 @@ function NarrativesWrapper(props) {
                 <Button
                   style={{ marginTop: '2rem' }}
                   as={Link}
-                  to={`/my-narratives?previous=${props.moreProps.previous ? props.moreProps.previous : ''}`}
+                  to={`/narratives?previous=${props.moreProps.previous ? props.moreProps.previous : ''}`}
                   primary
                   size="large"
                   floated="left"

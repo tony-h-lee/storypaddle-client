@@ -26,18 +26,16 @@ export class NarrativesPage extends React.PureComponent { // eslint-disable-line
   componentWillMount() {
     if (this.props.location.search) {
       const query = parse(this.props.location.search.substr(1));
-      this.props.actions.getNarratives(this.props.narrativesPage.get('paginatedField'),
-        query.next ? query.next : false, query.previous ? query.previous : false);
+      this.props.actions.getNarratives(query.next ? query.next : false, query.previous ? query.previous : false);
     } else {
-      this.props.actions.getNarratives(this.props.narrativesPage.get('paginatedField'), false, false);
+      this.props.actions.getNarratives(false, false);
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.search !== this.props.location.search) {
       const query = parse(nextProps.location.search.substr(1));
-      this.props.actions.getNarratives(this.props.narrativesPage.get('paginatedField'),
-        query.next ? query.next : false, query.previous ? query.previous : false);
+      this.props.actions.getNarratives(query.next ? query.next : false, query.previous ? query.previous : false);
     }
     return false;
   }

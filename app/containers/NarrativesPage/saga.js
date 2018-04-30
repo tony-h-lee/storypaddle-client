@@ -9,10 +9,10 @@ import {
 import * as api from './api';
 
 function* handleGetNarratives(action) {
-  const { paginatedField, next, previous } = action;
+  const { next, previous } = action;
   try {
-    const response = yield call(api.getNarratives, { paginatedField, next, previous });
-    yield put(getNarrativesSuccess(response, {}));
+    const response = yield call(api.getNarratives, { next, previous });
+    yield put(getNarrativesSuccess(response));
   } catch (error) {
     yield put(getNarrativesFailure(error.message ? error.message : error));
   }
