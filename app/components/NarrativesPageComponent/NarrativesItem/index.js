@@ -25,16 +25,16 @@ function NarrativesItem(props) {
   return (
     <Card
       as={Link}
-      to={`/narrative/${props.item.id}`}
+      to={`/narrative/${props.item.get('id')}`}
       style={{ width: '200px', height: '200px', margin: '1rem', background: `url(${Thumb})` }}
     >
       <Card.Content style={{ background: 'rgba(0,0,0,0.75)' }}>
-        <Details style={{ color: 'rgb(255,255,255)' }}> { props.item.title } </Details>
-        <Details style={{ color: 'rgb(255,255,255)' }}> { props.item.genre } </Details>
-        { props.item.explicit ?
+        <Details style={{ color: 'rgb(255,255,255)' }}> { props.item.get('title') } </Details>
+        <Details style={{ color: 'rgb(255,255,255)' }}> { props.item.get('genre') } </Details>
+        { props.item.get('explicit') ?
           <Details style={{ color: 'rgb(255,71,83)', fontSize: '0.95rem', zIndex: 1 }}> Explicit </Details> : null }
         <Details style={{ color: 'rgb(255,255,255)', fontSize: '0.95rem' }}>
-          { distanceInWordsToNow(props.item.createdAt)} ago </Details>
+          { distanceInWordsToNow(props.item.get('createdAt'))} ago </Details>
       </Card.Content>
     </Card>
   );

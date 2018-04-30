@@ -6,36 +6,29 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Transition, Grid, Container, Icon, Button, Loader } from 'semantic-ui-react';
+import { Transition, Grid, Container, Icon, Button } from 'semantic-ui-react';
 import NarrativeGridList from 'components/NarrativeGridList';
 import { Link } from 'react-router-dom';
 import NarrativesItem from 'components/NarrativesPageComponent/NarrativesItem';
-import { NEW } from 'containers/NarrativesNewPage/constants';
-import { TRENDING } from 'containers/NarrativesTrendingPage/constants';
-import Waypoint from 'react-waypoint';
+import { TRENDING, NEW } from 'containers/NarrativesPage/constants';
 // import styled from 'styled-components';
 
 function NarrativesWrapper(props) {
-  const getMoreNarratives = () => {
-    if (!(!props.moreProps.hasNext && props.moreProps.hasPrevious)) {
-      return actions.getMoreNarratives(props.moreProps.next);
-    }
-    return false;
-  };
-  const actions = props.moreProps.actions;
   const content = (
     <div style={{ marginTop: '2rem', height: '100%', minHeight: '100vh' }}>
       <Button.Group basic style={{ marginBottom: '2rem' }}>
         <Button
           as={Link}
-          to={'/narratives/trending'}
-          active={props.moreProps.paginationField === TRENDING}
+          to={`/narratives?paginatedField=${TRENDING}`}
+          active={props.moreProps.paginatedField === TRENDING}
+          onClick={() => props.moreProps.actions.setPaginatedField(TRENDING)}
         >Trending
         </Button>
         <Button
           as={Link}
-          to={'/narratives/new'}
-          active={props.moreProps.paginationField === NEW}
+          to={`/narratives?paginatedField=${NEW}`}
+          active={props.moreProps.paginatedField === NEW}
+          onClick={() => props.moreProps.actions.setPaginatedField(NEW)}
         >New
         </Button>
       </Button.Group>
@@ -47,16 +40,36 @@ function NarrativesWrapper(props) {
               component={NarrativesItem}
               moreProps={props.moreProps}
             />
-            <Waypoint
-              onEnter={getMoreNarratives}
-              topOffset={'80%'}
-            />
-            <Loader
-              size="medium"
-              inline="centered"
-              active
-              style={{ visibility: props.moreProps.moreLoading ? 'visible' : 'hidden' }}
-            />
+            {
+              props.moreProps.hasNext ?
+                <Button
+                  style={{ marginTop: '2rem' }}
+                  as={Link}
+                  to={`/narratives?next=${props.moreProps.next ? props.moreProps.next : ''}`}
+                  primary
+                  size="large"
+                  floated="right"
+                >
+                  Next
+                  <Icon name="right chevron" />
+                </Button>
+                : null
+            }
+            {
+              props.moreProps.hasPrevious ?
+                <Button
+                  style={{ marginTop: '2rem' }}
+                  as={Link}
+                  to={`/my-narratives?previous=${props.moreProps.previous ? props.moreProps.previous : ''}`}
+                  primary
+                  size="large"
+                  floated="left"
+                >
+                  <Icon name="left chevron" />
+                  Previous
+                </Button>
+                : null
+            }
           </div>
           :
           (

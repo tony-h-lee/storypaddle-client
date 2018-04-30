@@ -1,8 +1,7 @@
 import { call, takeLatest, put, fork, apply } from 'redux-saga/effects';
 import history from 'history';
 import { close } from 'containers/ConfirmModal/actions';
-import { unsetDeletedNarrativeNewList } from 'containers/NarrativesNewPage/actions';
-import { unsetDeletedNarrativeTrendingList } from 'containers/NarrativesTrendingPage/actions';
+import { unsetDeletedNarrativeList } from 'containers/NarrativesPage/actions';
 import {
   MY_NARRATIVES_REQUEST,
   DELETE_NARRATIVE_REQUEST,
@@ -34,8 +33,7 @@ function* handleDeleteNarrative(action) {
       apply(history, history.push, ['/my-narratives']),
       put(deleteNarrativeSuccess()),
       put(loadMyNarratives(token, author, false, false)),
-      put(unsetDeletedNarrativeNewList(narrative)),
-      put(unsetDeletedNarrativeTrendingList(narrative)),
+      put(unsetDeletedNarrativeList(narrative)),
       put(close()),
     ];
   } catch (error) {

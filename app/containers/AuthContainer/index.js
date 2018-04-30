@@ -20,8 +20,7 @@ import SignupPage from 'containers/SignupPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import ForgotPasswordPage from 'containers/ForgotPasswordPage/Loadable';
 import ResetPasswordPage from 'containers/ResetPasswordPage/Loadable';
-import NarrativesNewPage from 'containers/NarrativesNewPage/Loadable';
-import NarrativesTrendingPage from 'containers/NarrativesTrendingPage/Loadable';
+import NarrativesPage from 'containers/NarrativesPage/Loadable';
 import ConfirmModal from 'containers/ConfirmModal/Loadable';
 
 import NarrativeOverviewPage from 'containers/NarrativeOverviewPage/Loadable';
@@ -89,16 +88,9 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
           />
           <PropsRoute
             exact
-            path="/narratives/new"
+            path="/narratives"
             component={RouteWrapper}
-            innerComponent={NarrativesNewPage}
-            token={this.props.auth.get('token')}
-          />
-          <PropsRoute
-            exact
-            path="/narratives/trending"
-            component={RouteWrapper}
-            innerComponent={NarrativesTrendingPage}
+            innerComponent={NarrativesPage}
             token={this.props.auth.get('token')}
           />
           <PropsRoute
