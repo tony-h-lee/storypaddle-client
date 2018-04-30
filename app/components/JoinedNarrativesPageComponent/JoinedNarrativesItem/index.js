@@ -51,7 +51,7 @@ function JoinedNarrativesItem(props) {
       <Meta style={{ margin: '0' }}> Published on {format(props.item.get('createdAt'), 'MMMM D, YYYY')} </Meta>
 
       <Button.Group style={{ marginTop: '1rem' }} basic size="medium">
-        <Button as={Link} to={`/scene/${props.item.get('id')}`} icon="file text" content="Read" />
+        <Button as={Link} to={`/scene/${props.item.get('scene')}`} icon="file text" content="Read" />
         <Button
           icon="user close"
           content="Leave Role"

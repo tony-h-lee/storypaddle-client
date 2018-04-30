@@ -50,7 +50,7 @@ function MyNarrativesItem(props) {
       <Button.Group style={{ marginTop: '1rem' }} basic size="medium">
         <Button
           as={Link}
-          to={`/scene/${props.item.get('id')}`}
+          to={`/scene/${props.item.get('scene')}`}
           icon="file text"
           content="Read"
         />

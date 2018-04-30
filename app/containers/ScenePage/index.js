@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose, bindActionCreators } from 'redux';
-import { ScenePageComponent } from 'components/ScenePageComponent';
+import ScenePageComponent from 'components/ScenePageComponent/';
 import NarrativeOverviewNotFound from 'components/NarrativeOverviewPageComponent/NarrativeOverviewNotFound';
 import ErrorWrapper from 'components/ErrorWrapper';
 import ErrorPage from 'containers/ErrorPage';
