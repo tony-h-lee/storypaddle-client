@@ -33,7 +33,7 @@ function JoinedNarrativesItem(props) {
 
   return props.item.get('roles').size > 0 && myRole ? (
     <Segment padded attached>
-      <h1> {myRole.get('name')} </h1>
+      <Header> {myRole.get('name')} </Header>
       <Header
         as={Link}
         to={`/narrative/${props.item.get('id')}`}
