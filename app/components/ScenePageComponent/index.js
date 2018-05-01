@@ -15,18 +15,22 @@ import ScenePageWrapper from './ScenePageWrapper';
 
 function ScenePageComponent(props) {
   return (
-    <Container textAlign="left">
+    <Container text textAlign="left">
       <AsyncWrapper
+        animate={false}
+        spinner={false}
         innerComponent={ScenePageWrapper}
         errorComponent={
           <ErrorComponent
             header={'Sorry, an error occurred!'}
           />
         }
-        payload={props.scenePage.get('scene')}
+        payload={{ scene: props.scenePage.get('scene'), comments: props.scenePage.get('comments') }}
         error={props.scenePage.get('error')}
         loading={props.scenePage.get('loading')}
         moreProps={{
+          commentsLoading: props.scenePage.get('commentsLoading'),
+          commentsError: props.scenePage.get('commentsError'),
           actions: props.actions,
           next: props.scenePage.get('next'),
           previous: props.scenePage.get('previous'),

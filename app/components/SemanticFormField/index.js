@@ -21,7 +21,7 @@ export const SemanticField = styled(Field)`
 `;
 
 function SemanticFormField({
-  input, type, label, placeholder, icon,
+  input, type, label, placeholder, icon, displayError = true,
   meta: { touched, error },
   as: As = Input, ...props }) {
   const handleChange = (e, { value }) => input.onChange(value);
@@ -35,11 +35,11 @@ function SemanticFormField({
         icon={icon}
         label={label}
         placeholder={placeholder}
-        error={touched && error ? true : null}
+        error={touched && error && displayError ? true : null}
         onChange={handleChange}
       />
       {
-        touched && error &&
+        touched && error && displayError &&
         (<Label basic color="red" pointing> {error} </Label>)
       }
     </Form.Field>
@@ -47,6 +47,7 @@ function SemanticFormField({
 }
 
 SemanticFormField.propTypes = {
+  displayError: PropTypes.bool,
   as: PropTypes.any,
   input: PropTypes.object,
   type: PropTypes.string,

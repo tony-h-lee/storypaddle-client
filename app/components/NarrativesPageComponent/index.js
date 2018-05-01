@@ -19,6 +19,7 @@ function NarrativesPageComponent(props) {
     <DashboardSectionWrapper>
       <Container textAlign="left">
         <AsyncWrapper
+          animate={false}
           spinner
           innerComponent={NarrativesWrapper}
           errorComponent={

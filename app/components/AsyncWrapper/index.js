@@ -36,8 +36,8 @@ function AsyncWrapper(props) {
 }
 
 AsyncWrapper.propTypes = {
-  spinner: PropTypes.bool,
-  animate: PropTypes.bool,
+  spinner: PropTypes.bool.isRequired,
+  animate: PropTypes.bool.isRequired,
   payload: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.bool,
@@ -46,7 +46,7 @@ AsyncWrapper.propTypes = {
     PropTypes.string,
     PropTypes.bool,
   ]),
-  loading: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
   innerComponent: PropTypes.func.isRequired,
   errorComponent: PropTypes.node,
   moreProps: PropTypes.object,
