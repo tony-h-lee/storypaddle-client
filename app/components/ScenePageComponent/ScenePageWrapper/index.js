@@ -31,7 +31,7 @@ const panes = [
 
 function ScenePageWrapper(props) {
   // const scene = props.data.scene;
-  const isAuthAndRole = props.token;
+  const isAuthAndRole = props.moreProps.token;
   return (
     <div>
       <AsyncWrapper
@@ -64,10 +64,6 @@ function ScenePageWrapper(props) {
 }
 
 ScenePageWrapper.propTypes = {
-  token: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.string,
-  ]),
   data: PropTypes.object,
   moreProps: PropTypes.object,
 };
