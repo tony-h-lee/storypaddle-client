@@ -23,6 +23,7 @@ function NarrativeOverviewRoles(props) {
           static: props.static,
           join: props.join,
           id: props.id,
+          sceneId: props.sceneId,
           token: props.token,
           user: props.user,
           error: props.error,
@@ -50,6 +51,7 @@ NarrativeOverviewRoles.propTypes = {
     PropTypes.object,
     PropTypes.bool,
   ]),
+  sceneId: PropTypes.string,
 };
 
 export default NarrativeOverviewRoles;

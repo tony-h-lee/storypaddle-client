@@ -44,6 +44,7 @@ function NarrativeOverviewPageComponent(props) {
               error={props.narrativeOverviewPage.get('error')}
               roles={narrative.get('roles')}
               id={narrative.get('id')}
+              sceneId={narrative.get('scene')}
               token={props.token}
               user={props.user ? props.user.get('id') : null}
               join={props.actions.joinNarrative}

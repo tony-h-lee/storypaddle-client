@@ -66,17 +66,19 @@ export function getNarrativeFailure(error) {
  * @param {string} -> roleId : The id of the role to join.
  * @param {string} -> token : Auth token required to join a role.
  * @param {string} -> user : User id of the requesting user.
+ * @param {string} -> sceneId : The corresponding scene id for this narrative.
  *
  * @return {object} : An action object with a type of GET_NARRATIVE_REQUEST and the name of the
  * role and the Narrative id
  */
-export function joinNarrative(narrative, roleId, token, user) {
+export function joinNarrative(narrative, roleId, token, user, sceneId) {
   return {
     type: JOIN_NARRATIVE_REQUEST,
     narrative,
     roleId,
     token,
     user,
+    sceneId,
   };
 }
 

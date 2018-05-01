@@ -14,7 +14,7 @@ import NarrativesItem from 'components/NarrativesPageComponent/NarrativesItem';
 
 function NarrativesWrapper(props) {
   const content = (
-    <div style={{ marginTop: '2rem', height: '100%', minHeight: '100vh' }}>
+    <div style={{ marginTop: '2rem', height: '100%', minHeight: '50vh' }}>
       {
         props.data.size > 0 ?
           <div>

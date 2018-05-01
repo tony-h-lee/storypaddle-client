@@ -39,7 +39,7 @@ function RoleItem(props) {
               primary
               compact
               onClick={() => moreProps
-                .join(moreProps.id, item.get('id'), moreProps.token, moreProps.user)}
+                .join(moreProps.id, item.get('id'), moreProps.token, moreProps.user, moreProps.sceneId)}
             >
               Join as {item.get('name')}
             </Button>
