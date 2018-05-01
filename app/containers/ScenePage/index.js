@@ -22,12 +22,15 @@ import reducer from './reducer';
 import saga from './saga';
 
 export class ScenePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  componentWillMount() {
+    this.props.actions.getScene(this.props.match.params.id);
+  }
   render() {
     return (
       <div>
         <Helmet>
-          <title> {this.props.scenePage.get('narrative').title !== undefined ?
-            this.props.scenePage.get('narrative').title : 'Storypaddle'} </title>
+          <title> {this.props.scenePage.getIn(['scene', 'narrative', 'title']) !== undefined ?
+            this.props.scenePage.getIn(['scene', 'narrative', 'title']) : 'Storypaddle'} </title>
           <meta name="description" content="Begin your story!" />
         </Helmet>
         <ErrorWrapper
@@ -43,7 +46,9 @@ export class ScenePage extends React.PureComponent { // eslint-disable-line reac
 }
 
 ScenePage.propTypes = {
+  actions: PropTypes.object,
   scenePage: PropTypes.object,
+  match: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
