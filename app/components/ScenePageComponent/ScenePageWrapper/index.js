@@ -31,9 +31,7 @@ const panes = [
 
 function ScenePageWrapper(props) {
   // const scene = props.data.scene;
-  if (props.token) {
-    console.log('logged in');
-  }
+  const isAuthAndRole = props.token;
   return (
     <div>
       <AsyncWrapper
@@ -50,9 +48,17 @@ function ScenePageWrapper(props) {
         loading={props.moreProps.commentsLoading}
         moreProps={props.moreProps}
       />
-      <Tab
-        panes={panes}
-      />
+      {
+        isAuthAndRole ?
+          <Tab
+            panes={panes}
+          />
+          :
+          <div>
+            Suggest roles if any
+          </div>
+      }
+
     </div>
   );
 }
