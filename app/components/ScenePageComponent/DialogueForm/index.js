@@ -92,7 +92,7 @@ DialogueForm.propTypes = {
 
 export default compose(
   reduxForm({
-    form: 'createNarrativesForm',
+    form: 'dialogueForm',
     enableReinitialize: true,
   })
 )(DialogueForm);

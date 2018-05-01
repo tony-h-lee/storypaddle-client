@@ -82,7 +82,7 @@ NarrationForm.propTypes = {
 
 export default compose(
   reduxForm({
-    form: 'createNarrativesForm',
+    form: 'narrationForm',
     enableReinitialize: true,
   })
 )(NarrationForm);
