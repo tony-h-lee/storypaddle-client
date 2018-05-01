@@ -31,6 +31,12 @@ function RoleItem(props) {
       <Segment padded clearing attached>
         <Header> { item.get('name') }
           <Header.Subheader> { item.get('gender') } </Header.Subheader>
+          {
+            item.get('user') ?
+              <Header.Subheader style={{ color: '#912d2b' }}> Unavailable </Header.Subheader>
+              :
+              <Header.Subheader style={{ color: '#4a8e53' }}> Available </Header.Subheader>
+          }
         </Header>
         <p style={{ whiteSpace: 'pre-line' }}> { item.get('synopsis') } </p>
         {
