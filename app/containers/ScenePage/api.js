@@ -8,3 +8,24 @@ export function getScene(values) {
     .addHeader({ 'Content-Type': 'application/json' })
     .go();
 }
+
+export function getComments(values) {
+  const url = `http://localhost:9000/api/comments/${values.id}`;
+  return new Request()
+    .setUrl(url)
+    .setGet()
+    .addHeader({ 'Content-Type': 'application/json' })
+    .go();
+}
+
+export function getMoreComments(values) {
+  const next = (values && values.next) || '';
+  const previous = (values && values.previous) || '';
+  const limit = 10;
+  const url = `http://localhost:9000/api/comments/${values.id}?next=${next}&previous=${previous}&limit=${limit}`;
+  return new Request()
+    .setUrl(url)
+    .setGet()
+    .addHeader({ 'Content-Type': 'application/json' })
+    .go();
+}
