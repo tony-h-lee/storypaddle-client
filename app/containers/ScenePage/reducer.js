@@ -71,7 +71,7 @@ function scenePageReducer(state = initialState, action) {
         .set('hasPrevious', action.comments.hasPrevious)
         .set('next', action.comments.next)
         .set('previous', action.comments.previous)
-        .set('comments', fromJS(action.comments.results));
+        .set('comments', List(action.comments.results));
     case GET_COMMENTS_FAILURE:
       return state
         .set('comments', false)
@@ -99,7 +99,7 @@ function scenePageReducer(state = initialState, action) {
         .set('commentsError', action.error);
     case POST_NARRATION_COMMENT_SUCCESS:
       return state
-        .update('comments', (comments) => comments.concat(List(action.comments.results)));
+        .update('comments', (comments) => comments.push(fromJS(action.payload)));
     case POST_NARRATION_COMMENT_FAILURE:
       return state
         .set('commentsError', action.error);
