@@ -30,8 +30,8 @@ const panes = [
 ];
 
 function ScenePageWrapper(props) {
-  // const scene = props.data.scene;
-  const isAuthAndRole = props.moreProps.token && props.data.scene.getIn(['narrative', 'roles'])
+  const scene = props.data.scene;
+  const isAuthAndRole = props.moreProps.token && scene && scene.getIn(['narrative', 'roles'])
       .some((role) => role.get('user') === props.moreProps.user.get('id'));
   return (
     <div>
@@ -47,7 +47,7 @@ function ScenePageWrapper(props) {
         payload={props.data.comments}
         error={props.moreProps.commentsError}
         loading={props.moreProps.commentsLoading}
-        moreProps={props.moreProps}
+        moreProps={{ ...props.moreProps, sceneId: props.data.scene.get('id') }}
       />
       {
         isAuthAndRole ?

@@ -6,18 +6,36 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Container, Icon } from 'semantic-ui-react';
+import { Grid, Container, Icon, Loader } from 'semantic-ui-react';
 import List from 'components/List';
 import CommentItem from 'components/ScenePageComponent/CommentItem';
+import Waypoint from 'react-waypoint';
 // import styled from 'styled-components';
 
 
 function CommentsWrapper(props) {
+  const getMoreComments = () => {
+    if (!(!props.moreProps.hasNext && props.moreProps.hasPrevious)) {
+      return props.moreProps.actions.getMoreSceneComments(props.moreProps.sceneId,
+        props.moreProps.next, props.moreProps.previous);
+    }
+    return false;
+  };
   return (
     <div style={{ marginTop: '2rem', height: '100%', minHeight: '50vh' }}>
       {
         props.data.size > 0 ?
           <div>
+            <Waypoint
+              onEnter={getMoreComments}
+              topOffset={'20%'}
+            />
+            <Loader
+              size="medium"
+              inline="centered"
+              active
+              style={{ visibility: props.moreProps.moreLoading ? 'visible' : 'hidden' }}
+            />
             <List
               items={props.data}
               component={CommentItem}

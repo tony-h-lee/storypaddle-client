@@ -29,6 +29,7 @@ function ScenePageComponent(props) {
         error={props.scenePage.get('error')}
         loading={props.scenePage.get('loading')}
         moreProps={{
+          moreLoading: props.scenePage.get('moreLoading'),
           commentsLoading: props.scenePage.get('commentsLoading'),
           commentsError: props.scenePage.get('commentsError'),
           actions: props.actions,

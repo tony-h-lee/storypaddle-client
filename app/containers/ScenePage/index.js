@@ -24,6 +24,7 @@ import saga from './saga';
 export class ScenePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentWillMount() {
     this.props.actions.getScene(this.props.match.params.id);
+    this.props.actions.getSceneComments(this.props.match.params.id);
   }
   render() {
     return (
