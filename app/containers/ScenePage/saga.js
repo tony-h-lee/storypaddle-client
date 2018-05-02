@@ -1,4 +1,5 @@
 import { call, takeLatest, put, fork } from 'redux-saga/effects';
+import formActionSaga from 'redux-form-saga';
 import {
   GET_SCENE_REQUEST,
   GET_COMMENTS_REQUEST,
@@ -11,6 +12,7 @@ import {
   getSceneCommentsFailure,
   getMoreSceneCommentsSuccess,
   getMoreSceneCommentsFailure,
+  postNarrationComment,
 } from './actions';
 import * as api from './api';
 
@@ -34,7 +36,6 @@ function* handleGetComments(action) {
   }
 }
 
-
 function* handleGetMoreComments(action) {
   const { id, next, previous } = action;
   try {
@@ -42,6 +43,17 @@ function* handleGetMoreComments(action) {
     yield put(getMoreSceneCommentsSuccess(response));
   } catch (error) {
     yield put(getMoreSceneCommentsFailure((error.message ? error.message : error)));
+  }
+}
+
+function* handlePostNarrationComment(action) {
+  const form = action.payload.form.toJS();
+  const token = action.payload.token;
+  try {
+    yield call(api.postNarrationComment, { ...form }, token); // calling our api method
+    yield put(postNarrationComment.success());
+  } catch (error) {
+    yield put(postNarrationComment.failure(error.message ? error.message : error));
   }
 }
 
@@ -57,11 +69,18 @@ function* handleGetMoreCommentsSaga() {
   yield takeLatest(GET_MORE_COMMENTS_REQUEST, handleGetMoreComments);
 }
 
+function* handlePostNarrationSaga() {
+  yield takeLatest(postNarrationComment.REQUEST, handlePostNarrationComment);
+}
+
+
 export function* rootSaga() {
   yield [
+    fork(formActionSaga),
     fork(handleGetSceneSaga),
     fork(handleGetCommentsSaga),
     fork(handleGetMoreCommentsSaga),
+    fork(handlePostNarrationSaga),
   ];
 }
 

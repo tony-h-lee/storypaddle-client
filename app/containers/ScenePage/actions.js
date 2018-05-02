@@ -4,6 +4,7 @@
  *
  */
 
+import { createFormAction } from 'redux-form-saga';
 import {
   GET_SCENE_REQUEST,
   GET_SCENE_SUCCESS,
@@ -14,13 +15,12 @@ import {
   GET_MORE_COMMENTS_REQUEST,
   GET_MORE_COMMENTS_SUCCESS,
   GET_MORE_COMMENTS_FAILURE,
+  POST_NARRATION_COMMENT_SUCCESS,
+  POST_NARRATION_COMMENT_FAILURE,
   /*
   UPDATE_COMMENT_REQUEST,
   UPDATE_COMMENT_SUCCESS,
   UPDATE_COMMENT_FAILURE,
-  POST_COMMENT_REQUEST,
-  POST_COMMENT_SUCCESS,
-  POST_COMMENT_FAILURE,
   DELETE_COMMENT_REQUEST,
   DELETE_COMMENT_SUCCESS,
   DELETE_COMMENT_FAILURE,
@@ -161,3 +161,36 @@ export function getMoreSceneCommentsFailure(error) {
     error,
   };
 }
+
+
+/**
+ * Post a Narration Comment to a Scene
+ */
+export const postNarrationComment = createFormAction('POST_NARRATION_COMMENT');
+
+/**
+ * Dispatched when posting a Narration Comment succeeds
+ *
+ * @return {object} : An action object with a type of POST_NARRATION_COMMENT_SUCCESS
+ */
+export function postNarrationCommentSuccess() {
+  return {
+    type: POST_NARRATION_COMMENT_SUCCESS,
+  };
+}
+
+
+/**
+ * Dispatched when posting a Narration Comment fails
+ *
+ * @param  {object} -> error : The error obtained by the saga
+ *
+ * @return {object} : An action object with a type of POST_NARRATION_COMMENT_FAILURE passing the error
+ */
+export function postNarrationCommentFailure(error) {
+  return {
+    type: POST_NARRATION_COMMENT_FAILURE,
+    error,
+  };
+}
+

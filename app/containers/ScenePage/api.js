@@ -29,3 +29,15 @@ export function getMoreComments(values) {
     .addHeader({ 'Content-Type': 'application/json' })
     .go();
 }
+
+
+export function postNarrationComment(values, token) {
+  const url = 'http://localhost:9000/api/comments';
+  return new Request()
+    .setUrl(url)
+    .setPost()
+    .addHeader({ 'Content-Type': 'application/json' })
+    .setToken(token)
+    .setBody(values)
+    .go();
+}

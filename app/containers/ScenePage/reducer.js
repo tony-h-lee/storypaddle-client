@@ -19,7 +19,7 @@ import {
 
 const initialState = fromJS({
   scene: false,
-  comments: List([]),
+  comments: false,
   loading: false,
   error: false,
   commentsLoading: false,

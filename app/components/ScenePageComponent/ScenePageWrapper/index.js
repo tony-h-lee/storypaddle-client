@@ -47,7 +47,7 @@ function ScenePageWrapper(props) {
         payload={props.data.comments}
         error={props.moreProps.commentsError}
         loading={props.moreProps.commentsLoading}
-        moreProps={{ ...props.moreProps, sceneId: props.data.scene.get('id') }}
+        moreProps={{ ...props.moreProps, sceneId: scene && scene.get('id') }}
       />
       {
         isAuthAndRole ?
