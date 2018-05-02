@@ -15,6 +15,8 @@ import {
   GET_MORE_COMMENTS_REQUEST,
   GET_MORE_COMMENTS_SUCCESS,
   GET_MORE_COMMENTS_FAILURE,
+  POST_NARRATION_COMMENT_SUCCESS,
+  POST_NARRATION_COMMENT_FAILURE,
 } from './constants';
 
 const initialState = fromJS({
@@ -94,6 +96,12 @@ function scenePageReducer(state = initialState, action) {
     case GET_MORE_COMMENTS_FAILURE:
       return state
         .set('moreLoading', false)
+        .set('commentsError', action.error);
+    case POST_NARRATION_COMMENT_SUCCESS:
+      return state
+        .update('comments', (comments) => comments.concat(List(action.comments.results)));
+    case POST_NARRATION_COMMENT_FAILURE:
+      return state
         .set('commentsError', action.error);
     default:
       return state;

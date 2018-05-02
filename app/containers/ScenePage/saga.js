@@ -50,8 +50,8 @@ function* handlePostNarrationComment(action) {
   const form = { ...action.payload.form.toJS(), type: action.payload.type, scene: action.payload.sceneId };
   const token = action.payload.token;
   try {
-    yield call(api.postNarrationComment, { ...form }, token); // calling our api method
-    yield put(postNarrationComment.success());
+    const response = yield call(api.postNarrationComment, { ...form }, token); // calling our api method
+    yield put(postNarrationComment.success(response));
   } catch (error) {
     yield put(postNarrationComment.failure(error.message ? error.message : error));
   }

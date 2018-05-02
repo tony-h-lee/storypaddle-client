@@ -9,6 +9,10 @@ import { reducer as formReducer } from 'redux-form/immutable';
 
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
+
+// Blow Away Form Values Constants
+import { POST_NARRATION_COMMENT_SUCCESS } from 'containers/ScenePage/constants';
+
 /*
  * routeReducer
  *
@@ -20,6 +24,17 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
 // Initial routing state
 const routeInitialState = fromJS({
   location: null,
+});
+
+const formWithClearReducer = formReducer.plugin({
+  narrationForm: (state, action) => {
+    switch (action.type) {
+      case POST_NARRATION_COMMENT_SUCCESS:
+        return undefined;
+      default:
+        return state;
+    }
+  },
 });
 
 /**
@@ -42,7 +57,7 @@ function routeReducer(state = routeInitialState, action) {
  */
 export default function createReducer(injectedReducers) {
   return combineReducers({
-    form: formReducer,
+    form: formWithClearReducer,
     route: routeReducer,
     language: languageProviderReducer,
     ...injectedReducers,

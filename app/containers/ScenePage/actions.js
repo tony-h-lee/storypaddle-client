@@ -171,11 +171,14 @@ export const postNarrationComment = createFormAction('POST_NARRATION_COMMENT');
 /**
  * Dispatched when posting a Narration Comment succeeds
  *
- * @return {object} : An action object with a type of POST_NARRATION_COMMENT_SUCCESS
+ * @param  {object} -> comment : The comment object successfully posted to the scene
+ *
+ * @return {object} : An action object with a type of POST_NARRATION_COMMENT_SUCCESS with the posted comment object
  */
-export function postNarrationCommentSuccess() {
+export function postNarrationCommentSuccess(comment) {
   return {
     type: POST_NARRATION_COMMENT_SUCCESS,
+    comment,
   };
 }
 
