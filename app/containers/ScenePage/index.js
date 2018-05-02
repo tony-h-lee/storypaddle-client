@@ -26,9 +26,21 @@ export class ScenePage extends React.PureComponent { // eslint-disable-line reac
     this.props.actions.getScene(this.props.match.params.id);
     this.props.actions.getSceneComments(this.props.match.params.id);
   }
+  componentDidUpdate() {
+    // If participating user, scroll to the controls
+    if (this.props.token && this.props.scenePage.getIn(['scene', 'narrative', 'roles']) !== undefined &&
+      this.props.scenePage.getIn(['scene', 'narrative', 'roles'])
+        .some((role) => role.get('user') === this.props.user.get('id'))) {
+      this.comments.scrollIntoView(false);
+    }
+  }
+  setRef(node) {
+    this.comments = node;
+  }
+
   render() {
     return (
-      <div>
+      <div ref={this.setRef}>
         <Helmet>
           <title> {this.props.scenePage.getIn(['scene', 'narrative', 'title']) !== undefined ?
             this.props.scenePage.getIn(['scene', 'narrative', 'title']) : 'Storypaddle'} </title>
@@ -47,9 +59,11 @@ export class ScenePage extends React.PureComponent { // eslint-disable-line reac
 }
 
 ScenePage.propTypes = {
+  token: PropTypes.string,
   actions: PropTypes.object,
   scenePage: PropTypes.object,
   match: PropTypes.object,
+  user: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
