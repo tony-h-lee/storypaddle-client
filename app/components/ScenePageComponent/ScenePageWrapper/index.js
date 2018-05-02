@@ -31,7 +31,8 @@ const panes = [
 
 function ScenePageWrapper(props) {
   // const scene = props.data.scene;
-  const isAuthAndRole = props.moreProps.token;
+  const isAuthAndRole = props.moreProps.token && props.data.scene.getIn(['narrative', 'roles'])
+      .some((role) => role.get('user') === props.moreProps.user.get('id'));
   return (
     <div>
       <AsyncWrapper
