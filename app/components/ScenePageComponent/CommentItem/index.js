@@ -13,7 +13,7 @@ import DialogueType from './DialogueType';
 
 function CommentItem(props) {
   return (
-    <div>
+    <div style={{ paddingBottom: '24px' }}>
       {
         props.item.type === 'narration' ?
           <NarrationType

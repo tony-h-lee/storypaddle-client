@@ -22,7 +22,7 @@ function CommentsWrapper(props) {
     return false;
   };
   return (
-    <div style={{ marginTop: '2rem', height: '100%', minHeight: '50vh' }}>
+    <div style={{ margin: '2rem 0', height: '100%', minHeight: '50vh' }}>
       {
         props.data.size > 0 ?
           <div>

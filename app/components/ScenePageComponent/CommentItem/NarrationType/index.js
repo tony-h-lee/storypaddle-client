@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 
 function NarrationType(props) {
   return (
-    <div>
+    <div style={{ whiteSpace: 'pre-line' }}>
       { props.item.text }
     </div>
   );
