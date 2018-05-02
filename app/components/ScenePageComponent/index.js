@@ -30,6 +30,7 @@ function ScenePageComponent(props) {
         loading={props.scenePage.get('loading')}
         moreProps={{
           sceneLoading: props.scenePage.get('loading'),
+          sceneError: props.scenePage.get('error'),
           moreLoading: props.scenePage.get('moreLoading'),
           commentsLoading: props.scenePage.get('commentsLoading'),
           commentsError: props.scenePage.get('commentsError'),

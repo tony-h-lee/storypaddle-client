@@ -114,3 +114,25 @@ export const getJoinNarrativeErrors = (roleId, code) => {
       };
   }
 };
+
+
+export const postCommentErrors = (code) => {
+  switch (code) {
+    case 400:
+      return new SubmissionError({
+        _error: 'You have inputted invalid text',
+      });
+    case 401:
+      return new SubmissionError({
+        _error: 'Authentication required',
+      });
+    case 404:
+      return new SubmissionError({
+        _error: 'This Narrative no longer exists',
+      });
+    default:
+      return new SubmissionError({
+        _error: 'Failed to connect to the server',
+      });
+  }
+};

@@ -22,6 +22,7 @@ function ScenePageWrapper(props) {
           <NarrationForm
             token={props.moreProps.token}
             sceneId={scene.get('id')}
+            error={props.moreProps.commentsError}
           />
         </Tab.Pane>
       ) },
@@ -31,6 +32,7 @@ function ScenePageWrapper(props) {
           <DialogueForm
             token={props.moreProps.token}
             sceneId={scene.get('id')}
+            error={props.moreProps.commentsError}
           />
         </Tab.Pane>
       ) },
@@ -43,7 +45,7 @@ function ScenePageWrapper(props) {
     <div>
       <AsyncWrapper
         animate={false}
-        spinner
+        spinner={false}
         innerComponent={CommentsWrapper}
         errorComponent={
           <ErrorComponent
@@ -51,7 +53,7 @@ function ScenePageWrapper(props) {
           />
         }
         payload={props.data.comments}
-        error={props.moreProps.commentsError}
+        error={props.moreProps.sceneError}
         loading={props.moreProps.commentsLoading || props.moreProps.sceneLoading}
         moreProps={{ ...props.moreProps, sceneId: scene && scene.get('id') }}
       />

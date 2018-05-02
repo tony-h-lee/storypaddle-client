@@ -1,5 +1,6 @@
 import { call, takeLatest, put, fork } from 'redux-saga/effects';
 import formActionSaga from 'redux-form-saga';
+import { postCommentErrors } from 'utils/errorCode';
 import {
   GET_SCENE_REQUEST,
   GET_COMMENTS_REQUEST,
@@ -53,7 +54,7 @@ function* handlePostNarrationComment(action) {
     const response = yield call(api.postNarrationComment, { ...form }, token); // calling our api method
     yield put(postNarrationComment.success(response));
   } catch (error) {
-    yield put(postNarrationComment.failure(error.message ? error.message : error));
+    yield put(postNarrationComment.failure(postCommentErrors(error.message ? error.message : error)));
   }
 }
 
