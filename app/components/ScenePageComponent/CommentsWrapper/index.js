@@ -17,7 +17,7 @@ function CommentsWrapper(props) {
   const getMoreComments = () => {
     if (props.moreProps.hasNext) {
       return props.moreProps.actions.getMoreSceneComments(props.moreProps.sceneId,
-        props.moreProps.next, props.moreProps.previous);
+        props.moreProps.next, false);
     }
     return false;
   };
@@ -28,7 +28,7 @@ function CommentsWrapper(props) {
           <div>
             <Waypoint
               onEnter={getMoreComments}
-              topOffset={'20%'}
+              topOffset={'80%'}
             />
             <Loader
               size="medium"

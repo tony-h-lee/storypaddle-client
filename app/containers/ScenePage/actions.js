@@ -17,6 +17,8 @@ import {
   GET_MORE_COMMENTS_FAILURE,
   POST_NARRATION_COMMENT_SUCCESS,
   POST_NARRATION_COMMENT_FAILURE,
+  POST_DIALOGUE_COMMENT_SUCCESS,
+  POST_DIALOGUE_COMMENT_FAILURE,
   /*
   UPDATE_COMMENT_REQUEST,
   UPDATE_COMMENT_SUCCESS,
@@ -197,3 +199,37 @@ export function postNarrationCommentFailure(error) {
   };
 }
 
+
+/**
+ * Post a Dialogue Comment to a Scene
+ */
+export const postDialogueComment = createFormAction('POST_DIALOGUE_COMMENT');
+
+/**
+ * Dispatched when posting a Dialogue Comment succeeds
+ *
+ * @param  {object} -> comment : The comment object successfully posted to the scene
+ *
+ * @return {object} : An action object with a type of POST_DIALOGUE_COMMENT_SUCCESS with the posted comment object
+ */
+export function postDialogueCommentSuccess(comment) {
+  return {
+    type: POST_DIALOGUE_COMMENT_SUCCESS,
+    comment,
+  };
+}
+
+
+/**
+ * Dispatched when posting a Dialogue Comment fails
+ *
+ * @param  {object} -> error : The error obtained by the saga
+ *
+ * @return {object} : An action object with a type of POST_DIALOGUE_COMMENT_FAILURE passing the error
+ */
+export function postDialogueCommentFailure(error) {
+  return {
+    type: POST_DIALOGUE_COMMENT_FAILURE,
+    error,
+  };
+}

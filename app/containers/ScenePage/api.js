@@ -31,7 +31,7 @@ export function getMoreComments(values) {
 }
 
 
-export function postNarrationComment(values, token) {
+export function postComment(values, token) {
   const url = 'http://localhost:9000/api/comments';
   return new Request()
     .setUrl(url)

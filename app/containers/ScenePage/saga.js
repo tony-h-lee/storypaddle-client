@@ -14,6 +14,7 @@ import {
   getMoreSceneCommentsSuccess,
   getMoreSceneCommentsFailure,
   postNarrationComment,
+  postDialogueComment,
 } from './actions';
 import * as api from './api';
 
@@ -48,13 +49,29 @@ function* handleGetMoreComments(action) {
 }
 
 function* handlePostNarrationComment(action) {
-  const form = { ...action.payload.form.toJS(), type: action.payload.type, scene: action.payload.sceneId };
+  const form = { ...action.payload.form.toJS(), type: 'narration', scene: action.payload.sceneId };
   const token = action.payload.token;
   try {
-    const response = yield call(api.postNarrationComment, { ...form }, token); // calling our api method
+    const response = yield call(api.postComment, { ...form }, token); // calling our api method
     yield put(postNarrationComment.success(response));
   } catch (error) {
     yield put(postNarrationComment.failure(postCommentErrors(error.message ? error.message : error)));
+  }
+}
+
+function* handlePostDialogueComment(action) {
+  const form = {
+    ...action.payload.form.toJS(),
+    type: 'dialogue',
+    scene: action.payload.sceneId,
+    character: action.payload.character,
+  };
+  const token = action.payload.token;
+  try {
+    const response = yield call(api.postComment, { ...form }, token); // calling our api method
+    yield put(postDialogueComment.success(response));
+  } catch (error) {
+    yield put(postDialogueComment.failure(postCommentErrors(error.message ? error.message : error)));
   }
 }
 
@@ -70,8 +87,9 @@ function* handleGetMoreCommentsSaga() {
   yield takeLatest(GET_MORE_COMMENTS_REQUEST, handleGetMoreComments);
 }
 
-function* handlePostNarrationSaga() {
+function* handlePostCommentSaga() {
   yield takeLatest(postNarrationComment.REQUEST, handlePostNarrationComment);
+  yield takeLatest(postDialogueComment.REQUEST, handlePostDialogueComment);
 }
 
 
@@ -81,7 +99,7 @@ export function* rootSaga() {
     fork(handleGetSceneSaga),
     fork(handleGetCommentsSaga),
     fork(handleGetMoreCommentsSaga),
-    fork(handlePostNarrationSaga),
+    fork(handlePostCommentSaga),
   ];
 }
 

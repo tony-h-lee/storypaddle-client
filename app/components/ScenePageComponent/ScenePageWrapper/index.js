@@ -33,14 +33,16 @@ function ScenePageWrapper(props) {
             token={props.moreProps.token}
             sceneId={scene.get('id')}
             error={props.moreProps.commentsError}
+            character={character.get('name')}
           />
         </Tab.Pane>
       ) },
   ];
 
   const scene = props.data.scene;
-  const isAuthAndRole = props.moreProps.token && scene && scene.getIn(['narrative', 'roles'])
-      .some((role) => role.get('user') === props.moreProps.user.get('id'));
+  const character = scene && scene.getIn(['narrative', 'roles'])
+    .find((role) => role.get('user') === props.moreProps.user.get('id'));
+  const isAuthAndRole = props.moreProps.token && scene && character;
   return (
     <div>
       <AsyncWrapper
@@ -67,7 +69,6 @@ function ScenePageWrapper(props) {
             Suggest roles if any
           </div>
       }
-
     </div>
   );
 }

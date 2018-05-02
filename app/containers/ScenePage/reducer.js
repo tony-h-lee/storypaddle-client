@@ -17,6 +17,8 @@ import {
   GET_MORE_COMMENTS_FAILURE,
   POST_NARRATION_COMMENT_SUCCESS,
   POST_NARRATION_COMMENT_FAILURE,
+  POST_DIALOGUE_COMMENT_SUCCESS,
+  POST_DIALOGUE_COMMENT_FAILURE,
 } from './constants';
 
 const initialState = fromJS({
@@ -101,6 +103,12 @@ function scenePageReducer(state = initialState, action) {
       return state
         .update('comments', (comments) => comments.push(action.payload));
     case POST_NARRATION_COMMENT_FAILURE:
+      return state
+        .set('commentsError', action.payload.error);
+    case POST_DIALOGUE_COMMENT_SUCCESS:
+      return state
+        .update('comments', (comments) => comments.push(action.payload));
+    case POST_DIALOGUE_COMMENT_FAILURE:
       return state
         .set('commentsError', action.payload.error);
     default:

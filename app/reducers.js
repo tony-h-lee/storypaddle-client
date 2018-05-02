@@ -11,7 +11,10 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
 
 // Blow Away Form Values Constants
-import { POST_NARRATION_COMMENT_SUCCESS } from 'containers/ScenePage/constants';
+import {
+  POST_NARRATION_COMMENT_SUCCESS,
+  POST_DIALOGUE_COMMENT_SUCCESS,
+} from 'containers/ScenePage/constants';
 
 /*
  * routeReducer
@@ -30,6 +33,14 @@ const formWithClearReducer = formReducer.plugin({
   narrationForm: (state, action) => {
     switch (action.type) {
       case POST_NARRATION_COMMENT_SUCCESS:
+        return undefined;
+      default:
+        return state;
+    }
+  },
+  dialogueForm: (state, action) => {
+    switch (action.type) {
+      case POST_DIALOGUE_COMMENT_SUCCESS:
         return undefined;
       default:
         return state;

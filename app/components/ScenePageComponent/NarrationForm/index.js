@@ -27,7 +27,7 @@ function NarrationForm(props) {
       size="large"
       style={{ marginTop: '0.3rem' }}
       onSubmit={handleSubmit((values, dispatch) =>
-        postNarrationComment({ form: values, token: props.token, type: 'narration', sceneId: props.sceneId },
+        postNarrationComment({ form: values, token: props.token, sceneId: props.sceneId },
           dispatch))}
       error={error !== false}
     >

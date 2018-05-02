@@ -11,6 +11,7 @@ import { reduxForm } from 'redux-form/immutable';
 import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
 import { Form, Message, Button, Icon } from 'semantic-ui-react';
 import { required } from 'components/FormValidation/syncValidation';
+import { postDialogueComment } from 'containers/ScenePage/actions';
 // import styled from 'styled-components';
 
 
@@ -19,12 +20,15 @@ function DialogueForm(props) {
     submitting,
     pristine,
     error,
+    handleSubmit,
   } = props;
   return (
     <Form
       size="large"
       style={{ marginTop: '0.2rem' }}
-      onSubmit={(e, form) => console.log(form)}
+      onSubmit={handleSubmit((values, dispatch) =>
+        postDialogueComment({ form: values, token: props.token, sceneId: props.sceneId, character: props.character },
+          dispatch))}
       error={error !== false}
     >
 
@@ -74,14 +78,15 @@ function DialogueForm(props) {
 }
 
 DialogueForm.propTypes = {
+  character: PropTypes.string,
   /*
-  token: PropTypes.string,
   user: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.object,
   ]),
   handleSubmit: PropTypes.func,
   */
+  handleSubmit: PropTypes.func,
   error: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string,
