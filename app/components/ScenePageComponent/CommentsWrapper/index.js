@@ -15,7 +15,7 @@ import Waypoint from 'react-waypoint';
 
 function CommentsWrapper(props) {
   const getMoreComments = () => {
-    if (!(!props.moreProps.hasNext && props.moreProps.hasPrevious)) {
+    if (props.moreProps.hasNext) {
       return props.moreProps.actions.getMoreSceneComments(props.moreProps.sceneId,
         props.moreProps.next, props.moreProps.previous);
     }

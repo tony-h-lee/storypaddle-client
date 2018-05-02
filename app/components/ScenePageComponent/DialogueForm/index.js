@@ -39,7 +39,7 @@ function DialogueForm(props) {
       />
 
       <SemanticField
-        name="narration"
+        name="text"
         label="Text"
         component={SemanticFormField}
         as={Form.TextArea}

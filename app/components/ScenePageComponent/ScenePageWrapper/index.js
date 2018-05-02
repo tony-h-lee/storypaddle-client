@@ -14,22 +14,28 @@ import DialogueForm from 'components/ScenePageComponent/DialogueForm';
 import CommentsWrapper from 'components/ScenePageComponent/CommentsWrapper';
 // import styled from 'styled-components';
 
-const panes = [
-  { menuItem: { key: 'narration', icon: 'align left', content: 'Narration' },
-    render: () => (
-      <Tab.Pane>
-        <NarrationForm />
-      </Tab.Pane>
-    ) },
-  { menuItem: { key: 'dialogue', icon: 'comments', content: 'Dialogue' },
-    render: () => (
-      <Tab.Pane>
-        <DialogueForm />
-      </Tab.Pane>
-    ) },
-];
-
 function ScenePageWrapper(props) {
+  const panes = [
+    { menuItem: { key: 'narration', icon: 'align left', content: 'Narration' },
+      render: () => (
+        <Tab.Pane>
+          <NarrationForm
+            token={props.moreProps.token}
+            sceneId={scene.get('id')}
+          />
+        </Tab.Pane>
+      ) },
+    { menuItem: { key: 'dialogue', icon: 'comments', content: 'Dialogue' },
+      render: () => (
+        <Tab.Pane>
+          <DialogueForm
+            token={props.moreProps.token}
+            sceneId={scene.get('id')}
+          />
+        </Tab.Pane>
+      ) },
+  ];
+
   const scene = props.data.scene;
   const isAuthAndRole = props.moreProps.token && scene && scene.getIn(['narrative', 'roles'])
       .some((role) => role.get('user') === props.moreProps.user.get('id'));
@@ -46,7 +52,7 @@ function ScenePageWrapper(props) {
         }
         payload={props.data.comments}
         error={props.moreProps.commentsError}
-        loading={props.moreProps.commentsLoading}
+        loading={props.moreProps.commentsLoading || props.moreProps.sceneLoading}
         moreProps={{ ...props.moreProps, sceneId: scene && scene.get('id') }}
       />
       {

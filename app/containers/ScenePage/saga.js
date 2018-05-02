@@ -47,7 +47,7 @@ function* handleGetMoreComments(action) {
 }
 
 function* handlePostNarrationComment(action) {
-  const form = action.payload.form.toJS();
+  const form = { ...action.payload.form.toJS(), type: action.payload.type, scene: action.payload.sceneId };
   const token = action.payload.token;
   try {
     yield call(api.postNarrationComment, { ...form }, token); // calling our api method

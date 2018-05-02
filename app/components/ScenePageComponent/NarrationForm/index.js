@@ -11,6 +11,7 @@ import { reduxForm } from 'redux-form/immutable';
 import SemanticFormField, { SemanticField } from 'components/SemanticFormField';
 import { Form, Message, Button, Icon } from 'semantic-ui-react';
 import { required } from 'components/FormValidation/syncValidation';
+import { postNarrationComment } from 'containers/ScenePage/actions';
 // import styled from 'styled-components';
 
 
@@ -19,17 +20,20 @@ function NarrationForm(props) {
     submitting,
     pristine,
     error,
+    handleSubmit,
   } = props;
   return (
     <Form
       size="large"
       style={{ marginTop: '0.3rem' }}
-      onSubmit={(e, form) => console.log(form)}
+      onSubmit={handleSubmit((values, dispatch) =>
+        postNarrationComment({ form: values, token: props.token, type: 'narration', sceneId: props.sceneId },
+          dispatch))}
       error={error !== false}
     >
 
       <SemanticField
-        name="narration"
+        name="text"
         label="Text"
         component={SemanticFormField}
         as={Form.TextArea}
@@ -64,14 +68,14 @@ function NarrationForm(props) {
 }
 
 NarrationForm.propTypes = {
-  /*
-   token: PropTypes.string,
+  sceneId: PropTypes.string,
+    /*
    user: PropTypes.oneOfType([
    PropTypes.bool,
    PropTypes.object,
    ]),
-   handleSubmit: PropTypes.func,
    */
+  handleSubmit: PropTypes.func,
   error: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string,
