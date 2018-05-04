@@ -34,10 +34,7 @@ export class ScenePage extends React.PureComponent { // eslint-disable-line reac
       this.comments.scrollIntoView(false);
     }
   }
-  setRef(node) {
-    this.comments = node;
-  }
-
+  setRef = (node) => (this.comments = node);
   render() {
     return (
       <div ref={this.setRef}>
@@ -59,11 +56,17 @@ export class ScenePage extends React.PureComponent { // eslint-disable-line reac
 }
 
 ScenePage.propTypes = {
-  token: PropTypes.string,
+  token: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
   actions: PropTypes.object,
   scenePage: PropTypes.object,
   match: PropTypes.object,
-  user: PropTypes.object,
+  user: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.bool,
+  ]),
 };
 
 const mapStateToProps = createStructuredSelector({
