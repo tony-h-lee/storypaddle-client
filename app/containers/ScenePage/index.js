@@ -22,9 +22,8 @@ import reducer from './reducer';
 import saga from './saga';
 
 export class ScenePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  componentWillMount() {
-    this.props.actions.getScene(this.props.match.params.id);
-    this.props.actions.getSceneComments(this.props.match.params.id);
+  componentDidMount() {
+    this.props.actions.getScene(this.props.match.params.id, this.props.user ? this.props.user.get('id') : null);
   }
   componentDidUpdate() {
     // If participating user, scroll to the controls

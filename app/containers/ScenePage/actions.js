@@ -33,13 +33,15 @@ import {
  * Send request to retrieve a Scene
  *
  * @param {string} -> id : The id of the Scene to retrieve
+ * @param {string} -> userId : The id of user
  *
- * @return {object} : An action object with a type of GET_SCENE_REQUEST and the id of the Scene
+ * @return {object} : An action object with a type of GET_SCENE_REQUEST and the id of the Scene and user
  */
-export function getScene(id) {
+export function getScene(id, userId) {
   return {
     type: GET_SCENE_REQUEST,
     id,
+    userId,
   };
 }
 
@@ -78,13 +80,15 @@ export function getSceneFailure(error) {
  * Send request to retrieve initial comments for a scene
  *
  * @param {string} -> id : The id of the Scene that the comments belong to.
+ * @param {bool} -> order : Determine what order of creation date to retrieve comments (true for ASC, false for DESC).
  *
  * @return {object} : An action object with a type of GET_SCENE_REQUEST and the id of the Scene
  */
-export function getSceneComments(id) {
+export function getSceneComments(id, order) {
   return {
     type: GET_COMMENTS_REQUEST,
     id,
+    order,
   };
 }
 
@@ -123,13 +127,17 @@ export function getSceneCommentsFailure(error) {
  * Send request to retrieve paginated comments for a scene
  *
  * @param {string} -> id : The id of the Scene that the comments belong to.
+ * @param {bool} -> order : Determine what order of creation date to retrieve comments (true for ASC, false for DESC).
+ * @param  {string} -> next : The next cursor for the narrative pagination
+ * @param  {string} -> previous : The previous cursor for the narrative pagination
  *
  * @return {object} : An action object with a type of GET_SCENE_REQUEST and the id of the Scene
  */
-export function getMoreSceneComments(id, next, previous) {
+export function getMoreSceneComments(id, order = true, next, previous) {
   return {
     type: GET_MORE_COMMENTS_REQUEST,
     id,
+    order,
     next,
     previous,
   };

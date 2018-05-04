@@ -40,7 +40,7 @@ function ScenePageWrapper(props) {
   ];
 
   const scene = props.data.scene;
-  const character = scene && props.moreProps.user && scene.getIn(['narrative', 'roles'])
+  const character = scene && scene.get('narrative') && props.moreProps.user && scene.getIn(['narrative', 'roles'])
     .find((role) => role.get('user') === props.moreProps.user.get('id'));
   const isAuthAndRole = props.moreProps.token && character;
   return (

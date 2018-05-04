@@ -15,8 +15,11 @@ import Waypoint from 'react-waypoint';
 
 function CommentsWrapper(props) {
   const getMoreComments = () => {
-    if (props.moreProps.hasNext) {
-      return props.moreProps.actions.getMoreSceneComments(props.moreProps.sceneId,
+    if (props.moreProps.hasNext && props.moreProps.isAuthAndRole) {
+      return props.moreProps.actions.getMoreSceneComments(props.moreProps.sceneId, false,
+        props.moreProps.next, false);
+    } else if (props.moreProps.hasNext && !props.moreProps.isAuthAndRole) {
+      return props.moreProps.actions.getMoreSceneComments(props.moreProps.sceneId, true,
         props.moreProps.next, false);
     }
     return false;
@@ -27,6 +30,7 @@ function CommentsWrapper(props) {
     if (props.moreProps.isAuthAndRole) {
       content = (
         <div>
+          auth
           <Waypoint
             onEnter={getMoreComments}
             topOffset={'20%'}
@@ -46,6 +50,12 @@ function CommentsWrapper(props) {
     } else {
       content = (
         <div>
+          no auth
+          <List
+            items={props.data}
+            component={CommentItem}
+            moreProps={props.moreProps}
+          />
           <Waypoint
             onEnter={getMoreComments}
             topOffset={'80%'}
@@ -54,11 +64,6 @@ function CommentsWrapper(props) {
             size="medium"
             inline="centered"
             active={props.moreProps.moreLoading}
-          />
-          <List
-            items={props.data}
-            component={CommentItem}
-            moreProps={props.moreProps}
           />
         </div>
       );

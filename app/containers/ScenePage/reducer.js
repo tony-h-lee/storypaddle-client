@@ -44,6 +44,10 @@ function scenePageReducer(state = initialState, action) {
         .set('scene', false)
         .set('commentsLoading', false)
         .set('commentsError', false)
+        .set('next', false)
+        .set('previous', false)
+        .set('hasNext', false)
+        .set('hasPrevious', false)
         .set('error', false);
     case GET_SCENE_SUCCESS:
       return state
@@ -73,7 +77,7 @@ function scenePageReducer(state = initialState, action) {
         .set('hasPrevious', action.comments.hasPrevious)
         .set('next', action.comments.next)
         .set('previous', action.comments.previous)
-        .set('comments', List(action.comments.results).reverse());
+        .set('comments', List(action.comments.results));
     case GET_COMMENTS_FAILURE:
       return state
         .set('comments', false)
@@ -94,7 +98,7 @@ function scenePageReducer(state = initialState, action) {
         .set('hasPrevious', action.comments.hasPrevious)
         .set('next', action.comments.next)
         .set('previous', action.comments.previous)
-        .update('comments', (comments) => List(action.comments.results).concat(comments));
+        .update('comments', (comments) => comments.concat(List(action.comments.results)));
     case GET_MORE_COMMENTS_FAILURE:
       return state
         .set('moreLoading', false)

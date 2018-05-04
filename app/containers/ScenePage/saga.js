@@ -19,19 +19,32 @@ import {
 import * as api from './api';
 
 function* handleGetScene(action) {
-  const { id } = action;
+  const { id, user } = action;
   try {
     const response = yield call(api.getScene, { id });
     yield put(getSceneSuccess(response));
+
+    try {
+      let comments;
+      if (user && response.narrative.roles !== undefined &&
+        response.narrative.roles.some((role) => role.user === user)) {
+        comments = yield call(api.getComments, { id, order: false });
+      } else {
+        comments = yield call(api.getComments, { id, order: true });
+      }
+      yield put(getSceneCommentsSuccess(comments));
+    } catch (error) {
+      yield put(getSceneCommentsFailure((error.message ? error.message : error)));
+    }
   } catch (error) {
     yield put(getSceneFailure((error.message ? error.message : error)));
   }
 }
 
 function* handleGetComments(action) {
-  const { id } = action;
+  const { id, order } = action;
   try {
-    const response = yield call(api.getComments, { id });
+    const response = yield call(api.getComments, { id, order });
     yield put(getSceneCommentsSuccess(response));
   } catch (error) {
     yield put(getSceneCommentsFailure((error.message ? error.message : error)));
@@ -39,9 +52,9 @@ function* handleGetComments(action) {
 }
 
 function* handleGetMoreComments(action) {
-  const { id, next, previous } = action;
+  const { id, order, next, previous } = action;
   try {
-    const response = yield call(api.getComments, { id, next, previous });
+    const response = yield call(api.getMoreComments, { id, next, previous, order });
     yield put(getMoreSceneCommentsSuccess(response));
   } catch (error) {
     yield put(getMoreSceneCommentsFailure((error.message ? error.message : error)));
