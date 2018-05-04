@@ -32,7 +32,8 @@ function CommentsWrapper(props) {
         <div>
           <Waypoint
             onEnter={getMoreComments}
-            topOffset={'20%'}
+            topOffset={'50px'}
+            fireOnRapidScroll
           />
           <Loader
             size="medium"
@@ -56,7 +57,8 @@ function CommentsWrapper(props) {
           />
           <Waypoint
             onEnter={getMoreComments}
-            topOffset={'80%'}
+            bottomOffset={'-200px'}
+            fireOnRapidScroll
           />
           <Loader
             size="medium"
