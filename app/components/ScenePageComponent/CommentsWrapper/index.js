@@ -30,7 +30,6 @@ function CommentsWrapper(props) {
     if (props.moreProps.isAuthAndRole) {
       content = (
         <div>
-          auth
           <Waypoint
             onEnter={getMoreComments}
             topOffset={'20%'}
@@ -50,7 +49,6 @@ function CommentsWrapper(props) {
     } else {
       content = (
         <div>
-          no auth
           <List
             items={props.data}
             component={CommentItem}
