@@ -19,20 +19,26 @@ import {
 import * as api from './api';
 
 function* handleGetScene(action) {
-  const { id, user } = action;
+  const { id, userId } = action;
   try {
     const response = yield call(api.getScene, { id });
     yield put(getSceneSuccess(response));
 
+    // Retrieve comments for this scene
     try {
       let comments;
-      if (user && response.narrative.roles !== undefined &&
-        response.narrative.roles.some((role) => role.user === user)) {
+      // Get comments on ordering based on if the user is a participant
+      // Reverse to display most recent on the bottom
+      if (userId && response.narrative.roles !== undefined &&
+        response.narrative.roles.some((role) => role.user === userId)) {
         comments = yield call(api.getComments, { id, order: false });
+        yield put(getSceneCommentsSuccess(Object.assign({},
+          { ...comments },
+          { results: comments.results.reverse() })));
       } else {
         comments = yield call(api.getComments, { id, order: true });
+        yield put(getSceneCommentsSuccess(comments));
       }
-      yield put(getSceneCommentsSuccess(comments));
     } catch (error) {
       yield put(getSceneCommentsFailure((error.message ? error.message : error)));
     }
@@ -55,7 +61,12 @@ function* handleGetMoreComments(action) {
   const { id, order, next, previous } = action;
   try {
     const response = yield call(api.getMoreComments, { id, next, previous, order });
-    yield put(getMoreSceneCommentsSuccess(response));
+    // If order is false, then we are requesting a DESC order of pagination since we are a participating user
+    // so reverse the results and prepend
+    const res = !order ? Object.assign({},
+        { ...response },
+        { results: response.results.reverse() }) : response;
+    yield put(getMoreSceneCommentsSuccess({ ...res, order }));
   } catch (error) {
     yield put(getMoreSceneCommentsFailure((error.message ? error.message : error)));
   }

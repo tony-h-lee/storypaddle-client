@@ -98,7 +98,8 @@ function scenePageReducer(state = initialState, action) {
         .set('hasPrevious', action.comments.hasPrevious)
         .set('next', action.comments.next)
         .set('previous', action.comments.previous)
-        .update('comments', (comments) => comments.concat(List(action.comments.results)));
+        .update('comments', (comments) => action.comments.order ? comments.concat(List(action.comments.results)) :
+          List(action.comments.results).concat(comments));
     case GET_MORE_COMMENTS_FAILURE:
       return state
         .set('moreLoading', false)
