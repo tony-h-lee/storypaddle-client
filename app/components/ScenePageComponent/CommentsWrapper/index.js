@@ -6,10 +6,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Container, Icon, Loader } from 'semantic-ui-react';
+import { Grid, Container, Icon, Loader, Button } from 'semantic-ui-react';
 import List from 'components/List';
 import CommentItem from 'components/ScenePageComponent/CommentItem';
-import Waypoint from 'react-waypoint';
 // import styled from 'styled-components';
 
 
@@ -30,11 +29,16 @@ function CommentsWrapper(props) {
     if (props.moreProps.isAuthAndRole) {
       content = (
         <div>
-          <Waypoint
-            onEnter={getMoreComments}
-            topOffset={'50px'}
-            fireOnRapidScroll
-          />
+          {
+            props.moreProps.hasNext ?
+              <div style={{ textAlign: 'center', margin: '2rem 0' }}>
+                <Button primary onClick={getMoreComments}>
+                  <Icon name="angle double up" />
+                  Read More
+                </Button>
+              </div>
+              : null
+          }
           <Loader
             size="medium"
             inline="centered"
@@ -55,16 +59,21 @@ function CommentsWrapper(props) {
             component={CommentItem}
             moreProps={props.moreProps}
           />
-          <Waypoint
-            onEnter={getMoreComments}
-            bottomOffset={'-200px'}
-            fireOnRapidScroll
-          />
           <Loader
             size="medium"
             inline="centered"
             active={props.moreProps.moreLoading}
           />
+          {
+            props.moreProps.hasNext ?
+              <div style={{ textAlign: 'center', margin: '2rem 0' }}>
+                <Button primary onClick={getMoreComments}>
+                  <Icon name="angle double down" />
+                  Read More
+                </Button>
+              </div>
+              : null
+          }
         </div>
       );
     }

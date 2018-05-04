@@ -25,12 +25,18 @@ export class ScenePage extends React.PureComponent { // eslint-disable-line reac
   componentDidMount() {
     this.props.actions.getScene(this.props.match.params.id, this.props.user ? this.props.user.get('id') : null);
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     // If participating user, scroll to the controls
     if (this.props.token && this.props.scenePage.getIn(['scene', 'narrative', 'roles']) !== undefined &&
       this.props.scenePage.getIn(['scene', 'narrative', 'roles'])
-        .some((role) => role.get('user') === this.props.user.get('id'))) {
+        .some((role) => role.get('user') === this.props.user.get('id')) &&
+      prevProps.scenePage.get('comments').size < 1) {
       this.comments.scrollIntoView(false);
+    } else if (this.props.token && this.props.scenePage.getIn(['scene', 'narrative', 'roles']) !== undefined &&
+      this.props.scenePage.getIn(['scene', 'narrative', 'roles'])
+        .some((role) => role.get('user') === this.props.user.get('id')) &&
+      prevProps.scenePage.get('comments').size < this.props.scenePage.get('comments').size - 1) {
+      window.scrollTo(0, 150);
     }
   }
   setRef = (node) => (this.comments = node);
