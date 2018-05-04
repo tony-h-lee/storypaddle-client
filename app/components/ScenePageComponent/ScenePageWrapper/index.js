@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Tab } from 'semantic-ui-react';
+import { Tab, Header } from 'semantic-ui-react';
 import AsyncWrapper from 'components/AsyncWrapper';
 import ErrorComponent from 'components/ErrorComponent';
 import NarrationForm from 'components/ScenePageComponent/NarrationForm';
@@ -42,9 +42,12 @@ function ScenePageWrapper(props) {
   const scene = props.data.scene;
   const character = scene && props.moreProps.user && scene.getIn(['narrative', 'roles'])
     .find((role) => role.get('user') === props.moreProps.user.get('id'));
-  const isAuthAndRole = props.moreProps.token && scene && character;
+  const isAuthAndRole = props.moreProps.token && character;
   return (
     <div>
+      <Header textAlign="center" style={{ margin: '1.5rem 0' }}>
+        { scene && scene.getIn(['narrative', 'title'])}
+      </Header>
       <AsyncWrapper
         animate={false}
         spinner={false}
@@ -57,7 +60,11 @@ function ScenePageWrapper(props) {
         payload={props.data.comments}
         error={props.moreProps.sceneError}
         loading={props.moreProps.commentsLoading || props.moreProps.sceneLoading}
-        moreProps={{ ...props.moreProps, sceneId: scene && scene.get('id') }}
+        moreProps={{
+          ...props.moreProps,
+          sceneId: scene && scene.get('id'),
+          isAuthAndRole,
+        }}
       />
       {
         isAuthAndRole ?

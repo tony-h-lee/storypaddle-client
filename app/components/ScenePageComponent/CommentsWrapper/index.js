@@ -21,41 +21,65 @@ function CommentsWrapper(props) {
     }
     return false;
   };
+  let content = (<div />);
+
+  if (props.data.size > 0) {
+    if (props.moreProps.isAuthAndRole) {
+      content = (
+        <div>
+          <Waypoint
+            onEnter={getMoreComments}
+            topOffset={'20%'}
+          />
+          <Loader
+            size="medium"
+            inline="centered"
+            active={props.moreProps.moreLoading}
+          />
+          <List
+            items={props.data}
+            component={CommentItem}
+            moreProps={props.moreProps}
+          />
+        </div>
+      );
+    } else {
+      content = (
+        <div>
+          <Waypoint
+            onEnter={getMoreComments}
+            topOffset={'80%'}
+          />
+          <Loader
+            size="medium"
+            inline="centered"
+            active={props.moreProps.moreLoading}
+          />
+          <List
+            items={props.data}
+            component={CommentItem}
+            moreProps={props.moreProps}
+          />
+        </div>
+      );
+    }
+  } else {
+    content = (
+      <Grid
+        textAlign="center"
+      >
+        <Grid.Column style={{ maxWidth: 450, margin: '2rem 0 5rem 0' }}>
+          <Container textAlign="center">
+            <Icon size="huge" name="discussions" style={{ marginBottom: '2rem' }} />
+            <p> The Narrative is currently empty. </p>
+          </Container>
+        </Grid.Column>
+      </Grid>
+    );
+  }
   return (
-    <div style={{ margin: '2rem 0', height: '100%', minHeight: '50vh' }}>
-      {
-        props.data.size > 0 ?
-          <div>
-            <Waypoint
-              onEnter={getMoreComments}
-              topOffset={'80%'}
-            />
-            <Loader
-              size="medium"
-              inline="centered"
-              active
-              style={{ visibility: props.moreProps.moreLoading ? 'visible' : 'hidden' }}
-            />
-            <List
-              items={props.data}
-              component={CommentItem}
-              moreProps={props.moreProps}
-            />
-          </div>
-          :
-          (
-            <Grid
-              textAlign="center"
-            >
-              <Grid.Column style={{ maxWidth: 450, marginTop: '5rem' }}>
-                <Container textAlign="center">
-                  <Icon size="huge" name="discussions" style={{ marginBottom: '2rem' }} />
-                  <p> The Narrative is currently empty. </p>
-                </Container>
-              </Grid.Column>
-            </Grid>
-          )
-      }
+    <div style={{ margin: '2rem 0', height: '100%', minHeight: '30vh' }}>
+      {content}
     </div>
   );
 }
