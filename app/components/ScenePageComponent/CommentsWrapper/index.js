@@ -32,7 +32,7 @@ function CommentsWrapper(props) {
           {
             props.moreProps.hasNext ?
               <div style={{ textAlign: 'center', margin: '2rem 0' }}>
-                <Button primary onClick={getMoreComments}>
+                <Button basic onClick={getMoreComments}>
                   <Icon name="angle double up" />
                   Read More
                 </Button>
@@ -67,7 +67,7 @@ function CommentsWrapper(props) {
           {
             props.moreProps.hasNext ?
               <div style={{ textAlign: 'center', margin: '2rem 0' }}>
-                <Button primary onClick={getMoreComments}>
+                <Button basic onClick={getMoreComments}>
                   <Icon name="angle double down" />
                   Read More
                 </Button>
