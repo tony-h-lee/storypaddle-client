@@ -26,7 +26,7 @@ function CommentItem(props) {
       }
       {
         props.moreProps.user && props.item.author === props.moreProps.user.get('id') ?
-          <CommentControls {...props} />
+          <CommentControls actions={props.moreProps.actions} type={props.item.type} />
           : null
       }
     </div>

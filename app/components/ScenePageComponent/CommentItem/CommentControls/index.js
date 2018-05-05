@@ -11,7 +11,7 @@ import { Menu } from 'semantic-ui-react';
 
 function CommentControls(props) {
   return (
-    <Menu secondary size="mini" style={{ justifyContent: props.item.type === 'narration' ? null : 'center' }}>
+    <Menu secondary size="mini" style={{ justifyContent: props.type === 'narration' ? null : 'center' }}>
       <Menu.Item as="a" name="Edit" />
       <Menu.Item as="a" name="Delete" />
     </Menu>
@@ -19,7 +19,7 @@ function CommentControls(props) {
 }
 
 CommentControls.propTypes = {
-  item: PropTypes.object,
+  type: PropTypes.string,
 };
 
 export default CommentControls;
