@@ -1,10 +1,12 @@
 import { call, takeLatest, put, fork } from 'redux-saga/effects';
 import formActionSaga from 'redux-form-saga';
 import { postCommentErrors } from 'utils/errorCode';
+import { close } from 'containers/ConfirmModal/actions';
 import {
   GET_SCENE_REQUEST,
   GET_COMMENTS_REQUEST,
   GET_MORE_COMMENTS_REQUEST,
+  DELETE_COMMENT_REQUEST,
 } from './constants';
 import {
   getSceneSuccess,
@@ -15,9 +17,14 @@ import {
   getMoreSceneCommentsFailure,
   postNarrationComment,
   postDialogueComment,
+  deleteCommentSuccess,
+  deleteCommentFailure,
 } from './actions';
 import * as api from './api';
 
+// ------------------------------------------------------------------------------------
+// Get scene with comments for a narration
+// ------------------------------------------------------------------------------------
 function* handleGetScene(action) {
   const { id, userId } = action;
   try {
@@ -47,6 +54,9 @@ function* handleGetScene(action) {
   }
 }
 
+// ------------------------------------------------------------------------------------
+// Get comments handler if needed
+// ------------------------------------------------------------------------------------
 function* handleGetComments(action) {
   const { id, order } = action;
   try {
@@ -57,6 +67,9 @@ function* handleGetComments(action) {
   }
 }
 
+// ------------------------------------------------------------------------------------
+// Get more comments for pagination
+// ------------------------------------------------------------------------------------
 function* handleGetMoreComments(action) {
   const { id, order, next, previous } = action;
   try {
@@ -72,17 +85,23 @@ function* handleGetMoreComments(action) {
   }
 }
 
+// ------------------------------------------------------------------------------------
+// Create a narration type comment for a scene
+// ------------------------------------------------------------------------------------
 function* handlePostNarrationComment(action) {
   const form = { ...action.payload.form.toJS(), type: 'narration', scene: action.payload.sceneId };
   const token = action.payload.token;
   try {
-    const response = yield call(api.postComment, { ...form }, token); // calling our api method
+    const response = yield call(api.postComment, { ...form }, token);
     yield put(postNarrationComment.success(response));
   } catch (error) {
     yield put(postNarrationComment.failure(postCommentErrors(error.message ? error.message : error)));
   }
 }
 
+// ------------------------------------------------------------------------------------
+// Create a dialogue type comment for a scene
+// ------------------------------------------------------------------------------------
 function* handlePostDialogueComment(action) {
   const form = {
     ...action.payload.form.toJS(),
@@ -92,13 +111,35 @@ function* handlePostDialogueComment(action) {
   };
   const token = action.payload.token;
   try {
-    const response = yield call(api.postComment, { ...form }, token); // calling our api method
+    const response = yield call(api.postComment, { ...form }, token);
     yield put(postDialogueComment.success(response));
   } catch (error) {
     yield put(postDialogueComment.failure(postCommentErrors(error.message ? error.message : error)));
   }
 }
 
+// ------------------------------------------------------------------------------------
+// Create a narration type comment for a scene
+// ------------------------------------------------------------------------------------
+function* handleDeleteComment(action) {
+  const { token, sceneId, commentId } = action;
+  try {
+    yield call(api.deleteComment, { commentId, sceneId }, token);
+    yield [
+      put(deleteCommentSuccess(commentId)),
+      put(close()),
+    ];
+  } catch (error) {
+    yield [
+      put(deleteCommentFailure(postCommentErrors(error.message ? error.message : error))),
+      put(close()),
+    ];
+  }
+}
+
+// ------------------------------------------------------------------------------------
+// SAGA LISTENERS
+// ------------------------------------------------------------------------------------
 function* handleGetSceneSaga() {
   yield takeLatest(GET_SCENE_REQUEST, handleGetScene);
 }
@@ -116,6 +157,9 @@ function* handlePostCommentSaga() {
   yield takeLatest(postDialogueComment.REQUEST, handlePostDialogueComment);
 }
 
+function* handleDeleteCommentSage() {
+  yield takeLatest(DELETE_COMMENT_REQUEST, handleDeleteComment);
+}
 
 export function* rootSaga() {
   yield [
@@ -124,6 +168,7 @@ export function* rootSaga() {
     fork(handleGetCommentsSaga),
     fork(handleGetMoreCommentsSaga),
     fork(handlePostCommentSaga),
+    fork(handleDeleteCommentSage),
   ];
 }
 

@@ -34,7 +34,7 @@ function ScenePageComponent(props) {
           moreLoading: props.scenePage.get('moreLoading'),
           commentsLoading: props.scenePage.get('commentsLoading'),
           commentsError: props.scenePage.get('commentsError'),
-          actions: props.actions,
+          actions: { ...props.actions, openConfirm: props.openConfirm },
           next: props.scenePage.get('next'),
           previous: props.scenePage.get('previous'),
           token: props.token,
@@ -49,6 +49,7 @@ function ScenePageComponent(props) {
 ScenePageComponent.propTypes = {
   scenePage: PropTypes.object,
   actions: PropTypes.object,
+  openConfirm: PropTypes.func,
   token: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string,

@@ -19,6 +19,9 @@ import {
   POST_NARRATION_COMMENT_FAILURE,
   POST_DIALOGUE_COMMENT_SUCCESS,
   POST_DIALOGUE_COMMENT_FAILURE,
+  DELETE_COMMENT_REQUEST,
+  DELETE_COMMENT_SUCCESS,
+  DELETE_COMMENT_FAILURE,
 } from './constants';
 
 const initialState = fromJS({
@@ -116,6 +119,18 @@ function scenePageReducer(state = initialState, action) {
     case POST_DIALOGUE_COMMENT_FAILURE:
       return state
         .set('commentsError', action.payload.error);
+    case DELETE_COMMENT_REQUEST:
+      return state
+        .set('loading', true)
+        .set('error', false);
+    case DELETE_COMMENT_SUCCESS:
+      return state
+        .set('loading', false)
+        .update('comments', (comments) => comments.filter((comment) => comment.id !== action.id));
+    case DELETE_COMMENT_FAILURE:
+      return state
+        .set('loading', false)
+        .set('error', action.error);
     default:
       return state;
   }

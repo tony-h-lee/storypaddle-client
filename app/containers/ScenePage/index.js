@@ -14,6 +14,7 @@ import ScenePageComponent from 'components/ScenePageComponent/';
 import NarrativeOverviewNotFound from 'components/NarrativeOverviewPageComponent/NarrativeOverviewNotFound';
 import ErrorWrapper from 'components/ErrorWrapper';
 import ErrorPage from 'containers/ErrorPage';
+import { open } from 'containers/ConfirmModal/actions';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import * as scenePageActions from './actions';
@@ -30,12 +31,14 @@ export class ScenePage extends React.PureComponent { // eslint-disable-line reac
     if (this.props.token && this.props.scenePage.getIn(['scene', 'narrative', 'roles']) !== undefined &&
       this.props.scenePage.getIn(['scene', 'narrative', 'roles'])
         .some((role) => role.get('user') === this.props.user.get('id')) &&
-      prevProps.scenePage.get('comments').size < 1) {
+      (prevProps.scenePage.get('comments').size < 1 ||
+      prevProps.scenePage.get('comments').size > this.props.scenePage.get('comments').size)) {
       this.comments.scrollIntoView(false);
     } else if (this.props.token && this.props.scenePage.getIn(['scene', 'narrative', 'roles']) !== undefined &&
       this.props.scenePage.getIn(['scene', 'narrative', 'roles'])
         .some((role) => role.get('user') === this.props.user.get('id')) &&
-      prevProps.scenePage.get('comments').size < this.props.scenePage.get('comments').size - 1) {
+      prevProps.scenePage.get('comments').size !== this.props.scenePage.get('comments').size - 1 &&
+      prevProps.scenePage.get('comments').size < this.props.scenePage.get('comments').size) {
       window.scrollTo(0, 150);
     }
   }
@@ -81,6 +84,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(scenePageActions, dispatch),
+    openConfirm: (header, content, confirmButton, cancelButton, size, handleConfirm, handleCancel) =>
+      dispatch(open(header, content, confirmButton, cancelButton, size, handleConfirm, handleCancel)),
   };
 }
 

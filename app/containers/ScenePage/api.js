@@ -43,3 +43,15 @@ export function postComment(values, token) {
     .setBody(values)
     .go();
 }
+
+
+export function deleteComment(values, token) {
+  const url = 'http://localhost:9000/api/comments';
+  return new Request()
+    .setUrl(url)
+    .setDelete()
+    .addHeader({ 'Content-Type': 'application/json' })
+    .setToken(token)
+    .setBody(values)
+    .go();
+}

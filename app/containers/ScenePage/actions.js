@@ -23,10 +23,10 @@ import {
   UPDATE_COMMENT_REQUEST,
   UPDATE_COMMENT_SUCCESS,
   UPDATE_COMMENT_FAILURE,
+  */
   DELETE_COMMENT_REQUEST,
   DELETE_COMMENT_SUCCESS,
   DELETE_COMMENT_FAILURE,
-  */
 } from './constants';
 
 /**
@@ -238,6 +238,55 @@ export function postDialogueCommentSuccess(comment) {
 export function postDialogueCommentFailure(error) {
   return {
     type: POST_DIALOGUE_COMMENT_FAILURE,
+    error,
+  };
+}
+
+
+/**
+ * Dispatched when user confirms to delete a comment
+ *
+ * @param  {string} -> token : The access token retrieved from auth
+ * @param  {string} -> commentId : The id of the comment that the user requests to delete
+ * @param  {string} -> sceneId : The id of the scene this comment belongs to
+ *
+ * @return {object} : An action object with a type of DELETE_COMMENT_REQUEST and token string and comment and scene id
+ */
+export function deleteComment(token, commentId, sceneId) {
+  return {
+    type: DELETE_COMMENT_REQUEST,
+    token,
+    commentId,
+    sceneId,
+  };
+}
+
+
+/**
+ * Dispatched when user successfully deletes a comment on the ScenePage
+ *
+ * @param  {string} -> id : The id of the comment that the user successfully deleted
+ *
+ * @return {object} : An action object with a type of DELETE_COMMENT_SUCCESS and the narrative id string.
+ */
+export function deleteCommentSuccess(id) {
+  return {
+    type: DELETE_COMMENT_SUCCESS,
+    id,
+  };
+}
+
+
+/**
+ * Dispatched when deleting a comment fails
+ *
+ * @param  {object} -> error : The error obtained by the saga
+ *
+ * @return {object} : An action object with a type of DELETE_COMMENT_FAILURE passing the error
+ */
+export function deleteCommentFailure(error) {
+  return {
+    type: DELETE_COMMENT_FAILURE,
     error,
   };
 }
