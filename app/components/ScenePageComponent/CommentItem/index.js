@@ -6,7 +6,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import NarrationType from './NarrationType';
 import DialogueType from './DialogueType';
 import CommentControls from './CommentControls';
