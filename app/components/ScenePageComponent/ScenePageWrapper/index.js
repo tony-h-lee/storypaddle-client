@@ -6,7 +6,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Tab, Header } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Tab, Header, Icon } from 'semantic-ui-react';
 import AsyncWrapper from 'components/AsyncWrapper';
 import ErrorComponent from 'components/ErrorComponent';
 import NarrationForm from 'components/ScenePageComponent/NarrationForm';
@@ -73,7 +74,14 @@ function ScenePageWrapper(props) {
           />
           :
           <div>
-            Suggest roles if any
+            {
+              scene ?
+                <Link to={`/narrative/${scene.getIn(['narrative', 'id'])}`}>
+                  <Icon name="angle left" />
+                  See Synopsis and Roles
+                </Link>
+                : null
+            }
           </div>
       }
     </div>
