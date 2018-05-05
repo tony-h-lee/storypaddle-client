@@ -46,12 +46,12 @@ export function postComment(values, token) {
 
 
 export function deleteComment(values, token) {
-  const url = 'http://localhost:9000/api/comments';
+  const url = `http://localhost:9000/api/comments/${values.commentId}`;
   return new Request()
     .setUrl(url)
     .setDelete()
     .addHeader({ 'Content-Type': 'application/json' })
     .setToken(token)
-    .setBody(values)
+    .setBody({ sceneId: values.sceneId })
     .go();
 }
