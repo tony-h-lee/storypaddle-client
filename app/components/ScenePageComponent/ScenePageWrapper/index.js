@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Tab, Header, Icon } from 'semantic-ui-react';
+import { Tab, Header, Icon, Segment } from 'semantic-ui-react';
 import AsyncWrapper from 'components/AsyncWrapper';
 import ErrorComponent from 'components/ErrorComponent';
 import NarrationForm from 'components/ScenePageComponent/NarrationForm';
@@ -76,10 +76,12 @@ function ScenePageWrapper(props) {
           <div>
             {
               scene ?
-                <Link to={`/narrative/${scene.getIn(['narrative', 'id'])}`}>
-                  <Icon name="angle left" />
-                  See Synopsis and Roles
-                </Link>
+                <Segment color="blue">
+                  <Link to={`/narrative/${scene.getIn(['narrative', 'id'])}`}>
+                    <Icon name="angle left" />
+                    See Synopsis and Roles
+                  </Link>
+                </Segment>
                 : null
             }
           </div>
