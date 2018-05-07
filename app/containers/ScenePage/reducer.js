@@ -22,6 +22,8 @@ import {
   DELETE_COMMENT_REQUEST,
   DELETE_COMMENT_SUCCESS,
   DELETE_COMMENT_FAILURE,
+  SET_EDIT,
+  UNSET_EDIT,
 } from './constants';
 
 const initialState = fromJS({
@@ -131,6 +133,14 @@ function scenePageReducer(state = initialState, action) {
       return state
         .set('loading', false)
         .set('error', action.error);
+    case SET_EDIT:
+      return state
+        .update('comments', (comments) => comments.map((comment) =>
+          comment.id === action.commentId ? Object.assign({}, { ...comment }, { editing: true }) : comment));
+    case UNSET_EDIT:
+      return state
+        .update('comments', (comments) => comments.map((comment) =>
+          comment.id === action.commentId ? Object.assign({}, { ...comment }, { editing: null }) : comment));
     default:
       return state;
   }

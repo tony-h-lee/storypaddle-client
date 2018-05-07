@@ -13,6 +13,9 @@ import CommentControls from './CommentControls';
 
 
 function CommentItem(props) {
+  if (props.item.editing) {
+    return (<div> editing now </div>);
+  }
   return (
     <div style={{ paddingBottom: '24px' }}>
       {

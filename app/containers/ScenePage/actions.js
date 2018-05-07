@@ -19,6 +19,8 @@ import {
   POST_NARRATION_COMMENT_FAILURE,
   POST_DIALOGUE_COMMENT_SUCCESS,
   POST_DIALOGUE_COMMENT_FAILURE,
+  SET_EDIT,
+  UNSET_EDIT,
   /*
   UPDATE_COMMENT_REQUEST,
   UPDATE_COMMENT_SUCCESS,
@@ -288,5 +290,35 @@ export function deleteCommentFailure(error) {
   return {
     type: DELETE_COMMENT_FAILURE,
     error,
+  };
+}
+
+
+/**
+ * Display the form with initial values of the comment user wishes to edit
+ *
+ * @param  {string} -> commentId : The id of the comment that the user selected to edit
+ *
+ * @return {object} : An action object with a type of SET_EDIT and the selected comment id
+ */
+export function setEdit(commentId) {
+  return {
+    type: SET_EDIT,
+    commentId,
+  };
+}
+
+
+/**
+ * Hide the form with comment initial value and cancel the edit
+ *
+ * @param  {string} -> commentId : The id of the comment that the user cancels editing
+ *
+ * @return {object} : An action object with a type of UNSET_EDIT and the selected comment id
+ */
+export function unsetEdit(commentId) {
+  return {
+    type: UNSET_EDIT,
+    commentId,
   };
 }

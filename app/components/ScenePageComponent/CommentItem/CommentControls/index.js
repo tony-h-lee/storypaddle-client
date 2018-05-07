@@ -30,6 +30,7 @@ function CommentControls(props) {
       <Menu.Item
         as="a"
         name="Edit"
+        onClick={() => props.actions.setEdit(props.commentId)}
       />
       <Menu.Item
         as="a"
@@ -51,6 +52,7 @@ function CommentControls(props) {
 }
 
 CommentControls.propTypes = {
+  commentId: PropTypes.string,
   actions: PropTypes.object,
   type: PropTypes.string,
   sceneId: PropTypes.string,
