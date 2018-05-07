@@ -22,6 +22,8 @@ import {
   DELETE_COMMENT_REQUEST,
   DELETE_COMMENT_SUCCESS,
   DELETE_COMMENT_FAILURE,
+  UPDATE_COMMENT_SUCCESS,
+  UPDATE_COMMENT_FAILURE,
   SET_EDIT,
   UNSET_EDIT,
 } from './constants';
@@ -114,13 +116,13 @@ function scenePageReducer(state = initialState, action) {
         .update('comments', (comments) => comments.push(action.payload));
     case POST_NARRATION_COMMENT_FAILURE:
       return state
-        .set('commentsError', action.payload.error);
+        .set('commentsError', action.payload);
     case POST_DIALOGUE_COMMENT_SUCCESS:
       return state
         .update('comments', (comments) => comments.push(action.payload));
     case POST_DIALOGUE_COMMENT_FAILURE:
       return state
-        .set('commentsError', action.payload.error);
+        .set('commentsError', action.payload);
     case DELETE_COMMENT_REQUEST:
       return state
         .set('loading', true)
@@ -141,6 +143,13 @@ function scenePageReducer(state = initialState, action) {
       return state
         .update('comments', (comments) => comments.map((comment) =>
           comment.id === action.commentId ? Object.assign({}, { ...comment }, { editing: null }) : comment));
+    case UPDATE_COMMENT_SUCCESS:
+      return state
+        .update('comments', (comments) => comments.map((comment) =>
+          comment.id === action.payload.id ? action.payload : comment));
+    case UPDATE_COMMENT_FAILURE:
+      return state
+        .set('commentsError', action.payload);
     default:
       return state;
   }

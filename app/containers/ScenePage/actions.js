@@ -21,11 +21,8 @@ import {
   POST_DIALOGUE_COMMENT_FAILURE,
   SET_EDIT,
   UNSET_EDIT,
-  /*
-  UPDATE_COMMENT_REQUEST,
   UPDATE_COMMENT_SUCCESS,
   UPDATE_COMMENT_FAILURE,
-  */
   DELETE_COMMENT_REQUEST,
   DELETE_COMMENT_SUCCESS,
   DELETE_COMMENT_FAILURE,
@@ -320,5 +317,40 @@ export function unsetEdit(commentId) {
   return {
     type: UNSET_EDIT,
     commentId,
+  };
+}
+
+
+/**
+ * Edit a Comment
+ */
+export const updateComment = createFormAction('UPDATE_COMMENT');
+
+/**
+ * Dispatched when updating a Comment succeeds
+ *
+ * @param  {object} -> comment : The comment object successfully updated
+ *
+ * @return {object} : An action object with a type of UPDATE_COMMENT_SUCCESS with the posted comment object
+ */
+export function updateCommentSuccess(comment) {
+  return {
+    type: UPDATE_COMMENT_SUCCESS,
+    comment,
+  };
+}
+
+
+/**
+ * Dispatched when updating a Comment fails
+ *
+ * @param  {object} -> error : The error obtained by the saga
+ *
+ * @return {object} : An action object with a type of UPDATE_COMMENT_FAILURE passing the error
+ */
+export function updateCommentFailure(error) {
+  return {
+    type: UPDATE_COMMENT_FAILURE,
+    error,
   };
 }

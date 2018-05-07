@@ -55,3 +55,15 @@ export function deleteComment(values, token) {
     .setBody({ sceneId: values.sceneId })
     .go();
 }
+
+
+export function updateComment(values, token) {
+  const url = `http://localhost:9000/api/comments/${values.commentId}`;
+  return new Request()
+    .setUrl(url)
+    .setPut()
+    .addHeader({ 'Content-Type': 'application/json' })
+    .setToken(token)
+    .setBody({ text: values.text })
+    .go();
+}

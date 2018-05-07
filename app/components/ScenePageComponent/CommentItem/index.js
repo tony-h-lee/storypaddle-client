@@ -6,6 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import EditCommentForm from 'components/EditCommentForm';
 import NarrationType from './NarrationType';
 import DialogueType from './DialogueType';
 import CommentControls from './CommentControls';
@@ -14,7 +15,13 @@ import CommentControls from './CommentControls';
 
 function CommentItem(props) {
   if (props.item.editing) {
-    return (<div> editing now </div>);
+    return (
+      <EditCommentForm
+        formId={`editCommentForm_${props.item.id}`}
+        comment={props.item}
+        token={props.moreProps.token}
+        unsetEdit={props.moreProps.actions.unsetEdit}
+      />);
   }
   return (
     <div style={{ paddingBottom: '24px' }}>

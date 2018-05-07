@@ -2,6 +2,7 @@ import { call, takeLatest, put, fork } from 'redux-saga/effects';
 import formActionSaga from 'redux-form-saga';
 import {
   postCommentErrors,
+  updateCommentErrors,
   deleteCommentErrors,
 } from 'utils/errorCode';
 import { close } from 'containers/ConfirmModal/actions';
@@ -20,8 +21,10 @@ import {
   getMoreSceneCommentsFailure,
   postNarrationComment,
   postDialogueComment,
+  updateComment,
   deleteCommentSuccess,
   deleteCommentFailure,
+  unsetEdit,
 } from './actions';
 import * as api from './api';
 
@@ -122,7 +125,7 @@ function* handlePostDialogueComment(action) {
 }
 
 // ------------------------------------------------------------------------------------
-// Create a narration type comment for a scene
+// Delete a comment within a scene
 // ------------------------------------------------------------------------------------
 function* handleDeleteComment(action) {
   const { token, sceneId, commentId } = action;
@@ -137,6 +140,23 @@ function* handleDeleteComment(action) {
       put(deleteCommentFailure(deleteCommentErrors(error.message ? error.message : error))),
       put(close()),
     ];
+  }
+}
+
+// ------------------------------------------------------------------------------------
+// Update a comment within a scene
+// ------------------------------------------------------------------------------------
+function* handleUpdateComment(action) {
+  const form = { ...action.payload.form.toJS(), commentId: action.payload.commentId };
+  const token = action.payload.token;
+  try {
+    const response = yield call(api.updateComment, { ...form }, token);
+    yield [
+      put(updateComment.success(response)),
+      put(unsetEdit(response.id)),
+    ];
+  } catch (error) {
+    yield put(updateComment.failure(updateCommentErrors(error.message ? error.message : error)));
   }
 }
 
@@ -160,8 +180,12 @@ function* handlePostCommentSaga() {
   yield takeLatest(postDialogueComment.REQUEST, handlePostDialogueComment);
 }
 
-function* handleDeleteCommentSage() {
+function* handleDeleteCommentSaga() {
   yield takeLatest(DELETE_COMMENT_REQUEST, handleDeleteComment);
+}
+
+function* handleUpdateCommentSaga() {
+  yield takeLatest(updateComment.REQUEST, handleUpdateComment);
 }
 
 export function* rootSaga() {
@@ -171,7 +195,8 @@ export function* rootSaga() {
     fork(handleGetCommentsSaga),
     fork(handleGetMoreCommentsSaga),
     fork(handlePostCommentSaga),
-    fork(handleDeleteCommentSage),
+    fork(handleDeleteCommentSaga),
+    fork(handleUpdateCommentSaga),
   ];
 }
 

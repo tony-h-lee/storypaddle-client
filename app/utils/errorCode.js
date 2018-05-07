@@ -16,7 +16,9 @@ export const getSignupErrors = (code) => {
         _error: 'Database error. Please try again later',
       });
     default:
-      return 'Failed to fetch';
+      return new SubmissionError({
+        _error: 'Failed to fetch. Please try again later',
+      });
   }
 };
 
@@ -32,7 +34,9 @@ export const getLoginErrors = (code) => {
         _error: 'Invalid email or password requirements',
       });
     default:
-      return 'Failed to fetch';
+      return new SubmissionError({
+        _error: 'Failed to fetch. Please try again later',
+      });
   }
 };
 
@@ -44,7 +48,9 @@ export const getForgotPasswordErrors = (code) => {
         _error: 'Failed to send email. Please try again',
       });
     default:
-      return 'Failed to fetch';
+      return new SubmissionError({
+        _error: 'Failed to fetch. Please try again later',
+      });
   }
 };
 
@@ -60,7 +66,9 @@ export const getResetPasswordErrors = (code) => {
         _error: 'Invalid password fields submitted. Please enter a new password',
       });
     default:
-      return 'Failed to fetch';
+      return new SubmissionError({
+        _error: 'Failed to fetch. Please try again later',
+      });
   }
 };
 
@@ -75,7 +83,9 @@ export const getCreateNarrativesErrors = (code) => {
         _error: 'Please ensure you filled all required fields and you have no duplicate role names',
       });
     default:
-      return 'Failed to fetch';
+      return new SubmissionError({
+        _error: 'Failed to fetch. Please try again later',
+      });
   }
 };
 
@@ -85,12 +95,18 @@ export const getEditNarrativesErrors = (code) => {
       return new SubmissionError({
         _error: 'Authentication required',
       });
+    case 404:
+      return new SubmissionError({
+        _error: 'This narrative no longer exists',
+      });
     case 400:
       return new SubmissionError({
-        _error: 'Please ensure you filled all required fields and you have no duplicate role names',
+        _error: 'Please ensure you have filled all required filled accordingly',
       });
     default:
-      return 'Failed to fetch';
+      return new SubmissionError({
+        _error: 'Failed to fetch. Please try again later',
+      });
   }
 };
 
@@ -131,7 +147,7 @@ export const postCommentErrors = (code) => {
         message: 'This Narrative no longer exists',
       };
     default:
-      return 'Failed to fetch';
+      return 'Failed to fetch. Please try again later';
   }
 };
 
@@ -147,6 +163,28 @@ export const deleteCommentErrors = (code) => {
         message: 'This Narrative no longer exists',
       };
     default:
-      return 'Failed to fetch';
+      return 'Failed to fetch. Please try again later';
+  }
+};
+
+
+export const updateCommentErrors = (code) => {
+  switch (code) {
+    case 401:
+      return new SubmissionError({
+        _error: 'Authentication required',
+      });
+    case 404:
+      return new SubmissionError({
+        _error: 'This narrative no longer exists',
+      });
+    case 400:
+      return new SubmissionError({
+        _error: 'Please ensure that the text contains no invalid characters',
+      });
+    default:
+      return new SubmissionError({
+        _error: 'Failed to fetch. Please try again later',
+      });
   }
 };
