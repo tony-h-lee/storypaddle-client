@@ -1,6 +1,9 @@
 import { call, takeLatest, put, fork } from 'redux-saga/effects';
 import formActionSaga from 'redux-form-saga';
-import { postCommentErrors } from 'utils/errorCode';
+import {
+  postCommentErrors,
+  deleteCommentErrors,
+} from 'utils/errorCode';
 import { close } from 'containers/ConfirmModal/actions';
 import {
   GET_SCENE_REQUEST,
@@ -131,7 +134,7 @@ function* handleDeleteComment(action) {
     ];
   } catch (error) {
     yield [
-      put(deleteCommentFailure(postCommentErrors(error.message ? error.message : error))),
+      put(deleteCommentFailure(deleteCommentErrors(error.message ? error.message : error))),
       put(close()),
     ];
   }

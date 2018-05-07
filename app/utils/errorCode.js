@@ -16,7 +16,7 @@ export const getSignupErrors = (code) => {
         _error: 'Database error. Please try again later',
       });
     default:
-      return { error: 'Failed to fetch' };
+      return 'Failed to fetch';
   }
 };
 
@@ -32,7 +32,7 @@ export const getLoginErrors = (code) => {
         _error: 'Invalid email or password requirements',
       });
     default:
-      return { error: 'Failed to fetch' };
+      return 'Failed to fetch';
   }
 };
 
@@ -44,7 +44,7 @@ export const getForgotPasswordErrors = (code) => {
         _error: 'Failed to send email. Please try again',
       });
     default:
-      return { error: 'Failed to fetch' };
+      return 'Failed to fetch';
   }
 };
 
@@ -60,7 +60,7 @@ export const getResetPasswordErrors = (code) => {
         _error: 'Invalid password fields submitted. Please enter a new password',
       });
     default:
-      return { error: 'Failed to fetch' };
+      return 'Failed to fetch';
   }
 };
 
@@ -75,7 +75,7 @@ export const getCreateNarrativesErrors = (code) => {
         _error: 'Please ensure you filled all required fields and you have no duplicate role names',
       });
     default:
-      return { error: 'Failed to fetch' };
+      return 'Failed to fetch';
   }
 };
 
@@ -90,7 +90,7 @@ export const getEditNarrativesErrors = (code) => {
         _error: 'Please ensure you filled all required fields and you have no duplicate role names',
       });
     default:
-      return { error: 'Failed to fetch' };
+      return 'Failed to fetch';
   }
 };
 
@@ -119,20 +119,34 @@ export const getJoinNarrativeErrors = (roleId, code) => {
 export const postCommentErrors = (code) => {
   switch (code) {
     case 400:
-      return new SubmissionError({
-        _error: 'You have inputted invalid text',
-      });
+      return {
+        message: 'You have inputted invalid text',
+      };
     case 401:
-      return new SubmissionError({
-        _error: 'Authentication required',
-      });
+      return {
+        message: 'Authentication required',
+      };
     case 404:
-      return new SubmissionError({
-        _error: 'This Narrative no longer exists',
-      });
+      return {
+        message: 'This Narrative no longer exists',
+      };
     default:
-      return new SubmissionError({
-        _error: 'Failed to connect to the server',
-      });
+      return 'Failed to fetch';
+  }
+};
+
+
+export const deleteCommentErrors = (code) => {
+  switch (code) {
+    case 401:
+      return {
+        message: 'Authentication required',
+      };
+    case 404:
+      return {
+        message: 'This Narrative no longer exists',
+      };
+    default:
+      return 'Failed to fetch';
   }
 };
