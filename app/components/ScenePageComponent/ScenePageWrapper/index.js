@@ -64,6 +64,7 @@ function ScenePageWrapper(props) {
         moreProps={{
           ...props.moreProps,
           sceneId: scene && scene.get('id'),
+          sceneAuthor: scene && scene.get('author'),
           isAuthAndRole,
         }}
       />

@@ -14,6 +14,9 @@ import CommentControls from './CommentControls';
 
 
 function CommentItem(props) {
+  const canControl = () => ((props.moreProps.user && props.item.author === props.moreProps.user.get('id')) ||
+  (props.moreProps.user && props.moreProps.user.get('id') === props.moreProps.sceneAuthor));
+
   if (props.item.editing) {
     return (
       <EditCommentForm
@@ -35,7 +38,7 @@ function CommentItem(props) {
           />
       }
       {
-        props.moreProps.user && props.item.author === props.moreProps.user.get('id') ?
+        canControl() ?
           <CommentControls
             actions={props.moreProps.actions}
             type={props.item.type}
