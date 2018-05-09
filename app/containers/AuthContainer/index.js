@@ -32,6 +32,8 @@ import CreateNarrativesPage from 'containers/CreateNarrativesPage/Loadable';
 import EditNarrativesPage from 'containers/EditNarrativesPage/Loadable';
 import JoinedNarrativesPage from 'containers/JoinedNarrativesPage/Loadable';
 import MyNarrativesPage from 'containers/MyNarrativesPage/Loadable';
+import SettingsPage from 'containers/SettingsPage/Loadable';
+import TutorialsPage from 'containers/TutorialsPage/Loadable';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -117,7 +119,7 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             innerComponent={CreateNarrativesPage}
             token={this.props.auth.get('token')}
             user={this.props.auth.get('user')}
-            redirectTo={'/'}
+            redirectTo={'/signup'}
           />
           <PrivateRoute
             exact
@@ -126,7 +128,7 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             innerComponent={EditNarrativesPage}
             token={this.props.auth.get('token')}
             user={this.props.auth.get('user')}
-            redirectTo={'/'}
+            redirectTo={'/signup'}
           />
           <PrivateRoute
             path="/joined-narratives"
@@ -134,7 +136,7 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             innerComponent={JoinedNarrativesPage}
             token={this.props.auth.get('token')}
             user={this.props.auth.get('user')}
-            redirectTo={'/'}
+            redirectTo={'/signup'}
           />
           <PrivateRoute
             path="/my-narratives"
@@ -142,7 +144,23 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             innerComponent={MyNarrativesPage}
             token={this.props.auth.get('token')}
             user={this.props.auth.get('user')}
-            redirectTo={'/'}
+            redirectTo={'/signup'}
+          />
+          <PrivateRoute
+            path="/settings"
+            component={RouteWrapper}
+            innerComponent={SettingsPage}
+            token={this.props.auth.get('token')}
+            user={this.props.auth.get('user')}
+            redirectTo={'/signup'}
+          />
+          <PrivateRoute
+            path="/tutorials"
+            component={RouteWrapper}
+            innerComponent={TutorialsPage}
+            token={this.props.auth.get('token')}
+            user={this.props.auth.get('user')}
+            redirectTo={'/signup'}
           />
           <PropsRoute
             component={RouteWrapper}

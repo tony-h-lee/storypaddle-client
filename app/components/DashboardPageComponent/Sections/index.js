@@ -21,18 +21,11 @@ export default [
     link: '/joined-narratives',
   },
   {
-    id: 'notifications',
-    title: 'Notifications',
-    meta: 'Updates on Narratives',
-    icon: 'alarm',
-    link: '/notifications',
-  },
-  {
-    id: 'trophies',
-    title: 'Trophies',
-    meta: 'Gifted by fellow users',
-    icon: 'trophy',
-    link: '/trophies',
+    id: 'tutorials',
+    title: 'Tutorials',
+    meta: 'Guides for getting started',
+    icon: 'certificate',
+    link: '/tutorials',
   },
   {
     id: 'settings',

@@ -55,6 +55,28 @@ export const getForgotPasswordErrors = (code) => {
 };
 
 
+export const getChangePasswordErrors = (code) => {
+  switch (code) {
+    case 404:
+      return new SubmissionError({
+        _error: 'This account does not exist',
+      });
+    case 401:
+      return new SubmissionError({
+        _error: 'Your current password is incorrect',
+      });
+    case 400:
+      return new SubmissionError({
+        _error: 'Invalid password fields submitted. Please enter a new password',
+      });
+    default:
+      return new SubmissionError({
+        _error: 'Failed to fetch. Please try again later',
+      });
+  }
+};
+
+
 export const getResetPasswordErrors = (code) => {
   switch (code) {
     case 404:
