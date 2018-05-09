@@ -22,7 +22,7 @@ export default [
   },
   {
     id: 'tutorials',
-    title: 'Tutorials',
+    title: 'FAQs',
     meta: 'Guides for getting started',
     icon: 'certificate',
     link: '/tutorials',

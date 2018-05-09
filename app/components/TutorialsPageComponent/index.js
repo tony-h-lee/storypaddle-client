@@ -14,7 +14,7 @@ import TutorialsAccordion from './TutorialsAccordian';
 function TutorialsPageComponent(props) {
   return (
     <DashboardSectionWrapper>
-      <h1> Tutorials </h1>
+      <h1> Frequently Asked Questions </h1>
       <Container text textAlign="left">
         <TutorialsAccordion {...props} />
       </Container>
