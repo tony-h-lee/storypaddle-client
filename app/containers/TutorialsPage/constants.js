@@ -4,4 +4,4 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/TutorialsPage/DEFAULT_ACTION';
+export const SET_ACCORDION_INDEX = 'app/TutorialsPage/SET_ACCORDION_INDEX';

@@ -5,11 +5,17 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  SET_ACCORDION_INDEX,
 } from './constants';
 
-export function defaultAction() {
+/**
+ * Dispatched when user selects an accordion section on the tutorial page
+ *
+ * @return {object} : An action object with a type of SET_ACCORDION_INDEX and the index of the section selected
+ */
+export function setAccordionIndex(index) {
   return {
-    type: DEFAULT_ACTION,
+    type: SET_ACCORDION_INDEX,
+    index,
   };
 }

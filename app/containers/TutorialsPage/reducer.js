@@ -6,15 +6,18 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  SET_ACCORDION_INDEX,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  activeIndex: 0,
+});
 
 function tutorialsPageReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case SET_ACCORDION_INDEX:
+      return state
+        .update('activeIndex', (activeIndex) => activeIndex === action.index ? -1 : action.index);
     default:
       return state;
   }

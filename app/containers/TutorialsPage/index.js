@@ -8,10 +8,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import TutorialsPageComponent from 'components/TutorialsPageComponent';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+import * as tutorialsPageActions from './actions';
 import makeSelectTutorialsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -39,7 +40,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    actions: bindActionCreators(tutorialsPageActions, dispatch),
   };
 }
 
