@@ -50,7 +50,7 @@ function DialogueForm(props) {
         displayError={false}
         autoHeight
         rows="4"
-        placeholder="Ex. That'll cost ya' five dollars!"
+        placeholder="Enter character's dialogue"
         validate={required}
       />
 

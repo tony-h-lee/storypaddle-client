@@ -40,7 +40,7 @@ function NarrationForm(props) {
         displayError={false}
         autoHeight
         rows="5"
-        placeholder="Ex. It was three in the morning when Wendy decided to get up from bed."
+        placeholder="Enter narration text."
         validate={required}
       />
 

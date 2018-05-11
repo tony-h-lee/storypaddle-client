@@ -3,7 +3,6 @@ import section0 from './section0';
 import section1 from './section1';
 import section2 from './section2';
 import section3 from './section3';
-import section4 from './section4';
 
 export default [
   {
@@ -23,12 +22,7 @@ export default [
   },
   {
     index: 3,
-    title: 'Writing Tips',
-    content: section3,
-  },
-  {
-    index: 4,
     title: 'Need More Info?',
-    content: section4,
+    content: section3,
   },
 ];

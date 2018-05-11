@@ -43,7 +43,7 @@ function CreateNarrativesForm(props) {
         component={SemanticFormField}
         as={Form.Input}
         fluid
-        placeholder="Ex. The Machine and Us"
+        placeholder="Enter the Narrative Title"
         type="text"
         validate={required}
       />
@@ -53,8 +53,8 @@ function CreateNarrativesForm(props) {
         component={SemanticFormField}
         as={Form.TextArea}
         autoHeight
-        rows="13"
-        placeholder={'Ex. Amidst the rubble and dust, a bloodied hand appears from under a crevice.\n\nHaving unleashed the power of the Crucible, the Earth is now covered in ruin and debris–the sky, engulfed in thick grey clouds. Shepard crawls out from beneath the piles of concrete and metal, scarred and barely holding together, only to see a looming monstrosity in the air. A single lone reaper, the last of its kind.\n\nThis is a Mass Effect roleplay picking up from the Destruction ending from Mass Effect 3. Please keep NSFW content to a minimum.'}
+        rows="8"
+        placeholder={'Enter the Narrative setting and background, along with any criteria other users should follow.'}
         validate={required}
       />
       <SemanticField
