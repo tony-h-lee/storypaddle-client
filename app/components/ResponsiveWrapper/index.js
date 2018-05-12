@@ -11,22 +11,21 @@ import { Responsive } from 'semantic-ui-react';
 
 
 function ResponsiveWrapper(props) {
-  const { BigComponent, SmallComponent } = props;
   return (
     <div>
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-        <BigComponent />
+        {props.BigComponent}
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
-        <SmallComponent />
+        {props.SmallComponent}
       </Responsive>
     </div>
   );
 }
 
 ResponsiveWrapper.propTypes = {
-  BigComponent: PropTypes.func.isRequired,
-  SmallComponent: PropTypes.func.isRequired,
+  BigComponent: PropTypes.node.isRequired,
+  SmallComponent: PropTypes.node.isRequired,
 };
 
 export default ResponsiveWrapper;

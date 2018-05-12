@@ -13,8 +13,8 @@ import ResponsiveLanding from './ResponsiveLanding';
 function LandingPageComponent() {
   return (
     <ResponsiveWrapper
-      BigComponent={Landing}
-      SmallComponent={ResponsiveLanding}
+      BigComponent={<Landing />}
+      SmallComponent={<ResponsiveLanding />}
     />
   );
 }

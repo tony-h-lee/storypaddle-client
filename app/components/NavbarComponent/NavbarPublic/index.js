@@ -5,13 +5,14 @@
 */
 
 import React from 'react';
-import { Menu, Input } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import Logo from 'components/Logo';
 import { Link } from 'react-router-dom';
+import NavbarSearch from 'components/NavbarComponent/NavbarSearch';
 // import styled from 'styled-components';
 
 
-function NavbarPublic() {
+function NavbarPublic(props) {
   return (
     <Menu borderless>
       <Menu.Item
@@ -28,7 +29,7 @@ function NavbarPublic() {
         name="Narratives"
       />
       <Menu.Item>
-        <Input icon="search" placeholder="Search" />
+        <NavbarSearch {...props} />
       </Menu.Item>
       <Menu.Menu position="right">
         <Menu.Item

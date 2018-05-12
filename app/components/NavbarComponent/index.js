@@ -18,20 +18,21 @@ function NavbarComponent(props) {
   return (
     <div>
       <ResponsiveWrapper
-        BigComponent={() => (
+        token={props.token}
+        BigComponent={
           <AuthWrapper
             token={props.token}
-            AuthComponent={() => (<NavbarAuth logout={props.logout} />)}
-            PublicComponent={NavbarPublic}
+            AuthComponent={<NavbarAuth {...props} />}
+            PublicComponent={<NavbarPublic {...props} />}
           />
-        )}
-        SmallComponent={() => (
+        }
+        SmallComponent={
           <AuthWrapper
             token={props.token}
-            AuthComponent={() => (<ResponsiveNavbarAuth logout={props.logout} />)}
-            PublicComponent={ResponsiveNavbarPublic}
+            AuthComponent={<ResponsiveNavbarAuth {...props} />}
+            PublicComponent={<ResponsiveNavbarPublic {...props} />}
           />
-        )}
+        }
       />
     </div>
   );
@@ -42,7 +43,6 @@ NavbarComponent.propTypes = {
     PropTypes.bool,
     PropTypes.string,
   ]),
-  logout: PropTypes.func,
 };
 
 export default NavbarComponent;

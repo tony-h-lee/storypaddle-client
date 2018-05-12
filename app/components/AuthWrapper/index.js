@@ -10,9 +10,15 @@ import PropTypes from 'prop-types';
 
 
 function AuthWrapper(props) {
-  const { AuthComponent, PublicComponent } = props;
   return (
-    props.token ? <AuthComponent /> : <PublicComponent />
+    <div>
+      {
+        props.token ?
+          props.AuthComponent
+          :
+          props.PublicComponent
+      }
+    </div>
   );
 }
 
@@ -21,8 +27,8 @@ AuthWrapper.propTypes = {
     PropTypes.bool,
     PropTypes.string,
   ]),
-  AuthComponent: PropTypes.func.isRequired,
-  PublicComponent: PropTypes.func.isRequired,
+  AuthComponent: PropTypes.node.isRequired,
+  PublicComponent: PropTypes.node.isRequired,
 };
 
 export default AuthWrapper;

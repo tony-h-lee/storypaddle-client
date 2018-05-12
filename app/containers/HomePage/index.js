@@ -20,8 +20,8 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     return (
       <AuthWrapper
         token={this.props.token}
-        AuthComponent={DashboardPage}
-        PublicComponent={LandingPage}
+        AuthComponent={<DashboardPage />}
+        PublicComponent={<LandingPage />}
       />
     );
   }

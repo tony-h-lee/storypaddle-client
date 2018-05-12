@@ -5,9 +5,10 @@
 */
 
 import React from 'react';
-import { Menu, Input } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import Logo from 'components/Logo';
 import { Link } from 'react-router-dom';
+import NavbarSearch from 'components/NavbarComponent/NavbarSearch';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
@@ -29,12 +30,12 @@ function NavbarAuth(props) {
         name="Narratives"
       />
       <Menu.Item>
-        <Input icon="search" placeholder="Search" />
+        <NavbarSearch {...props} />
       </Menu.Item>
       <Menu.Menu position="right">
         <Menu.Item
           as="a"
-          onClick={props.logout}
+          onClick={props.moreProps.logout}
           name="Logout"
         />
       </Menu.Menu>
@@ -44,6 +45,7 @@ function NavbarAuth(props) {
 
 NavbarAuth.propTypes = {
   logout: PropTypes.func,
+  moreProps: PropTypes.object,
 };
 
 export default NavbarAuth;
