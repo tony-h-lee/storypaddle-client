@@ -35,7 +35,7 @@ function NavbarAuth(props) {
       <Menu.Menu position="right">
         <Menu.Item
           as="a"
-          onClick={props.moreProps.logout}
+          onClick={props.logout}
           name="Logout"
         />
       </Menu.Menu>
@@ -45,7 +45,6 @@ function NavbarAuth(props) {
 
 NavbarAuth.propTypes = {
   logout: PropTypes.func,
-  moreProps: PropTypes.object,
 };
 
 export default NavbarAuth;

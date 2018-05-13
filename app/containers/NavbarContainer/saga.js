@@ -1,4 +1,4 @@
-import { call, takeLatest, put, fork } from 'redux-saga/effects';
+import { call, put, fork, throttle } from 'redux-saga/effects';
 import {
   SEARCH_REQUEST,
 } from './constants';
@@ -9,9 +9,9 @@ import {
 import * as api from './api';
 
 function* handleSearch(action) {
-  const { next, previous, text } = action;
+  const { input } = action;
   try {
-    const response = yield call(api.search, { next, previous, text });
+    const response = yield call(api.search, { input });
     yield put(searchSuccess(response));
   } catch (error) {
     yield put(searchFailure(error.message ? error.message : error));
@@ -19,7 +19,7 @@ function* handleSearch(action) {
 }
 
 function* handleSearchSaga() {
-  yield takeLatest(SEARCH_REQUEST, handleSearch);
+  yield throttle(750, SEARCH_REQUEST, handleSearch);
 }
 
 export function* rootSaga() {

@@ -7,6 +7,7 @@
 import {
   SET_SEARCH,
   CLEAR_SEARCH,
+  CLEAR_INPUT,
   SEARCH_REQUEST,
   SEARCH_SUCCESS,
   SEARCH_FAILURE,
@@ -27,7 +28,7 @@ export function setSearch(value) {
 }
 
 /**
- * Clear the search text
+ * Clear the suggestions list
  *
  * @return {object} : An action object with a type of CLEAR_SEARCH
  */
@@ -37,21 +38,29 @@ export function clearSearch() {
   };
 }
 
+
+/**
+ * Clear the search text
+ *
+ * @return {object} : An action object with a type of CLEAR_INPUT
+ */
+export function clearInput() {
+  return {
+    type: CLEAR_INPUT,
+  };
+}
+
 /**
  * Send request to retrieve Narratives based on search text
  *
- * @param {string} -> value : The text to match Narrative titles
- * @param  {string} -> next : The next cursor for the narrative pagination
- * @param  {string} -> previous : The previous cursor for the narrative pagination
+ * @param {object} -> input : The object returned from autosuggest containing value and reason
  *
  * @return {object} : An action object with a type of SEARCH_REQUEST and the text to match
  */
-export function search(value, next, previous) {
+export function search(input) {
   return {
     type: SEARCH_REQUEST,
-    value,
-    next,
-    previous,
+    input,
   };
 }
 
