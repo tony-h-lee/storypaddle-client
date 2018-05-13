@@ -19,7 +19,7 @@ function* handleSearch(action) {
 }
 
 function* handleSearchSaga() {
-  yield throttle(750, SEARCH_REQUEST, handleSearch);
+  yield throttle(800, SEARCH_REQUEST, handleSearch);
 }
 
 export function* rootSaga() {
