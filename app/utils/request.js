@@ -7,7 +7,7 @@ const DELETE = 'DELETE';
 
 export default class Request {
 
-  constructor(url, body = {}) {
+  constructor(url, body = null) {
     this.url = url;
     this.body = body;
     this.method = GET;
@@ -44,6 +44,7 @@ export default class Request {
   // Methods
   setGet() {
     this.method = GET;
+    this.body = null;
     return this;
   }
   setPut() {

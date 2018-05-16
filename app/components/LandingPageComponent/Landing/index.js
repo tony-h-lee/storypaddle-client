@@ -48,7 +48,7 @@ function Landing() {
             create and live scenarios with the Storypaddle community.
           </p>
           <Button as={Link} to={'/signup'} color="orange" size="huge">
-            Get Started
+            Create My Account!
             <Icon name="angle right" />
           </Button>
         </Container>

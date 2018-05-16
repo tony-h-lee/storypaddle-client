@@ -7,7 +7,7 @@ export function getNarratives(values) {
   const url = `http://localhost:9000/api/narratives?limit=${limit}&next=${next}&previous=${previous}`;
   return new Request()
     .setUrl(url)
-    .setGet()
     .addHeader({ 'Content-Type': 'application/json' })
+    .setGet()
     .go();
 }
