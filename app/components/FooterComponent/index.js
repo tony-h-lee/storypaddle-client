@@ -16,11 +16,6 @@ function FooterComponent() {
       <Menu secondary size="tiny">
         <Menu.Item
           as={Link}
-          to={'/about'}
-          name="About"
-        />
-        <Menu.Item
-          as={Link}
           to={'/help'}
           name="Help"
         />

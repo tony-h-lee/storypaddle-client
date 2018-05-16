@@ -15,6 +15,9 @@ import RouteWrapper from 'components/RouteWrapper';
 import FooterComponent from 'components/FooterComponent';
 import NavbarContainer from 'containers/NavbarContainer/Loadable';
 import HomePage from 'containers/HomePage/Loadable';
+import HelpPage from 'containers/HelpPage/Loadable';
+import TermsPage from 'containers/TermsPage/Loadable';
+import PolicyPage from 'containers/PolicyPage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import SignupPage from 'containers/SignupPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -65,6 +68,24 @@ export class AuthContainer extends React.PureComponent { // eslint-disable-line 
             component={RouteWrapper}
             innerComponent={HomePage}
             token={this.props.auth.get('token')}
+          />
+          <PropsRoute
+            exact
+            path="/help"
+            component={RouteWrapper}
+            innerComponent={HelpPage}
+          />
+          <PropsRoute
+            exact
+            path="/terms-of-service"
+            component={RouteWrapper}
+            innerComponent={TermsPage}
+          />
+          <PropsRoute
+            exact
+            path="/privacy-policy"
+            component={RouteWrapper}
+            innerComponent={PolicyPage}
           />
           <PropsRoute
             exact
